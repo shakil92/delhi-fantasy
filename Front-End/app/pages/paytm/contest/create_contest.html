@@ -1,0 +1,122 @@
+   <!-- Modal contest-->
+   <div popup-handler id="creat_contest" class="modal fade" role="dialog">
+    <div class="modal-dialog custom_popup creatconst_popup">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="closeContestPopup()">&times;</button>
+          <h4 class="modal-title">Make Your Own Contest</h4>
+        </div>
+        <div class="modal-body clearfix creat_contest comon_body">
+          <form name="createform" class="" ng-submit="createContest(createform)" novalidate="">
+          <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Set a Cool Contest Name (Optional)</label>
+                        <input type="text" ng-model="contest_name" name="contestname" placeholder="Your contest name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Total Winning Amount</label>
+                        <input type="text" ng-model="total_winning_amount" name="totalAmount" ng-min="0" ng-max="10000"  placeholder="Total winning amount" class="form-control" ng-required="true" ng-change="changeWinAmount()" max="10000" numbers-only prevent-typing-greater>
+                        <div style="color:red" ng-show="submitted && (createform.totalAmount.$error.parse || createform.totalAmount.$error.required) " class="form-error">
+                            *Total winning amount is required.
+                          </div> 
+                          <div style="color:red" ng-show="createform.totalAmount.$error.pattern || createform.totalAmount.$error.minlength || createform.totalAmount.$error.maxlength" class="form-error">*Total Winning amount must be between 0 and 10000.</div>  
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Contest size</label> 
+                        <input type="text" ng-model="contest_sizes" name="contestSize" ng-min="2" ng-max="100"  placeholder="min 2 & max 100" class="form-control" ng-change="changeWinners()" prevent-typing-greater numbers-only ng-required="true">
+                        <div style="color:red" ng-show="submitted && (createform.contestSize.$error.parse || createform.contestSize.$error.required)" class="form-error">
+                          *Contest size is required.
+                        </div>           
+                        <div style="color:red" ng-show="createform.contestSize.$error.pattern || createform.contestSize.$error.minlength || createform.contestSize.$error.maxlength" class="form-error">*Total Winning amount must be between 0 and 10000.</div>  
+                    </div>
+                </div>
+            </div>
+          <div class="form-group">
+          <div class="radio">
+              <input type="checkbox" ng-model="is_multientry" name="optradio" ng-model="optradio" ng-click="customizeMultieams()">
+              <label>Join this contest with multiple teams</label>
+          </div>
+          <div class="radio">
+              <input type="checkbox" name="winnings" ng-model="winnings" ng-click="customizeWin()">
+              <label>Customize Winnings</label>
+          </div>
+          </div>
+          <div class="form-group">
+              <input type="text" ng-model="number_of_winners" name="winners" ng-change="changeWinners()" ng-disabled="!winnings" placeholder="No. of winners should be less than or equal to contest size" class="form-control" numbers-only>
+              <button class="set-button" type="button" ng-disabled="!winnings" ng-click="Showform()">Set</button>
+              
+              <div style="color:red" ng-show="parseInt(number_of_winners)>parseInt(contest_sizes)">* No. of winners should be less than or equal to contest size</div>        
+            </div>
+            <div ng-show="showField" class="creatcontast_list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Winning %</th>
+                            <th>Winning Amount</th>
+                            <th><button type="button" ng-click="addField()" >+</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="r in choices ">
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label>From</label><select class="form-control" ng-model="r.select_1" ng-options="number for number in r.numbers" disabled="true"></select>
+                                        </td>
+                                        <td>
+                                            <label>To</label><select  ng-init="DataForm.select_2 = r.numbers[0]" ng-change="changePercent($index)" ng-model="r.select_2" ng-options="number for number in r.numbers"></select>
+                                        </td>
+                                    </tr>
+                                </table>
+                              
+
+                           </td>
+                            <td>
+                                <label>Percent</label> <input type="text" ng-model="r.percent" name="percent" class="form-control" ng-change="changePercent($index)" valid-number>
+                            </td>
+                            <td>Rs. {{r.amount|number:2}} </td>
+                            <td><button type="button"  ng-click="removeField($index)">-</button></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            <div style="color:red" ng-show="percent_error">*Percent field is required</div>
+            <div style="color:red" ng-show="calculation_error">*{{calculation_error_msg}}</div>
+            <div class="button_right">
+                <h4>ENTRY FEE/TEAM Rs.{{team_entry_fee|number:2}}</h4>
+            </div>
+            <div class="model_discribtion">
+              <ul>
+                <li>Entry fee is calculated based on total winning amount and
+                    contest size</li>
+                    <li>Cash bonus cannot be used to create/join a private contest</li>
+                    <li>Full refund if contest doesn’t fill up</li>
+                    <li>Private contest once created cannot be edited or deleted by the users or Playwin Fantasy under any circumstance</li>
+                    <li>Any minimal pending balance remaining due to round-off will be given to the 1st rank</li>
+              </ul>
+            </div>
+        
+            <div style="color:red" class="form-error" ng-if="contestError">*{{contestErrorMsg}}</div>                   
+            <div class="button_right">
+                  <button class="btn btn-submit">Create Contest & Invite Friends</button>
+              </div>
+  
+              
+          </form>
+        </div>
+      
+      </div>
+  
+    </div>
+  </div>
+  <!-- Modal contest-->

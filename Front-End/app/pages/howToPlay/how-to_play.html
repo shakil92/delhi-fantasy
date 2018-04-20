@@ -1,0 +1,187 @@
+        <!--Header sec start-->
+        <header-home ng-if="isLoggedIn"></header-home>
+        <header-login ng-if="!isLoggedIn"></header-login>
+        <!--Header sec end-->
+        <!--Main container sec start-->
+        <div class="main_container">
+                
+                
+                            <!--wallet-section-start-->
+                            <section class="howToPlay_sec">
+                                <div class="container">
+                                    <div class="comn_head">
+                                        <h4>How to play Cricket</h4>
+                                    </div>
+                                        <div ng-bind-html="page_content"></div>
+                                    <!-- <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="howto_video">
+                                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/LPHceiObOVM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                   
+                             
+                
+                                  <div class="walletTab">
+                                        <div class="comn_head">
+                                                <h4>How to Play</h4>
+                                            </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="{{isActive==1?'active':''}}"><a ng-click="changeActiveTab(1)" href="javascript:void(0)">Step 1 : Select a Match</a></li>
+                                            <li class="{{isActive==2?'active':''}}"><a ng-click="changeActiveTab(2)" href="javascript:void(0)">Step 2 : Create your Team</a></li>
+                                            <li class="{{isActive==3?'active':''}}"><a ng-click="changeActiveTab(3)" href="javascript:void(0)">Step 3 : Fantasy cricket point system</a></li>
+                                            <li class="{{isActive==4?'active':''}}"><a ng-click="changeActiveTab(4)" href="javascript:void(0)">Step 4 : Results</a></li>
+                                            <li class="{{isActive==5?'active':''}}"><a ng-click="changeActiveTab(5)" href="javascript:void(0)">Step 5 : Check your accounts </a></li>
+                                           
+                                        </ul>
+                
+                                        <div class="tab-content">
+                                                <!-- <div id="game" class="tab-pane fade">
+                                                    <h3>Game of Skills</h3>
+                                                </div>
+                                                <div id="Chips" class="tab-pane fade">
+                                                        <h3>Avishkar Chips</h3>
+                                                    </div> -->
+                                            <div id="select" class="tab-pane fade {{isActive==1?'in active':'';}}">
+                                                    <div class="slider_item">
+                                                            <div class="series_header">
+                                                                <span>live</span>
+                                                            </div>
+                                                            <div class="series_body">
+                                                                <ul>
+                                                                    <li>KXIP</li>
+                                                                    <li>VS</li>
+                                                                    <li>kkr</li>
+                                                                </ul>
+                                                                <h4 class="series_title">IPL</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider_item">
+                                                            <div class="series_header">
+                                                                <span>29 Jan</span>
+                                                                <button class="join_btn">Join</button>
+                                                            </div>
+                                                            <div class="series_body">
+                                                                <ul>
+                                                                    <li>IND</li>
+                                                                    <li>VS</li>
+                                                                    <li>PAK</li>
+                                                                </ul>
+                                                                <h4 class="series_title">Asia Cup</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider_item close_match">
+                                                            <div class="series_header">
+                                                                <span><i class="flaticon-timer"></i> Closed</span>
+                                                                <button class="join_btn">View Points</button>
+                                                            </div>
+                                                            <div class="series_body">
+                                                                <ul>
+                                                                    <li>IND</li>
+                                                                    <li>VS</li>
+                                                                    <li>PAK</li>
+                                                                </ul>
+                                                                <h4 class="series_title">Asia Cup</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider_item">
+                                                            <div class="series_header">
+                                                                <span>15 Feb</span>
+                                                                <button class="join_btn">Join</button>
+                                                            </div>
+                                                            <div class="series_body">
+                                                                <ul>
+                                                                    <li>IND</li>
+                                                                    <li>VS</li>
+                                                                    <li>PAK</li>
+                                                                </ul>
+                                                                <h4 class="series_title">Asia Cup</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider_item">
+                                                            <div class="series_header">
+                                                                <span>17 Feb</span>
+                                                                <button class="join_btn">Join</button>
+                                                            </div>
+                                                            <div class="series_body">
+                                                                <ul>
+                                                                    <li>IND</li>
+                                                                    <li>VS</li>
+                                                                    <li>PAK</li>
+                                                                </ul>
+                                                                <h4 class="series_title">Asia Cup</h4>
+                                                            </div>
+                                                        </div>
+                                                        <p>On successful registration and verification are you ready to take challenge;  then go the lobby and select the match from current and upcoming series.  We have wide coverage of International, Domestic and T20 Cricket Tournaments.</p>
+                                             
+                                            </div>
+                
+                                            <div id="your_team" class="tab-pane fade {{isActive==2?'in active':'';}}">
+                                               <div class="howtoplay_img">
+                                                   <img ng-src="{{env.image_base_url}}secont_img.png" class="img-responsive" alt="">
+                                               </div>
+                                               <p>
+                                                Create your playwin team with 11 players combinations of wicket keeper, batsman, bowler and all rounder with in budget of 100 credits. We are not restricting you to select player with only certain combinations you have to just follow minimum and maximum criteria. You can Check players information by clicking on the pic of the player to take review of  his career history and to decide whether to include him in your team or not.
+                                              </p>
+                                              <p>Skillfully Select your Playwin Captain and Vice captain from selected 11 players and avail benefit to receive 2 times the point of Captains performance and 1.5 times the point of Vice Captains Performance.  Please check our playwinfantasy point table to get know some more categories.</p>
+                                              <p>You can create as many teams as you want for respective match and choose to join a contests with any of these created teams.  Playwinfantasy gives you one more chance to edit your team along with captain and vice captain until the deadline of the match.</p>
+                                                
+                                            </div>
+                                            <div id="captain" class="tab-pane fade {{isActive==3?'in active':'';}}">
+                
+                                                    
+                                                              
+                                                <p>Your Playwinfantasy team accumulates the score for their real performance based on fantasy point attributed to the various action of the players on the field.</p>   
+                                                <p>Please check our <a href="#/point-system" target="_blank"><b>fantasy cricket point system</b></a> chart through which you can decide your strategy to select the combinations of players to get higher rank. It is platform where you can confirm the total score you received for the respective match.</p> 
+                                                <p>Fantasy score for the players will be update as per the ICC rule. If match get interrupted by rain or the result get decided by D/L method; players will be awarded points. If match get abandoned no points will be awarded.</p> 
+                                                                
+                                                              
+                                            </div>
+                                            <div id="multiple" class="tab-pane fade {{isActive==4?'in active':'';}}">
+                                                        <p>My Contest section will show you the details of points, rank you achieved and amount of prize you won in respective contest you joined. This section will give you the details of the team chosen by your opponent also but only after the respective contest match gets start. Ranks and points will be updated and displayed during the match in real time.</p>
+                                                        <p>The winner declaration and crediting of the winnings to your playwinfantasy account usually happens within a hour after the match is completed.</p>
+                                                        <p>Winners rank shall be decided on the on the basis of highest scoring of points. If on any rank the tie happens for the score the winner prize for that respective rank shall be given to the player who has entered into contest earlier. The rest of the player with same score shall get the prize for the next rank and so on.</p> 
+                                                            
+                                            </div>
+                                            <div id="multiple1" class="tab-pane fade {{isActive==5?'in active':'';}}">
+                                                <p>Your playwinfantasy account shall be update shortly after the match. On dashboard you will get summary of your accounts. You can check the detail ledger of respective head in transaction section.</p>
+                                                <div class="checkaccount_list">
+                                                    <div class="checkaccount_img"><img ng-src="{{env.image_base_url}}Screenshott.png" class="img-responsive" alt=""> </div>
+                                                    <b>Unutilized Account</b> 
+                                                    <p>This account will let you know the balance which you have yet not utilized to join contest. </p>
+                                                </div>
+
+                                                <div class="checkaccount_list">
+                                                        <div class="checkaccount_img"><img ng-src="{{env.image_base_url}}Screenshott1.png" class="img-responsive" alt=""> </div>
+                                                <b>Winning Account</b>
+                                                <p>This account will get posted with your winning amount from various cash contest joined and won by you.</p> 
+                                                </div>
+
+                                                <div class="checkaccount_list">
+                                                        <div class="checkaccount_img"><img ng-src="{{env.image_base_url}}Screenshott2.png" class="img-responsive" alt=""> </div>
+                                                <b>Cash Bonus Account</b> 
+                                                <p>This account will show the amount which you have received through various bonus scheme. With this amount you can enjoy more cash contest with the opportunity to win more. This amount you can’t withdraw but don’t worry we have not put any expiry date for this amount. We have given you fare deal so utilize your bonus to play with us fully. </p>
+                                                </div>
+
+                                                <div class="checkaccount_list">
+                                                        <div class="checkaccount_img"><img ng-src="{{env.image_base_url}}Screenshott3.png" class="img-responsive" alt=""> </div>
+                                                <b>Playwinfantasy Chips Account.</b> 
+                                                <p>This is additional bonus given by playwinfantasy in free of cost to get more experience of cash contest. You can earn your playwinfantasy chips as a winning prize in free contest. You will get your referral reward also in playwinfantasy chips account. </p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </section>
+                            <!--wallet-section-start-->
+                        </div>
+                        <!--Main container sec end-->
+        <!--Main container sec end-->
+        <footer-home></footer-home>
+        
+        <!--Footer sec end-->
+   
+

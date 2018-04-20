@@ -1,0 +1,159 @@
+<div class="onlyfor_home">
+<header-login></header-login>
+<div class="main_container" ng-init="matchList()" one-page-scroll data-spy="scroll" data-target=".section_menu" >
+    <div class="section_menu" id="myScrollspy">
+        <ul>
+            <li  class="" data-scrollspy-listen="home" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('home')" >Home</a> </li>
+            <!-- <li class=""  data-scrollspy-listen="howToPlay" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('howToPlay')" >How to play</a> </li> -->
+            <li class=""  data-scrollspy-listen="feature" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('feature')" >Features</a> </li>
+            <li class=""  data-scrollspy-listen="refer" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('refer')" >Refer a Friend</a> </li>
+            <li class=""  data-scrollspy-listen="testimonial" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('testimonial')" >Testimonials</a> </li>
+            <li class=""  data-scrollspy-listen="playNow" ><a class="page-scroll" href="javascript:void(0)" ng-click="scrollTo('playNow')" >Play Now</a> </li>
+        </ul>
+    </div>
+    <section class="banner_sec ralative_section" id="home" data-scrollspy-broadcast data-scrollspy-offset="100" >
+        <!-- <slider-home></slider-home> -->
+        <div class="banner-slider"> 
+            <div class="banner_img">
+                <img ng-src="{{env.image_base_url}}suter1.jpg" alt="" />
+                <div class="banner_containt">
+                    <div class="container-fluid">
+                        <h1>Be the "Genie"Us, Play and Win</h1>
+                        <a href="#/login">Play Now</a>
+                    </div>
+                    <div class="container">
+                            <div class="row how_toslider" feature-home >
+                                    
+                                <div class="showmatch_box">
+                                        <img src="http://delhi.fantasy96.com/Front-End/images/new1.png" alt="">
+                                        <h4>Intro</h4>
+                                        <p>Show your sports Genie-us, build your fantasy team and win real cash</p>
+                                </div>
+                
+                                <div class="showmatch_box">
+                                        <img src="http://delhi.fantasy96.com/Front-End/images/new1.png" alt="">
+                                        <h4>SELECT A MATCH</h4>
+                                        <p>Choose you sport and then select a match from the upcoming matches</p>
+                                </div>
+                
+                                <div class="showmatch_box">
+                                        <img src="http://delhi.fantasy96.com/Front-End/images/new2.png" alt="">
+                                        <h4> Create your "Genie"us Team</h4>
+                                        <p>Build your own team of stars using the dynamic player credits. Every user gets the same amount of credits to build his/her team</p>
+                                </div>
+                
+                                <div class="showmatch_box">
+                                        <img src="http://delhi.fantasy96.com/Front-End/images/new3.png" alt="">
+                                        <h4> Join or Create a Contest</h4>
+                                        <p>Peg your team against others in an existing contest or create a contest of your own</p>
+                                </div>
+                                
+                                <div class="showmatch_box">
+                                        <img src="http://delhi.fantasy96.com/Front-End/images/new4.png" alt="">
+                                        <h4>WIN CASH</h4>
+                                        <p>Win cash based on your team's performance </p>
+                                </div>
+                               
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="matchshow_sec ralative_section" id="howToPlay" data-scrollspy-broadcast data-scrollspy-offset="100" >
+     
+    </section> -->
+    <section class="feature_sec ralative_section" id="feature" data-scrollspy-broadcast data-scrollspy-offset="100" >
+        
+                <div class="container">
+        
+        
+        
+                    <ul class="clearfix">
+        
+                        <li>
+        
+                            <img src="{{env.image_base_url}}fea1.png" alt="">
+        
+                            <h4>Select your team till the start of the match</h4>
+        
+        
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+        
+                        </li>
+                        <li>
+                            <img src="{{env.image_base_url}}fea2.png" alt="">
+                            <h4>ALL contests are confirmed!</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+                        </li>
+        
+                        <li>
+                            <img src="{{env.image_base_url}}fea3.png" alt="">
+                            <h4>Dynamic player credit system</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+                        </li>
+        
+                        <li>
+                            <img src="{{env.image_base_url}}fea4.png" alt="">
+                            <h4>Amazing statistics to boost your performance</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+                        </li>
+        
+                    </ul>
+        
+                </div>
+            </section>
+            <section class="comn_sec refer_section" id="refer" data-scrollspy-broadcast data-scrollspy-offset="100" >
+                    <div class="container">
+                        <h4>Refer a friend and Earn bonus cash</h4>
+                        <a href="#">Refer Now</a>
+                    </div>
+            </section>
+            <section class="testimonial_sec ralative_section" id="testimonial" data-scrollspy-broadcast data-scrollspy-offset="100" >
+                <div class="container">
+                    <div class="comn_head">
+                        <h4>What Users Say?
+                        </h4>
+                        <p>Read our favorite reviews about The Team Genie</p>
+                    </div>
+                    <div class="testimonial_slider " >
+
+                        <div class="slider_test_main"  >
+
+                            <div class="slick_item">
+
+                                <p>
+                                    The new-kid on the block, TheTeamGenie, makes the best of fantasy sports games available around. I can chose my team right till the toss so that I don't lose points for a player not featuring in the final squad.</p>
+                                    <div class="slider_test_tumb" >
+                                        <div class="client_avtar"><img ng-src="{{env.image_base_url}}dinesh.jpg" alt=""></div>
+                                        <h5>Dinesh Kothari </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+    <section class="app_sec ralative_section" id="playNow" data-scrollspy-broadcast data-scrollspy-offset="100" >
+        <div class="container">
+            <div class="mobile_app">
+                <div class="app_img">
+                    <img src="{{env.image_base_url}}app.png" alt="">
+                </div>
+                <h4>PLAY NOW</h4>
+                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur</p>
+                <a href="#"><img src="{{env.image_base_url}}app_store.jpg" alt=""></a><a href="#"><img src="{{env.image_base_url}}google_play.jpg" alt=""></a>
+            </div>
+        </div>
+    </section>
+ 
+
+
+    
+
+
+
+    </div>
+    </div>
+    <footer-login></footer-login>

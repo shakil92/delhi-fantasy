@@ -1,0 +1,140 @@
+<header-home></header-home>
+<div class="main_container">
+        
+        
+                    <!--wallet-section-start-->
+                    <section class="wallet_sec comon_bg">
+                        <div class="container">
+                            <div class="walletBox">
+                                <div class="wallet_header">
+                                    <h3>Select Payment Mode</h3>
+                                </div>
+                                <div class="wallerBody clearfix">
+                                    <h4>Pay Rs. {{amountMoney|number:2}}</h4>
+                                    <div class="walletTab clearfix">
+                                        <ul class="nav nav-tabs">
+                                            <li class="{{currentActiveTab==1?'active':''}}"><a data-toggle="tab" ng-click="changeCurrentTab(1)" href="javascript:void(0)">Wallet</a></li>
+                                            <li class="{{currentActiveTab==2?'active':''}}"><a ng-click="changeCurrentTab(2)" href="javascript:void(0)">Debit Card/Credit Card/Internet Banking</a></li>
+                                        </ul>
+        
+                                        <div class="tab-content">
+                                            <div id="wallet" class="tab-pane fade {{currentActiveTab==1?'in active':''}}">
+                                                <div class="costom_radio">
+                                                    <input type="radio">
+                                                    <label for=""><img ng-src="{{env.image_base_url}}Paytm_logo.png" alt=""> </label>
+                                                </div>
+                                                <p>After clicking on the “Proceed to Pay” button, you will be directed to a secure gateway
+                                                    for payment.</p>
+                                                    <form action="https://pguat.paytm.com/oltp-web/processTransaction" ng-submit="submitPayTmData()" name="payTmData" method="post" id="submitPayTm">
+                                                        <input type="hidden" name="MID" ng-model="MID" value="{{MID}}">
+                                                        <input type="hidden" name="ORDER_ID" ng-model="ORDER_ID" value="{{ORDER_ID}}">
+                                                        <input type="hidden" name="CUST_ID" ng-model="CUST_ID" value="{{CUST_ID}}">
+                                                        <input type="hidden" name="INDUSTRY_TYPE_ID" ng-model="INDUSTRY_TYPE_ID" value="{{INDUSTRY_TYPE_ID}}">
+                                                        <input type="hidden" name="CHANNEL_ID"  ng-model="CHANNEL_ID" value="{{CHANNEL_ID}}">
+                                                        <input type="hidden" name="TXN_AMOUNT"  ng-model="TXN_AMOUNT" value="{{TXN_AMOUNT}}">
+                                                        <input type="hidden" name="WEBSITE" ng-model="WEBSITE" value="{{WEBSITE}}">
+                                                        <input type="hidden" name="CHECKSUMHASH"  ng-model="CHECKSUMHASH" value="{{CHECKSUMHASH}}">
+                                                        <input type="hidden" name="CALLBACK_URL"  ng-model="CALLBACK_URL" value="{{CALLBACK_URL}}">
+                                                    </form>    
+                                                <div class="proceed_Pay">
+                                                    <a href="javascript:void(0)" ng-click="payTmReq(amountMoney)">Proceed to Pay</a>
+                                                    <p>By proceeding, you have read and agreed to Play Win Fantasy <a href="#">Terms and Conditions</a>                                                and <a href="#"> Privacy Policy</a></p>
+                                                </div>
+                                            </div>
+                                            <div id="debit" class="tab-pane fade {{currentActiveTab==2?'in active':''}}">
+                                                    <div class="costom_radio">
+                                                            <input type="radio">
+                                                            <label for=""><img ng-src="{{env.image_base_url}}payu.png" alt=""> </label>
+                                                        </div>
+                                                        <p>After clicking on the “Proceed to Pay” button, you will be directed to a secure gateway
+                                                            for payment.</p>
+                                                            <form action="https://pguat.paytm.com/oltp-web/processTransaction" ng-submit="submitPayTmData()" name="payTmData" method="post" id="submitPayU">
+                                                                <input type="hidden" name="MID" ng-model="MID" value="{{MID}}">
+                                                                <input type="hidden" name="ORDER_ID" ng-model="ORDER_ID" value="{{ORDER_ID}}">
+                                                                <input type="hidden" name="CUST_ID" ng-model="CUST_ID" value="{{CUST_ID}}">
+                                                                <input type="hidden" name="INDUSTRY_TYPE_ID" ng-model="INDUSTRY_TYPE_ID" value="{{INDUSTRY_TYPE_ID}}">
+                                                                <input type="hidden" name="CHANNEL_ID"  ng-model="CHANNEL_ID" value="{{CHANNEL_ID}}">
+                                                                <input type="hidden" name="TXN_AMOUNT"  ng-model="TXN_AMOUNT" value="{{TXN_AMOUNT}}">
+                                                                <input type="hidden" name="WEBSITE" ng-model="WEBSITE" value="{{WEBSITE}}">
+                                                                <input type="hidden" name="CHECKSUMHASH"  ng-model="CHECKSUMHASH" value="{{CHECKSUMHASH}}">
+                                                                <input type="hidden" name="CALLBACK_URL"  ng-model="CALLBACK_URL" value="{{CALLBACK_URL}}">
+                                                            </form>    
+                                                        <div class="proceed_Pay">
+                                                            <a href="javascript:void(0)" ng-click="payUReq(amountMoney)">Proceed to Pay</a>
+                                                            <p>By proceeding, you have read and agreed to Play Win Fantasy <a href="#">Terms and Conditions</a>                                                and <a href="#"> Privacy Policy</a></p>
+                                                        </div>
+                                                    </div>
+                                            <div id="credit" class="tab-pane fade {{currentActiveTab==3?'in active':''}}">
+                                                <div class="row">
+                                                    <div class="col-sm-7">
+                                                        <div class="form-group">
+                                                            <label>Full Name</label>
+                                                            <input type="text" placeholder="Micheal Joe" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <div class="visacard">
+                                                            <img ng-src="{{env.image_base_url}}visa.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <div class="form-group">
+                                                            <label>Card Number</label>
+                                                            <input type="text" placeholder="Enter 16 digit card number" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Date of Expiry</label>
+                                                            <input type="text" placeholder="dd/mm/yy" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label>CVV</label>
+                                                            <input type="text" placeholder="CVV" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-sm-7">
+                                                        <div class="checkbox-inline form-group">
+                                                            <label><input type="checkbox"> Save card details for future transactions. </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <button class="btn btn-default">Make Payment Rs. {{amountMoney|number:2}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="money" class="tab-pane fade {{currentActiveTab==4?'in active':''}}">
+                                                    <div class="netbanking">
+                                                        <ul>
+                                                            <li>
+                                                              <a href="#"> <img ng-src="{{env.image_base_url}}icici.png" alt=""></a>
+                                                            </li>
+                                                            <li><a href="#"> <img ng-src="{{env.image_base_url}}sbi.png" alt=""></a> </li>
+                                                            <li><a href="#"> <img ng-src="{{env.image_base_url}}hdfc.png" alt=""></a> </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                        </div>
+        
+                                    </div>
+                                    <div class="our_partners">
+                                        <h4>Our Payment Partners</h4>
+                                            <ul>
+                                                <li><img ng-src="{{env.image_base_url}}Paytm_logo.png" alt=""></li>
+                                                <li><img ng-src="{{env.image_base_url}}payu.png" alt=""></li>
+                                            </ul>
+                                        </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </section>
+        
+                    <!--wallet-section-start-->
+                </div>
+            
+<footer-home></footer-home>

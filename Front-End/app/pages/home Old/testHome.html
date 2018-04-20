@@ -1,0 +1,503 @@
+<header-login></header-login>
+<div class="main_container" ng-init="matchList()">
+
+            <section class="landing_banner">
+
+
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-8 col-sm-offset-4">
+
+                            <div class="banner_cnt text-uppercase">
+
+                                    <h1>Play 
+                                          <div class="banner_cnt_txt">Fantasy GAME </div>  
+                                            & Win Cash, Daily!</h1>
+
+                                    <a href="#">Play Now</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="bannerIcons">
+                        <ul class="list-inline list-unstyled">
+                            <li><img src="{{env.image_base_url}}bannerIcon1.png" alt=""></li>
+                            <li><img src="{{env.image_base_url}}bannerIcon2.png" alt=""></li>
+                            <li><img src="{{env.image_base_url}}bannerIcon3.png" alt=""></li>
+                            <li><img src="{{env.image_base_url}}bannerIcon4.png" alt=""></li>
+                        </ul>
+                    </div>
+
+                  
+
+                </div>
+
+
+
+            </section>
+
+
+                        <section class="upcoming_sec">
+
+                <div class="container">
+
+
+                    <div class="upcoming_box">
+
+                        <div class="upcoming_left">
+
+                        <div class="upcomingHead ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3>Next<span> Match</span></h3>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="pageNUBox text-right">
+                                       <div class="lefBox"><a href="javascript:void(0)"><i class="fa fa-chevron-left"></i></a></div> 
+                                       <div class="centrBox">1/5</div> 
+                                       <div class="rightBox"><a href="javascript:void(0)"><i class="fa fa-chevron-right"></i></a></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+
+                                <div class="upcoming_body">
+
+                                        <ul class="clearfix row">
+
+                                        <li class="col-sm-5">
+
+                                            <img src="{{env.image_base_url}}indiT.png"> <label>IND</label>
+
+                                        </li>
+
+                                        <li class="col-sm-2"><span>vs</span></li>
+
+                                        <li class="col-sm-5">
+
+                                          <label>PAK</label>  <img src="{{env.image_base_url}}pakT.png" alt="" > 
+
+                                            </li>
+
+                                        </ul>
+                                        <p>WORLD CUP SEMI FINAL MARCH 25, 2018 - 07:00 PM</p>
+                                        <label>02 Days - 15 Hrs  -  58 Mins  -  58 secs</label>
+
+                                    </div>
+
+                        </div>
+
+                        <div class="upcoming_right">
+
+                            <div class="comn_head">
+
+                                <h4><span>Latest</span> Results </h4>
+
+                            </div>
+
+                            <div class="upcoming_list" ng-repeat="marches in listOfMatchs">
+
+                                <div class="upcoming_header"> {{marches.match_type}}|   {{marches.match_date}} / {{marches.match_time}} </div>
+
+                                <div class="upcoming_body">
+
+                                    <ul class="clearfix">
+
+                                        <li>
+
+                                            <img src="{{marches.localteam_image}}" alt=""> {{marches.localteam}}
+
+                                        </li>
+
+                                        <li>
+                                            <span>vs</span>
+                                           
+                                        </li>
+
+                                        <li>
+
+                                            <img src="{{marches.visitorteam_image}}" alt="" > {{marches.visitorteam}}
+
+                                        </li>
+
+                                    </ul>
+                                    <!-- <p>INDIA WON BY 5 WICKETS</p> -->
+
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="upcoming_list">
+
+                                    <div class="upcoming_header"> 2nd ODI    |    13 MARCH 2018 / 8:30 PM</div>
+
+                                    <div class="upcoming_body">
+
+                                        <ul class="clearfix">
+
+                                            <li>
+
+                                                <img src="{{env.image_base_url}}india_bg.png" alt=""> INDIA
+
+                                            </li>
+
+                                            <li><span>vs</span>
+                                             
+                                            </li>
+
+                                            <li>
+
+                                                <img src="{{env.image_base_url}}nz_bg.png" alt="" > NEW ZEALAND
+
+                                            </li>
+
+                                        </ul>
+                                        <p>INDIA WON BY 5 WICKETS</p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="upcoming_list">
+
+                                        <div class="upcoming_header"> 2nd ODI    |    13 MARCH 2018 / 8:30 PM</div>
+
+                                        <div class="upcoming_body ">
+
+                                            <ul class="clearfix">
+
+                                                <li>
+
+                                                    <img src="{{env.image_base_url}}india_bg.png" alt=""> INDIA
+
+                                                </li>
+
+                                                <li>
+                                                    <span>vs</span>
+
+                                                </li>
+
+                                                <li>
+
+                                                    <img src="{{env.image_base_url}}nz_bg.png" alt="" > NEW ZEALAND
+
+                                                </li>
+
+                                            </ul>
+                                            <p>INDIA WON BY 5 WICKETS</p>
+                                                
+                                        </div>
+
+                                    </div> -->
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <section class="feature_sec">
+
+                <div class="container">
+                        
+                    <div class="comn_head">
+
+                        <h4>FEATURES</h4>
+
+                        </div>
+
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book.
+
+                            </p>
+
+                            <ul class="clearfix">
+
+                                <li>
+
+                                    <img src="{{env.image_base_url}}fea1.png" alt="">
+
+                                    <h4>Win Gifts</h4>
+
+                                    <div class="lineBox">
+                                        <div class="linLeft"></div>
+                                        <div class="lincenter"></div>
+                                        <div class="linRight"></div>
+                                    </div>
+
+                                    <p>Lorem Ipsum is simply dummy text of 
+
+                                            the printing and typesetting industry. 
+
+                                            Lorem Ipsum has been  </p>
+
+                                </li>
+
+                                <li>
+
+                                        <img src="{{env.image_base_url}}fea2.png" alt="">
+
+                                        <h4>Free game</h4>
+                                         <div class="lineBox">
+                                        <div class="linLeft"></div>
+                                        <div class="lincenter"></div>
+                                        <div class="linRight"></div>
+                                    </div>
+
+
+                                        <p>Lorem Ipsum is simply dummy text of 
+
+                                                the printing and typesetting industry. 
+
+                                                Lorem Ipsum has been  </p>
+
+                                    </li>
+
+                                    <li>
+
+                                            <img src="{{env.image_base_url}}fea3.png" alt="">
+
+                                            <h4>BUILD OWN TEAM</h4>
+                                             <div class="lineBox">
+                                        <div class="linLeft"></div>
+                                        <div class="lincenter"></div>
+                                        <div class="linRight"></div>
+                                    </div>
+
+
+                                            <p>Lorem Ipsum is simply dummy text of 
+
+                                                    the printing and typesetting industry. 
+
+                                                    Lorem Ipsum has been  </p>
+
+                                        </li>
+
+                                        <li>
+
+                                                <img src="{{env.image_base_url}}fea4.png" alt="">
+
+                                                <h4>Create own  contest</h4>
+                                                 <div class="lineBox">
+                                        <div class="linLeft"></div>
+                                        <div class="lincenter"></div>
+                                        <div class="linRight"></div>
+                                    </div>
+
+
+                                                <p>Lorem Ipsum is simply dummy text of 
+
+                                                        the printing and typesetting industry. 
+
+                                                        Lorem Ipsum has been  </p>
+
+                                            </li>
+
+                            </ul>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+            <section class="howToP_sec">
+
+
+                <div class="container">
+
+                <div class="comn_head">
+
+                <h4><main>How to</main><span> Play</span> </h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been  the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book.
+                </p>
+                </div>
+                    <div class="step_bar">
+                            <ul class="clearfix">
+                                <li>
+                                    <div class="step_item">
+                                            <img src="{{env.image_base_url}}first_list.png" alt="">
+                                    </div>
+                                    <div class="step_content">
+                                        <span>Select a match</span>
+                                       <p>Lorem Ipsum has been Lorem Ipsum is simply dummy text of the dummy text ever since the 1500s, ook.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                        <div class="step_item">
+                                                <img src="{{env.image_base_url}}second_list.png" alt="">
+                                        </div>
+                                        <div class="step_content">
+                                            <span>Create your Scoring 11 team</span>
+                                            <p>Lorem Ipsum has been Lorem Ipsum is simply dummy text of the dummy text ever since the 1500s, ook.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                            <div class="step_item">
+                                                    <img src="{{env.image_base_url}}match_img.png" alt="">
+                                            </div>
+                                            <div class="step_content">
+                                                <span>Join contest and challenge friends</span>
+                                                <p>Lorem Ipsum has been Lorem Ipsum is simply dummy text of the dummy text ever since the 1500s, ook.</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                                <div class="step_item">
+                                                    <img src="{{env.image_base_url}}rs.png" alt="">
+                                                </div>
+                                                <div class="step_content">
+                                                    <span>Win Cash</span>
+                                                   <p>Lorem Ipsum has been Lorem Ipsum is simply dummy text of the dummy text ever since the 1500s, ook.</p>
+                                                </div>
+                                            </li>
+                            </ul>
+                        </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="vied_sec">
+
+                <div class="container">
+
+                     <div class="comn_head">
+                            <h4>From Fans to Fantasy Players, They all love Scoring 11</h4>
+                    <div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="landing_video">
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFCrwom2fM8" frameborder="0" allowfullscreen=""></iframe>
+                                            <p>Fantasy 11 is actually a fun game and i enjoy playing it a lot. I found 
+                                                    the site when my friend told me about fantasy 11 fantasy and it 
+                                                    was...</p>
+                                            <h5>Siddhart Mane</h5>
+                                    </div>
+                                    <div class="landing_video">
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFCrwom2fM8" frameborder="0" allowfullscreen=""></iframe>
+                                            <p>Fantasy 11 is actually a fun game and i enjoy playing it a lot. I found 
+                                                    the site when my friend told me about fantasy 11 fantasy and it 
+                                                    was...</p>
+                                            <h5>Siddhart Mane</h5>
+                                    </div>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="fantasy_fan">
+                                    <div class="fantasy_fan_img">
+                                        <img src="{{env.image_base_url}}fans.png" class="img-circle" alt="">
+                                    </div>
+                                    <div class="fantassy_fan_containt">
+                                        <p>It feels great to win a mega contest and the 
+                                                best part is the realization that you could 
+                                                make real money with your cricket 
+                                                knowledge. fantasy 11 rocks!</p>
+                                                <h5>Jatin Kakkar</h5>
+                                    </div>
+                                </div>
+                                <div class="fantasy_fan">
+                                        <div class="fantasy_fan_img">
+                                            <img src="{{env.image_base_url}}testimonials_img.png" class="img-circle" alt="">
+                                        </div>
+                                        <div class="fantassy_fan_containt">
+                                            <p>It feels great to win a mega contest and the 
+                                                    best part is the realization that you could 
+                                                    make real money with your cricket 
+                                                    knowledge. fantasy 11 rocks!</p>
+                                                    <h5>Jatin Kakkar</h5>
+                                        </div>
+                                    </div>
+                                    <div class="fantasy_fan">
+                                            <div class="fantasy_fan_img">
+                                                <img src="{{env.image_base_url}}fans.png" class="img-circle" alt="">
+                                            </div>
+                                            <div class="fantassy_fan_containt">
+                                                <p>It feels great to win a mega contest and the 
+                                                        best part is the realization that you could 
+                                                        make real money with your cricket 
+                                                        knowledge. fantasy 11 rocks!</p>
+                                                        <h5>Jatin Kakkar</h5>
+                                            </div>
+                                        </div>
+                                        <div class="fantasy_fan">
+                                                <div class="fantasy_fan_img">
+                                                    <img src="{{env.image_base_url}}testimonials_img.png" class="img-circle" alt="">
+                                                </div>
+                                                <div class="fantassy_fan_containt">
+                                                    <p>It feels great to win a mega contest and the 
+                                                            best part is the realization that you could 
+                                                            make real money with your cricket 
+                                                            knowledge. fantasy 11 rocks!</p>
+                                                            <h5>Jatin Kakkar</h5>
+                                                </div>
+                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>    
+                </div>
+
+            </section>
+
+
+  
+
+        <div class="newsLatter">
+
+            <div class="container">
+                <div class="row">
+                     <div class="col-sm-10 col-sm-offset-1">
+                    <div class="row">
+
+                    <div class="col-sm-5">
+
+                        <h4>Subscribe to our <span>Newslatter</span> </h4>
+
+                    </div>
+
+                    <div class="col-sm-7">
+
+                        <div class="news_latrinput">
+
+                            <input type="text" placeholder="Enter your e-mail address">
+
+                            <button class="subs_btn">
+
+                                Subscribe
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                     </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        </div>
+<footer-login></footer-login>

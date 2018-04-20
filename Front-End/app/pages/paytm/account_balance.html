@@ -1,0 +1,601 @@
+<header-home></header-home>
+
+<div class="main_container">
+
+        <div class="account_top">
+
+            <div class="container">
+
+                <ul>
+
+                    <li class="account_img">
+
+                        <div class="account_holder">
+
+                            <img ng-src="{{userDetails.user_image}}" alt="">
+
+                        </div>
+
+                        {{userDetails.name}}
+
+                    </li>
+
+                    <li>Total Cash<span>{{walletData.cash.total_balance|number:2}}</span> </li>
+
+                    <li>Unutilised Deposit Cash<span>{{walletData.cash.deposited_amount|number:2}}</span> </li>
+
+                    <li>Winning Cash<span>{{walletData.cash.winning_amount|number:2}}</span> <a href="javascript:void(0)" data-toggle="modal" data-target="#Wthdraw">Withdraw</a></li>
+
+                    <!-- <li>Cash Bonus<span>{{walletData.cash.cash_bonus_amount|number:2}}</span> </li> -->
+
+                    <!-- <li>Playwinfantasy Chips<span>{{walletData.chip.total_chip}}</span> </li> -->
+
+                    <li><a href="javascript:void(0)" ng-click="openPopup('add_cash')">Add Cash</a> <a href="#/contest" >Play</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!--wallet-section-start-->
+
+        <section class="wallet_sec account_sec">
+
+            <div class="container">
+
+                <div class="walletTab">
+
+                    <ul class="nav nav-tabs">
+
+                        <!-- <li><a data-toggle="tab" href="#profile">My Profile</a></li> -->
+
+                        <li class="{{activeTransactionTab==1?'active':''}}"><a data-toggle="tab" ng-click="changeTransactionTab(1)" href="javascript:void(0)">Cash Transaction Details</a></li>
+
+                        <li class="{{activeTransactionTab==2?'active':''}}"><a data-toggle="tab" ng-click="changeTransactionTab(2)" href="javascript:void(0)">Cash Withdrawal</a></li>
+
+                        <!-- <li class="{{activeTransactionTab==4?'active':''}}"><a data-toggle="tab" ng-click="changeTransactionTab(4)" href="javascript:void(0)">Cash Bonus Transaction</a></li> -->
+
+                        <!-- <li class="{{activeTransactionTab==3?'active':''}}"><a data-toggle="tab" ng-click="changeTransactionTab(3)" href="javascript:void(0)">Chips Transaction Details</a></li> -->
+
+                        <!-- <li><a data-toggle="tab" href="#inbox">Inbox</a></li> -->
+
+                    </ul>
+
+
+
+                    <div class="tab-content">
+
+                            <div id="transaction" class="tab-pane fade {{activeTransactionTab=='1'?'in active':''}}">
+
+                                    <h4>Transaction Details</h4>
+
+                                    <div class="tab_sarch">
+
+                                        <ul class="clearfix">
+
+                                            <li>
+
+                                                <label>From</label>
+
+                                                <select class="form-control">
+
+                                      <option>01-02-2018</option>
+
+                                      <option>01-02-2018</option>
+
+                                      <option>01-02-2018</option>
+
+                                    </select>
+
+                                            </li>
+
+                                            <li>
+
+                                                <label>To</label>
+
+                                                <select class="form-control">
+
+                                      <option>28-02-2018</option>
+
+                                      <option>28-02-2018</option>
+
+                                      <option>028-02-2018</option>
+
+                                    </select>
+
+                                            </li>
+
+                                            <li>
+
+                                                <label>Transaction Type</label>
+
+                                                <select class="form-control">
+
+                                      <option>Both</option>
+
+                                      <option>Debit</option>
+
+                                      <option>Credit</option>
+
+                                    </select>
+
+                                            </li>
+
+                                            <li class="text-right">
+
+                                                <label></label>
+
+                                                <button class="btn btn-submit">Search</button>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                
+                                <div class="table-responsive">
+                                    <table>
+
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>Transaction ID</th>
+
+                                                <th>Details</th>
+
+                                                <th>Opening Balance</th>
+
+                                                <th>Cr.</th>
+
+                                                <th>Dr.</th>
+
+                                                <th>Available Balance</th>
+
+                                                <th>Date & Time</th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr ng-repeat="records in transaction" ng-if="transaction.length>0">
+
+                                                <td>{{records.id}}</td>
+
+                                                <td>{{records.message}}</td>
+
+                                                <td><i class="fa fa-rupee"></i> {{records.opening_balance|number:2}}</td>
+
+                                                <td><i class="fa fa-rupee"></i> {{records.cr|number:2}}</td>
+
+                                                <td><i class="fa fa-rupee"></i> {{records.dr|number:2}}</td>
+
+                                                <td><i class="fa fa-rupee"></i> {{records.available_balance|number:2}}</td>
+
+                                                <td>{{records.datetime}}</td>
+
+                                            </tr>
+
+                                            <tr ng-if="transaction.length==0">
+
+                                                    <td>No transaction found.</td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+        
+
+                                </div>
+
+                        <div id="withdrawal" class="tab-pane fade {{activeTransactionTab==2?'in active':''}}">
+
+                            <h4>Withdrawal</h4>
+
+                            <div class="tab_sarch">
+
+                                    <ul class="clearfix">
+
+                                        <li>
+
+                                            <label>From</label>
+
+                                            <select class="form-control">
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                            <label>To</label>
+
+                                            <select class="form-control">
+
+                                  <option>28-02-2018</option>
+
+                                  <option>28-02-2018</option>
+
+                                  <option>028-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                           
+
+                                        </li>
+
+                                        <li class="text-right">
+
+                                            <label></label>
+
+                                            <button class="btn btn-submit">Search</button>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+                            <div class="table-responsive">    
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Transaction ID</th>
+
+                                            <th>Details</th>
+
+                                            <th>Opening Balance</th>
+
+                                            <th>Dr.</th>
+
+                                           
+
+                                            <th>Available Balance</th>
+
+                                            <th>Date & Time</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                            <tr ng-repeat="records in transaction" ng-if="transaction.length>0">
+
+                                                        <td>{{records.id}}</td>
+
+                                                        <td>{{records.message}}</td>
+
+                                                        <td><i class="fa fa-rupee"></i> {{records.opening_balance|number:2}}</td>
+
+                                                        <td><i class="fa fa-rupee"></i> {{records.cr|number:2}}</td>
+
+                                                        <td><i class="fa fa-rupee"></i> {{records.dr|number:2}}</td>
+
+                                                        <td><i class="fa fa-rupee"></i> {{records.available_balance|number:2}}</td>
+
+                                                        <td>{{records.datetime}}</td>
+
+                                                </tr>
+
+                                                <tr ng-if="transaction.length==0">
+
+                                                    <td>No transaction found.</td>
+
+                                                </tr>                                       
+
+                                       
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div id="bonustransaction" class="tab-pane fade {{activeTransactionTab==4?'in active':''}}">
+
+                                <h4>Transaction Details</h4>
+
+                                <div class="tab_sarch">
+
+                                    <ul class="clearfix">
+
+                                        <li>
+
+                                            <label>From</label>
+
+                                            <select class="form-control">
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                            <label>To</label>
+
+                                            <select class="form-control">
+
+                                  <option>28-02-2018</option>
+
+                                  <option>28-02-2018</option>
+
+                                  <option>028-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                            <label>Transaction Type</label>
+
+                                            <select class="form-control">
+
+                                  <option>Both</option>
+
+                                  <option>Debit</option>
+
+                                  <option>Credit</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li class="text-right">
+
+                                            <label></label>
+
+                                            <button class="btn btn-submit">Search</button>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                                
+                            <div class="table-responsive">
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Transaction ID</th>
+
+                                            <th>Details</th>
+
+                                            <th>Opening Balance</th>
+
+                                            <th>Cr.</th>
+
+                                            <th>Dr.</th>
+
+                                            <th>Available Balance</th>
+
+                                            <th>Date & Time</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr ng-repeat="records in transaction" ng-if="transaction.length>0">
+
+                                            <td>{{records.id}}</td>
+
+                                            <td>{{records.message}}</td>
+
+                                            <td><i class="fa fa-rupee"></i> {{records.opening_balance|number:2}}</td>
+
+                                            <td><i class="fa fa-rupee"></i> {{records.cr|number:2}}</td>
+
+                                            <td><i class="fa fa-rupee"></i> {{records.dr|number:2}}</td>
+
+                                            <td><i class="fa fa-rupee"></i> {{records.available_balance|number:2}}</td>
+
+                                            <td>{{records.datetime}}</td>
+
+                                        </tr>
+
+                                        <tr ng-if="transaction.length==0">
+
+                                                <td>No transaction found.</td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+    
+
+                            </div>
+
+                        <div id="refer" class="tab-pane fade {{activeTransactionTab==3?'in active':''}}">
+
+                            <h4>Chips Transaction Details</h4>
+
+                            <div class="tab_sarch">
+
+                                    <ul class="clearfix">
+
+                                        <li>
+
+                                            <label>From</label>
+
+                                            <select class="form-control">
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                  <option>01-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                            <label>To</label>
+
+                                            <select class="form-control">
+
+                                  <option>28-02-2018</option>
+
+                                  <option>28-02-2018</option>
+
+                                  <option>028-02-2018</option>
+
+                                </select>
+
+                                        </li>
+
+                                        <li>
+
+                                           
+
+                                        </li>
+
+                                        <li class="text-right">
+
+                                            <label></label>
+
+                                            <button class="btn btn-submit">Search</button>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+                            <div class="table-responsive">
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Details - {{transaction.length}}</th>
+
+                                            <th>Message</th>
+
+                                            <th>Opening Balance</th>
+
+                                            <th>Cr.</th>
+
+                                            <th>Dr.</th>
+
+                                            <th>Available Chips</th>
+
+                                            <th>Date & Time</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                            <tr ng-repeat="records in transaction" ng-if="transaction.length>0">
+
+                                                    <td>{{records.id}}</td>
+
+                                                    <td>{{records.message}}</td>
+
+                                                    <td><i class="fa fa-rupee"></i> {{records.opening_balance|number:2}}</td>
+
+                                                    <td><i class="fa fa-rupee"></i> {{records.cr|number:2}}</td>
+
+                                                    <td><i class="fa fa-rupee"></i> {{records.dr|number:2}}</td>
+
+                                                    <td><i class="fa fa-rupee"></i> {{records.available_balance|number:2}}</td>
+
+                                                    <td>{{records.datetime}}</td>
+
+                                            </tr>
+
+                                            <tr ng-if="transaction.length==0">
+
+                                                <td>No transaction found.</td>
+
+                                            </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div id="inbox" class="tab-pane fade">
+
+                            <h4>Inbox</h4>
+
+
+
+                        </div>
+
+                        
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!--wallet-section-start-->
+
+
+
+
+
+
+
+    </div>
+
+<footer-home></footer-home>

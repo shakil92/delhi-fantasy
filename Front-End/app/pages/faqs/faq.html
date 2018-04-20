@@ -1,0 +1,634 @@
+
+
+        <header-home ng-if="isLoggedIn"></header-home>
+        <header-login ng-if="!isLoggedIn"></header-login>
+
+    <div class="main_container">
+    <section class="faq_sec">
+            <div class="container">
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('one')" aria-expanded="{{expandedAria=='one'?'true':'false'}}" aria-controls="collapseOne">
+                                        REGISTRATION
+                                    </a>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse {{expandedAria=='one'?'in':''}}" role="tabpanel" aria-expanded="" aria-labelledby="headingOne">
+                            <div class="card-block">
+                                <h4>1.What is Team Genie?</h4>
+                                <p>Team Genie is a Fantasy Sports Website offering a wide variety of sports like cricket,
+                                    football, Kabaddi Just select your team in a league of your choice and follow your
+                                    team’s progress in real time to add to the excitement of winning real cash prizes!</p>
+                                <h4> 2. What if I wanted to play without registering an account?</h4>
+                                <p>Account registration shall be mandatory for all Users. It takes no time at all to register
+                                    and ensure your security as well as legality on the Website.</p>
+                                <h4>3. How do I register?</h4>
+                                <p> Please click on Register button and fill up details given in the Registration form or
+                                    else you can directly register through your Facebook or Google account</p>
+
+                                <h4>4. Why can't I login to my account?</h4>
+                                <p>That's strange! If you are a registered user on Team Genie.com & you are entering
+                                    correct details,please email us at support@playwinfantasy.com.Our customer care team
+                                    will be happy to assist you. If you've forgotten your password, click on 'Forgot
+                                    Password', enter your registered email ID and we will send you a link to reset your
+                                    password through an email within a few minutes.</p>
+
+                                <h4>5.Why do i need to verify My Account ?</h4>
+                                <p>We hope you need the Cash you have earned by your Skills. Once you verify your acount
+                                    with he Details and supporting scanned documents like PAN, address proof and bank
+                                    account details, you can withdraw your winnings.</p>
+
+
+                                <h4>6.How many accounts can I create with the same email id on playwinfantacy?</h4>
+                                <p>You can create only one account with one mobile number & email id on Team Genie.
+                                    Creation of multiple accounts by a single user is strictly prohibited.</p>
+
+                                <h4>7.I did not get any verifcation email after I signed up.</h4>
+                                <p>i. It could have been marked as 'Spam' by your mailbox or may be marked as Promotional
+                                    mail folder. Please check your spam mail and mark the email from Team Genie
+                                    as 'Not Spam'. Also you can add support@playwinfantasy in to your contacts so you
+                                    can continue receiving emails from us.</p>
+                                <p>ii. You may not have entered the correct email address during registration. For any assistance,
+                                    please mail us at support@playwinfantasy.com</p>
+                                <h4>8.I don't know much about cricket – can I still play?</h4>
+                                <p>Yes Surely! You can play. Please visit our page 'How to Play' , you will get detail imformation
+                                    about game.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('two')" aria-expanded="{{expandedAria=='two'?'true':'false'}}" aria-controls="collapseTwo">
+                                        PLAYING GAME: How to play
+                                        
+                                    </a>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse {{expandedAria=='two'?'in':''}}" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-block">
+                                <h4>1. How do I play on Playwinfantasy?</h4>
+                                <p>Register with us,Login to Team Genie & start playing .Choose Game, Create Your Team.
+                                    Join The Leagues/contests Free Or For Cash. All The Best!</p>
+
+
+                                <h4>2How many contest I can join</h4>
+                                <p>You can join as many contest as you want at a time for same match or different upcoming
+                                    matches</p>
+
+
+                                <h4>3. How do I select my team?</h4>
+                                <p>Click on the ‘join contest’ button for the match you wants to join, Create your team
+                                    of 11 players (including a Captain & Vice-captain) within an allocated virtual budget
+                                    of ……...credits and defined combination of batsman, bowler, wicket keeper and all
+                                    rounder</p>
+
+                                <h4>4. When does Fantasy Cricket start on Team Genie?</h4>
+                                <p>Fantasy Cricket on playwinfantasy starts as soon as the deadline for the match ends.
+                                    The deadline (denoted by the countdown ticker) is usually till the match start time.
+                                    Contest get closed, team get locked before 30minutes of match starts</p>
+
+                                <h4>5. What if one of my chosen cricketers does not play in the round?</h4>
+                                <p>Choose your team carefully! Any player chosen by you who does not feature in the starting
+                                    11 in the matches (included in the match) does not get any points.</p>
+
+                                <h4>6. How many players are needed to create a team?</h4>
+                                <p>You need to select 11 players to create a team. with a minimum of 3 maximum of 5 bowlers,Minimum
+                                    of 3 maximum of 5 batsmen,min of 1 max of 3 all-rounder and 1 wicket-keeper.</p>
+
+                                <h4>7. Can I choose players from one side only?</h4>
+                                <p>A maximum of 6 players can be selected from each side, the remaining need to be from
+                                    the other team.
+
+                                    <h4>8. I've spent my entire budget before selecting all 11 players. How do I complete
+                                        my team?</h4>
+                                    <p>That’s the challenge! You need to create your team within the budget of 1000 credits
+                                        given to you.
+
+                                        <h4>9. What is the use of a Captain and vice captain in a team?</h4>
+                                        <p>A true Captain leads by example! The player you choose to be your team’s Captain
+                                            will earn 2 times the points and the Vice-captain you choose will earn 1.5
+                                            times the points for his performance. So, choose wisely.</p>
+
+                                        <h4>10. When I make changes to my team, how long does it take for the changes to
+                                            reflect?</h4>
+                                        <p>The changes are instant! You can make unlimited changes to your team any time
+                                            before the deadline hits for a match.</p>
+
+                                        <h4>11. Can I edit my team during the round?</h4>
+                                        "
+                                        <p>"Yes! You can create & edit your team only before the deadline, which is usually
+                                            30 minutes prior to the start of the match. So, keep an eye on the ticker.</p>
+
+
+                                        <h4>12. When do you update the squads for rounds on Team Genie?</h4>
+                                        <p>The squads for matches featured on playwinfantasy can keep getting updated till
+                                            the deadline for that match as per the alerts received from our service providers.
+                                            Keep checking for such updates till the deadline for the respective matches.</p>
+
+                                        <h4>13. How can I see my team's rank?</h4>
+                                        <p>Once the contest starts, Go to My Contests tab . You will see LIVE matches there.
+                                            Click on the SCORE button to see your rank and score in the match.</p>
+
+                                        <h4>14. How can I change my team name?</h4>
+                                        <p>Unfortunately, you can’t change your team name once it is registered. Choose
+                                            your team name wisely, it’s permanent.</p>
+
+
+                                        <h4>15. Can I join the same contest using multiple teams?</h4>
+                                        <p>You can join only one contest with one team. However, contests which display
+                                            'Multi Entry' on them allow you to join the same with multiple teams.</p>
+
+                                        <h4>16.Is It safe to pay through your website?</h4>
+                                        <p>Absolutely safe! Apart from using https,We use reputed &verified third party
+                                            payment gateways that have multiple security checks & comply with every single
+                                            law on online transactions.</p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('three')" aria-expanded="{{expandedAria=='three'?'true':'false'}}" aria-controls="collapseThree">
+                                        SCORE & POINTS
+                                        
+                                    </a>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse {{expandedAria=='three'?'in':''}}" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-block">
+                                <h4>1.How will I score points?</h4>
+                                <p>You will score points depending on how the players in your team perform in the live match.
+                                    So, make sure you pick a winning combination to help you win! Check out our ‘Fantasy
+                                    Points System’ section on the ‘How to play Fantasy Cricket’ page to know more.</p>
+
+                                <h4>2. When do the scores get updated?</h4>
+                                <p>Points are usually updated in real time.! The final points including your team's total
+                                    and your rank are updated once the match is over. Winners are declared and Winnings
+                                    are distributed only after our team verifies the points.</p>
+
+                                <h4>3. I have created my team before the deadline, so why hasn't my team got any points yet?</h4>
+                                <p>Points are awarded to your team only when the live match begins.</p>
+
+                                <h4>4. Which website do you refer to update the points?</h4>
+                                <p>We get our live score feed from reliable sources. All our points are typically calculated
+                                    using this live feed. However, we may also refer to other scorecards and live score
+                                    feed such as governing bodies to correct and verify the score feed & ensure accurate
+                                    tabulation of points.</p>
+
+                                <h4>5. What happens when there is a tie between users? How will you distribute the prize?</h4>
+                                <p>When there is a tie between 2 or more users, the prize money is divided equally between
+                                    the users. However, only in the case of a 2-member contest, the winning prize shall
+                                    go the member who enrolls the team first in the said contest</p>
+
+
+                                <h4>7. How can check my team's points?</h4>
+                                <p>You can check your points by clicking on the 'Team Genie Scorecard’ link on the contests
+                                    page. If you want to cross check your team’s points with the points system again,
+                                    visit our ‘Team Genie Points System’ section.</p>
+
+                                <h4>8. If a player is sent off by the umpires for misconduct in an international cricket
+                                    match, does he still score points on Team Genie once he's back on the field?</h4>
+                                <p>Any player who is sent off by the umpires for serious misconduct governed by the ICC
+                                    Playing Conditions for International Matches, will score and retain points on ....
+                                    according to our standard points system for his contribution during his time on the
+                                    field. If the player is allowed to take the field later in the same match, he will
+                                    once again be eligible to score points for the duration of his stay on the field.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+
+
+
+
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingFour">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('four')" aria-expanded="{{expandedAria=='four'?'true':'false'}}" aria-controls="collapseFour">
+                                            CONTESTS:
+                                    </a>
+                        </h5>
+                    </div>
+
+                    <div id="collapseFour" class="collapse {{expandedAria=='four'?'in':''}}" role="tabpanel" aria-labelledby="headingfour">
+                        <div class="card-block">
+
+                            <h4>1. What type of contests can I join?</h4>
+                            We are having variety of contest available to play
+                            <ul>
+                                <li>a) Paid contest</li>
+                                <li>1) Cash contest</li>
+                                <li>2) Confirmed and guaranteed contest</li>
+                                <li>3) Private contest</li>
+                                <li>4) Head to head contest</li>
+                                <li>5) Multientry contest</li>
+                                <li>b) Free Contest</li>
+                                <li>1) Practice contest</li>
+                                <li>2) Free Entry contest</li>
+                                <li>3) Skiill contest</li>
+                            </ul>
+
+                            <h4>2. What is private contests on Team Genie?</h4>
+                            <p>Public contests are open for all to join; whereas private contests let you invite & challenge
+                                your friends in the same contest. You can invite your friends by email or through Facebook.
+                                Only those who have the code to a private contest can join that contest.</p>
+
+                            <h4>3.How do I create a private contest?</h4>
+                            <ul>
+                                <li>- Select the match that you want to participate in</li>
+                                <li>- Click on the ‘Create contest’ button</li>
+                                <li>- Create the contest of your choice using the given options & join</li>
+                                <li>- Invite your friends via email, or by sharing a unique code on Facebook</li>
+                                <li>- Your friends can join this contest by clicking on the link sent to them</li>
+                                <li>Now You have your own private contest on Dream11 , you can keep all the terms and conditions
+                                    as per your choice</li>
+                            </ul>
+                            <h4>4.Can I join a contest in the middle of the series?</h4>
+                            <p>Of course, you can join a contest in the middle of a series that is not yet closed (deadline
+                                has not passed) and have an equal opportunity of winning as everyone else.
+
+                                <h4>5. What is skill contest</h4>
+                                <p>You can take part in skill contest till three months from your joining. We appreciate
+                                    imrovement of your skill by awarding you Aavishkar point.</p>
+                                <p>You can redeemed Aavishkar point to play cash contest. For more details please refer
+                                    Promotion policies+A158</p>
+
+
+
+                                <h4>5. What are cash & practice contests?</h4>
+                                <ul>
+                                    <li>i. Cash contests are where you participate by paying an entry fee and compete with
+                                        other users to win real money! The prize money will be awarded to the user who
+                                        has the highest points in the contest.</li>
+                                    <li>ii. A practice contest will help you boost your cricket skill. Once you are confident
+                                        with your selection skill, you can join cash contests.</li>
+                                </ul>
+                                <h4>6. How do I know if a contest has a single winner or more than one winner?</h4>
+                                <p>You can click on the 'winner' button of the contest to check how many winners are there.</p>
+
+                                <h4>7. How many winners will be announced for contests with multiple winners?</h4>
+                                <p>The winners will vary for different contests. The number of winners in a contest will
+                                    be shown by clicking on the 'Winning amount' link and this information will be disclosed
+                                    as soon as the contest is made available to join.The prize money that each winner
+                                    will receive is explained in detail on clicking the 'Multiple Winners' (M) link for
+                                    that contest. Please note that taxes will be deducted as applicable on winnings above
+                                    Rs. 10,000 as per government regulations.</p>
+
+                                <h4>8. What happens if an ODI/T20 match/ test match is abandoned?</h4>
+                                <p>If the real match is abandoned fantasy match will be cancelled and the entry fees will
+                                    be refunded. This includes scenarios where the real match is abandoned without a
+                                    single ball being bowled, as well as where the match is abandoned after it has started.</p>
+
+                                <h4>9. What if the contest doesn't fill up with required number of participants?</h4>
+                                <p>In case of a cash contest, the contest will be cancelled and the entry fee will be refunded
+                                    to your account.</p>
+                                <p>In some cash contest if the required number of participants doesn't get fullfilled the
+                                    prizes shall be distributed from the accumulated pot as per the percentatage of winners
+                                    ranking positions. </p>
+
+                                <h4>10. What do I win in a practice contest?</h4>
+                                <p>Practice contests do not have any cash prizes and are meant for those who wants to gain
+                                    experience and to take feel of website services.</p>
+
+                                <h4>11. Why do ranks keep fluctuating during a contest?</h4>
+                                <p>As the players perform in the real-life match, your team keeps earning points for your
+                                    chosen players’ performances. The points status appearing next to your total points
+                                    indicates if the match is in progress or completed.</p>
+
+
+                                <h4>12. Can I join future matches and contests in advance?</h4>
+                                <p>Yes, we allow our users to pre-select their teams for all the matches that are open on
+                                    playwinfantasy at any given point of time.</p>
+
+                                <h4>13. Can I view other users' teams in a contest?</h4>
+                                <p>Sure! But to maintain the element of surprise, we allow users to view other users' teams
+                                    only after the deadline hits. To view your opponent's team, go to the 'My Contests'
+                                    tab for a match and click on your opponent’s team name.</p>
+
+                                <h4>14. Can I join a contest in the middle of the series?</h4>
+                                <p>Of course, the beauty of the daily format is that you can join a contest in the middle
+                                    of a series that is not yet closed (deadline has not passed) and have an equal opportunity
+                                    of winning as everyone else.</p>
+
+                                <h4>15. Do I have to create a separate team for each contest?</h4>
+                                <p>Yes you can ! Or else you can use same team to join each new contest of the same match.</p>
+
+                                <h4>16. How do you decide the winner of a contest?</h4>
+                                <p>The team which gets the highest points at the end of the match will be announced as the
+                                    winner of that contest.</p>
+
+                                <h4>17. Why do you charge me a fee to enter a contest?</h4>
+                                <p>We charge a platform fee to access our amusement facilities for improving and maintaining
+                                    the facilities, as well as awarding cash prizes. However, the entry fee will be credited
+                                    back to your Team Genie account in case of cancelled matches due to abandoned
+                                    matches.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingFive">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('five')" aria-expanded="{{expandedAria=='five'?'true':'false'}}" aria-controls="collapseFive">
+                                            CASH PRIZES:
+                                            
+                                    </a>
+                        </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse {{expandedAria=='five'?'in':''}}" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="card-block">
+                            <h4>1. How will I be informed if I win a Cash prize?</h4>
+                            <p>Ranks and points will be updated and displayed during and at the end of every match. If you
+                                win in any cash contest, the cash prize will be credited automatically to your playwinfantasy
+                                winning account balance.</p>
+
+                            <h4>2. When will the winnings be distributed?</h4>
+                            <p>The winner declaration and crediting of the winnings to your playwinfantasy account usually
+                                happens within a couple of hours after the match is completed. Our dedicated team manually
+                                verifies the fantasy cricket scorecard with our live cricket feed to ensure that the
+                                points and scores are correctly updated after every match. This procedure can sometimes
+                                take a relatively long time. Only after we are sure that all points and scores are accurate,
+                                the final points are updated and winners are declared.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingSix">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('six')" aria-expanded="{{expandedAria=='six'?'true':'false'}}" aria-controls="collapseSix">
+                                            ACCOUNT BALANCE
+                                    </a>
+                        </h5>
+                    </div>
+                    <div id="collapseSix" class="collapse {{expandedAria=='six'?'in':''}}" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="card-block">
+
+                            <h4>1. How do I check my playwin fantacy account balance?</h4>
+                            <p>The balance in your palywin fantasy account will be displayed on the top of your screen .
+                                You can also click on the MY BALANCE tab on top right of the page for a break-up of your
+                                account balance and your most recent transactions on playwinfantasy.</p>
+
+                            <h4>2. How can I add money?</h4>
+                            <p>Simple! Click on the ADD MONEY symbol displayed on top of the page after which you’ll be
+                                guided through the entire payment process. If you have any payment related queries, please
+                                feel free to reach us at support@playwinfantasy.com</p>
+
+                            <h4>3. What are the ways to add money?</h4>
+                            <p>As of now, you can add money to your Team Genie account by paying through- Debit Card,
+                                Credit Card, Net banking through PAY U MONEY and through Cash Wallet. If you have any
+                                payment related queries, please feel free to reach us at support@playwinfantasy.com</p>
+
+                            <h4>6. How do I get notification for my transaction?</h4>
+                            <p>For all successful transactions, you will get notification on Team Genie website.
+
+                                <h4>7. What if my account balance is not correct?</h4>
+                                <p>If you require any help regarding your Playwinfantasy account balance or any other account-related
+                                    queries, please feel free to reach us at support@playwinfantasy.com</p>
+
+                                <h4>8. What if the payment is deducted from my card and not updated in the Playwin account?</h4>
+                                <p>Don't worry, your money is safe. This usually happens when there is a delay in communication
+                                    from the bank's end, or if there's an interruption when the transaction is being
+                                    processed. Please reach out to us at support@playwinfantasy.com with your card/bank
+                                    statement screenshot which confirms the debit of your transaction amount, so that
+                                    we can check and address your concern.</p>
+
+                                <h4>9. I'm getting an error message when I am trying to pay via the payment gateway?</h4>
+                                <p>The mode of payment you have chosen may not be authorized by your bank, in which case
+                                    you should call them and get it fixed. Please reach out to us at support@playwinfantasy.com
+                                    with the error message screenshot so that we can advise you on how to complete your
+                                    transaction</p>
+
+                                <h4>10. How long does it take for my deposited amount to be credited into my Team Genie
+                                    account balance?</h4>
+                                <p>Once you have made the deposit, your Playwinfantasy account balance will be updated immediately!
+                                    If the updated balance is not reflected in your account, Please reach out to us at
+                                    support@playwinfantasy.com</p>
+
+                                <h4>11. Can I withdraw money from my ‘Unutilized’ Account (Deposits)?</h4>
+                                <p>The amount deposited in your ‘Unutilized’ Account can only be used to join contests on
+                                    Playwinfantasy. You can withdraw the same by bearing 5% charges on your withrawal
+                                    amount. </p>
+
+
+                                <h4>3. In what order does my Account Balance get utilized towards the entry fee for a cash
+                                    contest?</h4>
+                                <p>When you join a cash contest, Team Genie shall first debit the entry fee amount
+                                    from your Deposit account and simultaneously from your Playwinfantasy Chips account
+                                    as per the ratio the next preference gives to the Cash Chips account, followed by
+                                    your winnings account to cover the entry fee for any cash contest that you join.M</p>
+
+                                <h4>14. What is Cash Chips? How can I get it?</h4>
+                                <p>The Cash chips is a special feature on Playwinfantasy. You can earn a cash chips through
+                                    welcome bonus and part payment of your referral scheme. Cash chips has equivalent
+                                    value of real cash which you can use only to play contest.</p>
+
+
+                                <h4>14. What is Playwinfantasy Chips? How can I get it?</h4>
+                                <p>The playwinfantasy chips is another special feature on Playwinfantasy. You can earn a
+                                    playwinfantasy chips by free contest winning, deposit bonus and Refer & Earn scheme
+                                    . Check out our promotion page for further details on how you can earn a playinfantasy
+                                    chips.</p>
+
+                                <h4>15. What is the value of cash chips & playwinfantasy chips ?</h4>
+                                <p>It is equivalent to real money for eg. 1 cash chip = 1 Rupees and 1 Playwinfantasy chip
+                                    = 1 Rupee</p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                        <div class="card-header" role="tab" id="headingSeven">
+                            <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('seven')" aria-expanded="{{expandedAria=='seven'?'true':'false'}}" aria-controls="collapseSeven">
+                                    VERIFICATION
+                            </a>
+                            </h5>
+                        </div>
+                    
+                        <div id="collapseSeven" class="collapse {{expandedAria=='seven'?'in':''}}" role="tabpanel" aria-labelledby="headingSeven">
+                            <div class="card-block">
+                                <h4>Is verification necessary to join contests on Playwinfantasy ?</h4>
+                                <p>Yes, Verificaton is necessary , without verifying your account you won't be able to join cash contests.</p>
+                                
+                                <h4>How do I get my Playwinfantasy account verified?</h4>
+                                <p>Account verification is a one-time process. Follow the steps mentioned below to get your Playwinfansy account verified:</p>
+                                <ul>
+                                    <li>i. Verify your mobile number by entering the OTP received.</li>
+                                    <li>ii. Verify your email by entering the email id. If you've logged in using your Facebook or Google+ account, your email will be automatically verified</li>
+                                            <li>iii. Register your PAN Card number in your profile page, upload PAN Card image & click on 'Submit Verification' </li>
+                                                    <li>iv. Your PAN Card verification will be completed within 24-48 hours. Additionally, we recommend that you submit your bank account details after submitting the bank details  your complete account verification gets done in one go.</li>
+                                                    </ul>
+                                
+                                <h4>3. What if I want to update some details in my Team Genie account?</h4>
+                                <p>Easy! Details like your name, detail address etc. can be edited by clicking on My Profile’ and then on ‘Edit after logging into your Playwin account. But take a note that you can't change your date of birth, state , mail id, contact number once you register. </p>
+                                
+                                <h4>4. Why do I need a PAN card on Team Genie?</h4>
+                                <p>On Team Genie platform you can win real cash legally. Your withdrawals on Playwinfantasy involve transfer of money from your Playwinfantasy virtual account to your bank account, and hence PAN Card has become a mandatory requirement as a proof of identity. In case you do not have a PAN Card, you can still join contests on Playwin, and your winnings will be deposited in your Playwin account.  You will  be able to withdraw any amounts to your bank account only after total varification of you account.</p>
+                                
+                                <h4>5. Why did my verification fail?</h4>
+                                <p>Some of the major reasons why your verification request may have failed are:</p>
+                                <ul>
+                                <li>a. PAN Card (mandatory) is not uploaded as id proof for verification .  Please upload a clear image of your PAN Card as self attested </li>
+                                        <li>b. PAN number on the card does not match with the PAN number entered during verification request - Double check the PAN number that you have entered to avoid errors</li>
+                                                <li>c. Date of Birth on the PAN Card does not match with the Date of Birth on your Playwin account - Please ensure that you enter the exact Date of Birth on the verification request, as it appears on the PAN Card</li>
+                                                        <li>d. Name on the PAN Card does not match with the name on the bank account - You can't withdraw money from your Playwinfantasy account. Hence, the name on the PAN Card and bank account needs to match.</li>
+                                                                <li>e. IFSC code provided in the bank details is incorrect/belongs to a different bank branch than the one mentioned for verification purposes - If you provide the wrong IFSC code, your money could be transferred to someone else's account. So, make sure you enter the correct code. You can find the IFSC code in your cheque book, passbook or bank statements. If you're not sure, please contact your bank to get the correct code.</li>
+                                                                        <li>f. The documents uploaded by you are not clear/visible - Our experts are humans after all! Please help them by uploading clear documents so that they can verify your details quickly.</li>
+                                                                                <li>g. Copy of both side of Aadhar card should be uploaded</li>
+                                                                                </li>
+                                <p>In the rare case that your verification request gets rejected, the reason for rejection will also appear on top of the verification page for your reference.</p>
+                                
+                                
+                                
+                                                                </div>
+                        </div>
+                        </div>
+                        <div class="card">
+                        <div class="card-header" role="tab" id="headingEight">
+                            <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('eight')" aria-expanded="{{expandedAria=='eight'?'true':'false'}}" aria-expanded="false" aria-controls="collapseEight">
+                                    WITHDRAWALS
+                            </a>
+                            </h5>
+                        </div>
+                        <div id="collapseEight" class="collapse {{expandedAria=='eight'?'in':''}}" role="tabpanel" aria-labelledby="headingEight">
+                            <div class="card-block">
+                                <h4>1. How do I withdraw money from my Team Genie account?</h4>
+                                <p>You can withdraw money only from the winnings account in your Playwin account once your account is verified. This verification is a one-time process which doesn’t need to be repeated unless you wish to make changes to your account. Once your account is verified, you can withdraw the desired amount (min. Rs.500 and max. Rs.1,00,000 at a time) and it will be deposited into your bank account within 3 days. For this, you have to upload your Bank Account proof like Cancelled Cheque or Passbook on our website or send it to support@playwinfantasy.com with subject line “Bank Proof_”
+                                
+                                <h4>2. Why has my bank account balance not updated since making a withdrawal?</h4>
+                                <p>Sometimes it can take a few days to process a withdrawal. If your withdrawal has not been processed after 72 hours then please let us know by emailing support@playwinfantasy.com.</p>
+                                <h4>3. Why can’t I withdraw the Bonus which I got in form of cash chips and playwinfantasy chip in my Playwinfantasy account?</h4>
+                                        <p>Bonus is freebies  amount given by Playwin to you. You cannot withdraw this amount but you can use it to join more contests and win more cash. Cash Bonus also comes with an expiry date so make sure to use it before it expires!</p>
+                                
+                                
+                                <h4>4. Is there any limit for cash deposit?</h4>
+                                <p>As per our fair policy you shall have the daily limit of the deposits you can make in your account. Please refer our fairplay policy to know your daily and monthly limit. </p>
+                                
+                                <h4>5. What is the minimum & maximum amount I can withdraw from my Playwin account?</h4>
+                                <p>The minimum amount for a single withdrawal request is Rs……... and the maximum amount that you can withdraw is Rs…...</p>
+                                
+                                
+                                <h4>6. What bank account details do I need to provide for withdrawal/verification?</h4>
+                                <p>We’ve got to make sure that it’s you who we’re sending the money to. So, we need you to provide the following bank account details: i]Name of the bank ii] Name of the branch iii] Name of account holder  iv]aAccount number v] IFSC code.</p>
+                                
+                                
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="card">
+                        <div class="card-header" role="tab" id="headingNine">
+                            <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('nine')" aria-expanded="{{expandedAria=='nine'?'true':'false'}}" aria-controls="collapseNine">
+                                    LEGALITY
+                                    
+                            </a>
+                            </h5>
+                        </div>
+                        <div id="collapseNine" class="collapse {{expandedAria=='nine'?'in':''}}" role="tabpanel" aria-labelledby="headingNine">
+                            <div class="card-block">
+                                <h4>1. Is the paid version of Fantasy Cricket legal in India?</h4>
+                                <p>Yes, please review the Legality Section on our website for more details.</p>
+                                
+                                <h4>2. Am I allowed to play if I’m under the age of 18?</h4>
+                                <p>No, Team Genie is strictly for users who are at least 18 years of age.</p>
+                                
+                                <h4>3. Do I have to pay taxes when I withdraw money to my bank account?</h4>
+                                <p>Taxes are deducted at source wherever applicable and paid out by us, as per the Income Tax Act 1961. Winners will be provided TDS certificates in respect of such tax deductions, if applicable. However, you shall be responsible for payment of any other applicable tax, including but not limited to, income tax, gift tax, etc. in respect of the Cash Prizes money won. For more information please check our Terms and Conditions.</p>
+                                
+                                        <h4>4. What are the taxes applicable if I win more than Rs.10,000?</h4>
+                                <p>As per the Income Tax Act 1961, if your individual winnings for a single contest are more than Rs.10,000, tax of 30.9% will be deducted. The remaining amount (69.10%) will be credited to your winnings balance account maintained with playwinfantasy. For e.g. If you win Rs.1,00,000, tax of Rs.30,900 will be deducted and your actual winnings are Rs.69,100.</p>
+                                
+                                
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTen">
+                                <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('ten')" aria-expanded="{{expandedAria=='ten'?'true':'false'}}" aria-controls="collapseTen">
+                                        FAIRPLAY VIOLATION
+                                </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTen" class="collapse {{expandedAria=='ten'?'in':''}}" role="tabpanel" aria-labelledby="headingTen">
+                                <div class="card-block">
+                                    <h4>1. What is not allowed on Playwin?</h4>
+                                    <ul>
+                                    <li>a. Creation of multiple accounts by one user</li>
+                                            <li>b. Creation of multiple accounts by misusing a referral code to get cash bonus</li>
+                                                    <li>c. Submission of fake documents or uploading someone else's documents</li>
+                                                    </ul>
+                                    
+                                    <h4>2. What happens when:</h4>
+                                    <ul>
+                                    <li>a. A user plays with multiple ids or uses his/her own referral link to create multiple accounts: we deactivate the referred accounts</li>
+                                            <li>b. A user converts cash bonus into winnings by activities that violate our FairPlay policy: we take back the cash bonus component of the winnings</li>
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingEleven">
+                                    <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" ng-click="expandAria('eleven')" aria-expanded="{{expandedAria=='eleven'?'true':'false'}}" aria-controls="collapseEleven">
+                                            PAYMENTS
+                                            
+                                    </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseEleven" class="collapse {{expandedAria=='eleven'?'in':''}}" role="tabpanel" aria-labelledby="headingEleven">
+                                    <div class="card-block">
+                                        <h4>1.What is the minimum deposit amount required?</h4>
+                                        <p>The Minimum Deposit amount on playwinfantasy.com is INR 50/-</p>
+                                        
+                                        <h4>2.How do I deposit using a Payment Processor?</h4>
+                                        <p>Please log into playwinfantasy.com website. Select the mode of payment you wants to use (Credit Card, Debit card, e-wallet, Net banking). Fill in the required fields and select the payment processor from our list and fill the required form and submit. Select Pay Now. You can also save your payment mode details for future deposits which would save you time the next time you deposit. For more information please mail us on support@playwinfantasy.com
+                                        
+                                        <h4>3.How to add a credit/debit card to my Playwin account?</h4>
+                                        <p>It's simple! Go to 'My Account' in the Menu, click on 'Add/Remove Cards' and enter your credit/debit card number, followed by a valid expiry date. Save your card.
+                                        Alternatively, you can also add a card while making a deposit. Just click on 'Add Cash' in My Account, select the amount you wish to deposit, select a card and enter your card details. Click on 'Save & Proceed'.</p>
+                                        
+                                        <h4>4.Is it safe to enter my card details? Does ….. save any of it?</h4>
+                                        <p>Yes, it is absolutely safe. We can not store your your CVV number. We only work with trusted third party payment gateways with 3D secure authentication to ensure safety & security of all your financial transactions.</p>
+                                        
+                                        <h4>5.How do I delete my credit/debit card?</h4>
+                                        <p>Remember, Saved Cards help in faster checkouts for all your future transactions on Team Genie. However, if you still wish to delete your card, Go to 'My Account' in the Menu, click on 'Add/Remove Cards' and then choose the card you wish to delete. Click on 'Delete', after which you'll be asked for a confirmation. If you wish to proceed, click on 'Delete' or if you change your mind, click on 'Cancel'.</p>
+                                        
+                                        <h4></h4>6.Can I add multiple credit/debit cards to My Account?
+                                        <p>Of course. You can add any number of credit/debit cards to your account, as long as they haven't expired and belongs to you only.</p>
+                                        
+                                        <h4>7.What type of cards can be saved/used?</h4>
+                                        <p>We accept all major credit/debit cards such as Visa, MasterCard, Maestro, etc</p>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!--contant-section-start-->
+
+
+    </div>
+<footer-home></footer-home>
+                              
+

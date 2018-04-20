@@ -1,0 +1,61 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+
+<!--Main container sec start-->
+<div class="main_container">
+    <section class="prediction_sec myprediction_sec" ng-init="getPredictionDetails()">
+        <div class="container">
+            <div class="match_information">
+                <ul>
+                    <li>
+                        <img src="{{localteam_image}}" alt="local-team">
+                    </li>
+                    <li>
+                        <span class="days" id="day"></span>
+                        <div class="smalltext">Days</div>
+                    </li>
+                    <li>
+                        <span class="hours" id="hour"></span>
+                        <div class="smalltext">Hours</div>
+                    </li>
+                    <li>
+                        <span class="minutes" id="minute"></span>
+                        <div class="smalltext">Minutes</div>
+                    </li>
+                    <li>
+                        <span class="seconds" id="second"></span>
+                        <div class="smalltext">Seconds</div>
+                    </li>
+                    <li>
+                        <img src="{{visitorteam_image}}" alt="visit-team">
+                    </li>
+                </ul>
+            </div>
+            <div class="prediction_header">
+                <ul>
+                    <li>Question</li>
+                    <li>Your Answer </li>
+                    <li>Correct Answer</li>
+                    <li>Point</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" ng-repeat="q in questionsData">
+                    <div class="prediction_qution myprediction_list">
+                           <ul>
+                               <li>{{q.question}}</li>
+                               <li>{{q.user_answer}}</li>
+                               <li>{{q.real_answer}}</li>
+                               <li>{{q.point}}</li>
+                           </ul>
+                    </div>
+                </div>
+            </div>
+                   
+        </div>
+    </section>
+
+</div>
+<!--Main container sec end-->
+
+<footer-home></footer-home>

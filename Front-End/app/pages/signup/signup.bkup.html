@@ -1,0 +1,87 @@
+ <main>
+  <!--Header sec start-->
+  <!-- <header-home></header-home>-->
+  <!--Header sec end--> 
+  <!--Main container sec start-->
+  <div class="main_container">
+    <section class="main_content_sec signup_sec">
+      <div class="container">
+        <div class="signup_left">
+          <form class="form_commen" name="signup" ng-submit="signUp(signup)" novalidate="">
+              <h3>Sign Up</h3>
+              <div class="form-group custom_input">
+                 <input type="text" ng-model="formData.full_name" class="" id="" name="username" ng-minlength="6" ng-required="true">
+                 <label>Username</label>
+                  <div style="color:red" ng-show="submitted && signup.username.$error.required" class="form-error">
+                    *Username is required.
+                  </div>
+                  <div style="color:red" ng-show="signup.username.$error.minlength" class="form-error">
+                    *Username must have 6 Characters.
+                  </div>
+              </div>
+              <div class="form-group custom_input">
+                 <input type="email" name="email" ng-model="formData.email" ng-change="removeMassage()" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-required="true">
+                 <label>Email</label>
+                  <div style="color:red" ng-show="submitted && signup.email.$error.required" class="form-error">
+                    *email is required.
+                  </div>
+                  <div style="color:red" ng-show="signup.email.$error.pattern" class="form-error">
+                    *Please enter valid email.
+                  </div>
+              </div>
+              <div class="form-group custom_input">
+                 <input type="password" ng-model="formData.password" name="password" ng-change="removeMassage()"  ng-pattern="/^(?=.*[0-9])(?=.*[A-Z])([a-zA-Z0-9]+)$/" ng-minlength="6" ng-required="true">
+                 <label>Password</label>
+                  <div style="color:red" ng-show="submitted && signup.password.$error.required" class="form-error">
+                    *Password is required.
+                  </div>
+                  <div style="color:red" ng-show="signup.password.$error.pattern || signup.password.$error.minlength" class="form-error">*Password must have one capital, one number and 6 character long.
+                  </div>
+              </div>
+              <div class="form-group custom_input">
+                 <input type="password" ng-model="formData.confm_pswd" name="cpassword" ng-change="removeMassage()" ng-required="true">
+                 <label>Retype Password</label>
+                  <div style="color:red" ng-show="submitted && signup.cpassword.$error.required" class="form-error" >
+                    *Confirm password is required.
+                  </div>
+                  <div style="color:red" ng-show="formData.password != formData.confm_pswd" ng-if="formData.confm_pswd !=undefined">Your passwords must match.</div>
+              </div>
+              <div class="form-group custom_input" ng-init="$scope.formData.date_of_birth='DOB'">
+                 <datepicker date-max-limit="{{dobValidate.toString()}}" date-format="yyyy-MM-dd" date-typer="true"   date-set="{{setDefaultDate.toString()}}">
+                   <input type="text" ng-model="formData.date_of_birth" placeholder="D.O.B." id="BirthDate" name="dob"  ng-required="true" ng-click="setDefaultDob()" ng-readonly="true"/>
+                 </datepicker>         
+                  <div style="color:red" ng-show="submitted && signup.dob.$error.required" class="form-error">
+                    *Date of birth is required.
+                  </div>
+              </div>       
+              <div style="color:red" class="form-error" ng-if="sign_error">*{{errormessage}}</div>
+              <div class="form-group">
+                <label>
+                 <input type="checkbox" ng-required="true" name="agree" ng-model="formData.isagree"> I agree to Brand Name <a href="#/terms-conditions"  target="_blank">T&C</a>
+                </label>
+                 <div style="color:red" ng-show="submitted && signup.agree.$error.required" class="form-error">*You must need to agree with condition.
+                 </div>
+              </div>
+              <div class="form-group">
+                 <button class="btn btn-submit">Sign Up</button>
+              </div>
+              <p class="text-center">
+               Already have an account ? <a href="#/login">Sign In</a>
+             </p>
+          </form>
+        </div>
+       <div class="or_box">OR</div>
+       <div class="signup_right">
+        <h3>Connect instantly </br> with</h3>
+        <a href="javascript:void(0)" fb-login ng-click="socialLogin()">Log in with facebook</a>
+        <a href="javascript:void(0)" g-login ng-click="socialLogin()" class="google_sign">Log in with Google +</a>
+      </div>
+    </div>       
+  </section>
+</div>
+
+<!--Main container sec end-->
+<!--Footer sec start-->
+<footer-home></footer-home>
+<!--Footer sec end-->
+</main>

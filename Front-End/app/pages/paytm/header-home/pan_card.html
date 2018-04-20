@@ -1,0 +1,118 @@
+
+<!--Header sec end-->
+<!--Main container sec start-->
+<header-home></header-home>
+<div class="main_container">
+    <section class="main_content_sec">
+        <div class="container-fluid" ng-init="changeCountry('101');">
+            <div class="content_wrap veryfication_wrap">
+                <div class="veryfy_line">
+                    <h4>Verify Your Account</h4> 
+                    <img src="/images/veryfy.png" alt="">
+                </div>
+
+                <div class="veryfy_condition">
+                    <h4>After this, enjoy 1- click cash withdrawals forever! </h4>
+                    <ul>
+                        <li> Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                        <li>We don’t accept password-protected docs.</li>
+                    </ul>
+                    <ul class="veryfy_icn">
+                        <li><i class="fa fa-info-circle" aria-hidden="true"></i> Incomplete</li>
+                        <li><i class="fa fa-check-circle" aria-hidden="true"></i> Submitted</li>
+                        <li><i class="fa fa-check-circle" aria-hidden="true"></i> Verified
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mobile_veryfy">
+                    <div class="mobile_veryfy_bar">
+                        <ul class="clearfix">
+                            <li >
+                                <a href="#/mobileverification" ng-click="verifyMobileNo()">1. Mobile Number Verification</a>
+                            </li>
+                            <li class="active">
+                              <a href="javascript:void(0)">
+                                  2. PAN Card</a>
+                              </li>
+                            <!-- <li><a href="#">3. Bank Account Details</a></li>
+                            <li><a href="#">How to Verify?</a></li> -->
+                        </ul>
+                    </div>
+                    <div class="mobile_veryfication_contait pancard_sec">
+                        <div class="row">
+                            <form ng-submit="verifyPanCard(pc);" name="form">
+                                <div class="col-sm-5">
+                                    <div class="form-group custom_input">
+                                        <label>Full Name</label>
+                                        <input type="text" placeholder="Alex" ng-model="pc.full_name">
+                                        <p><i class="fa fa-info-circle" aria-hidden="true">
+                                        </i>
+                                        Your name must match the name on your PAN
+                                        Card & Bank Account</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group custom_input">
+                                        <label>PAN Card Number</label>
+                                        <input type="text" placeholder="cgege" ng-model="pc.pan_number">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="form-group custom_input">
+                                        <label>D.O.B.</label>
+                                        <datepicker date-max-limit="{{dobValidate.toString()}}" date-set="{{dobValidate.toString()}}" date-format="yyyy-MM-dd" date-typer="false">
+                                            <input type="text" placeholder="12/12/2016" ng-model="pc.date_of_birth">
+                                        </datepicker>
+                                        <p>
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            For withdrawals, this should match the date of birth on PAN CARD
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="form-group custom_input">
+                                        <label>Select State</label>
+                                        <select ng-model="pc.state">
+                                            <option disabled="true" selected="true">Select State</option>
+                                            <option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <!--  <input type="file" file-model = "myFile"> -->
+                                        <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+                                        ngf-resize="{width: 100, height: 100}">Click to upload pan card</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                 <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-submit">Submit for Verification</button>
+                                </div>
+                                <div class="card_bar">
+                                    <ul>
+                                        <li><i class="fa fa-info-circle" aria-hidden="true"></i> Why should I submit my PAN Card?</li>
+                                        <li><i class="fa fa-info-circle" aria-hidden="true"></i> Why should I submit my PAN Card?</li>
+                                        <li>- Max size 4MB. Formats -  .jpg  .jpeg  .png  .pdf  only.</li>
+                                        <li>- We don’t accept password-protected docs.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--ground-->
+        </div>
+    </div>
+</section>
+</div>
+<footer-home></footer-home>
+

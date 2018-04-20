@@ -1,0 +1,241 @@
+<header class="header_sec" id="header">
+            <div class="header_top" ng-show="isShowSideBarMobile && !isShowRightContent">
+                <div class="container-fluid">
+
+                    <div class="header_top_right text-right" >
+                        <ul class="hdr_profile">
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#verify_email" ng-show="isEmailVerified==0 && signupType!='SOCAIL'" ng-click="sendVerificationCode(email,1)"> Verify Email</a>    
+                            </li>
+                            <li><a href="#/my-predictions">My Predictions</a></li>
+                            <li><a href="#/invite">Refer & Earn</a></li>
+                            <li><a href="javascript:void(0)" ng-click="openPopup('add_cash')">Add Money</a></li>
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+                                    {{userDetails.name}} <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="javascript:void(0)" id="edit-profile-link" data-toggle="modal" ng-click="manage_profile_popup()"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                    </li>
+                                    <li>
+                                       <a href="#/ac-balance"> 
+                                        <i class="fa fa-fw fa-user"></i> My Account </a>
+                                    </li>
+                                    <li ng-if="signupType!='SOCIAL'" >
+                                        <a href="javascript:void(0)" data-toggle="modal" ng-click="openPopup('updatePassword')">
+                                          <i class="fa fa-fw fa-lock"  ng-click="hideShowMsg()">
+                                          </i> Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/mobileverification"><i class="fa fa-fw fa-gear"></i> Verification</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="bptom_header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="logo">
+                                <a href="#"><img ng-src="{{env.image_base_url}}logo.png" class="img-responsive" alt="logo"> </a>
+                            </div>
+                            <div class="mobile_toggle no-animation" ng-click="isShowSideBarMobile = !isShowSideBarMobile;isShowRightContent = false;">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                              </div>
+                        </div>
+                        <div class="col-sm-10" ng-if="!isAffiliate">
+                                
+                            <div ng-if="hideAdv==0" class="bottom_header_right text-right add_header">
+                                    <div class="bannerSlider">
+                                            <div class="sliderItem" ng-repeat="ad in ads">
+                                                <a title="{{ad.banner_name}}" href="{{ad.url}}" target="_blank"><img ng-src="{{ad.banner_image}}" alt="{{ad.banner_name}}"></a>
+                                            </div>
+                                        </div>
+
+                              </div>
+                              <div class="mobile_toggle" ng-click="isShowSideBarMobile2 = !isShowSideBarMobile2;isShowRightContent2 = false;">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                  </div>
+                            <div ng-if="hideAdv==1" class="inner_rightmrnu text-right" ng-show="isShowSideBarMobile2 && !isShowRightContent2">
+                                    <ul>
+                                        <li><a href="#/howtoplay">How to create your team</a></li>
+                                        <li><a href="#/contest">Show me Contest</a></li>
+                                    </ul>
+                                </div>
+
+                        </div>
+                        <div class="col-sm-10" ng-if="isAffiliate" one-page-scroll>
+                                <div class="mobile_toggle" ng-click="isShowSideBarMobile2 = !isShowSideBarMobile2;isShowRightContent2 = false;">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                      </div>
+                            <div class="affliate inner_rightmrnu text-right" ng-show="isShowSideBarMobile2 && !isShowRightContent2">
+                                <ul>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliateintroduction')">Introduction</a></li>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliatefeature')">Features</a></li>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliate-brands')">Brand</a></li>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliatescheme')">Scheme</a></li>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliate-commision')">Commision</a></li>
+                                    <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliateform')">Application</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <verify-email></verify-email>
+            <add-cash></add-cash>
+            <change-password></change-password>
+            <div id="edit_profile" class="modal fade" role="dialog">
+                    <div class="modal-dialog custom_popup creatconst_popup profile_popup">
+                  
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Profile</h4>
+                        </div>
+                        <div class="profile_header">
+                            <div class="profile_image">
+                                <div class="profile_box">
+                                    <span id="myProfilePic">
+                                         <img ng-src="{{users.user_image}}" alt="">
+                                    </span>   
+                                
+                                <div class="profile_upload_btn">
+                                    <form name="fileUpload" enctype="multipart/form-data" id="fileUpload">
+                                    <input ngf-select ngf-accept="'image/*'" ng-model="picFile" name="file" id="file" type="file">
+                                    <span>Upload</span>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="uploadErrorMessage"></div>
+                            <div class="name_profile"> {{users.name}} <span>{{users.email}}</span></div>
+                            </div>
+                        </div>
+                        <div class="modal-body clearfix creat_contest comon_body">
+                            <form name="userform" class="form-commen" ng-submit="updateProfile(users)" novalidate="">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" placeholder="Olivia" ng-model="users.name" name="full_name" placeholder="Full Name" class="form-control" ng-required="true" class="form-control">
+                                        <div style="color:red" ng-show="submitted && userform.full_name.$error.required" class="form-error">
+                                            *Full name is required.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>User Code</label>
+                                        <input type="text" placeholder="sunrisers hyderabad" ng-model="users.team_code" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                         <datepickercustom date-max-limit="{{dobValidate.toString()}}" datepicker-id="dob_profile" date-set="{{users.date_of_birth.toString() == 'Invalid Date' ? '' : users.date_of_birth.toString()}}" date-format="dd-mm-yy">
+                                                <input type="text" ng-model="users.date_of_birth" placeholder="D.O.B." id="dob_profile" class="form-control date-picker-custom" readonly/>
+                                         </datepickercustom> 
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select ng-model="users.gender" name="gender"  class="form-control" placeholder="Select Countries" ng-required="true">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="MALE">Male</option>
+                                                    <option value="FEMALE">Female</option>
+                                                  </select>
+                        
+                                        </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <input type="text" ng-model="users.mobile" name="mobile" placeholder="Mobile Number" class="form-control" ng-pattern="/^\+?\d{10}$/" ng-required="true">
+                                        <div style="color:red" ng-show="submitted && userform.mobile.$error.required" class="form-error">
+                                            *Mobile number is required.
+                                          </div>
+                                    </div>
+                                </div>
+                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select ng-model="users.country" name="country" ng-change="changeCountry(users.country,true)"  class="form-control" placeholder="Select Countries" ng-required="true">
+                                            <option value="">Select Countries</option>
+                                            <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+                                          </select>
+                                          <div style="color:red" ng-show="submitted && userform.country.$error.required" class="form-error">
+                                            *Country is required.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <select ng-model="users.state" name="state" class="form-control" ng-required="true">
+                                                <option value="">Select State</option>
+                                                <option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</option>
+                                              </select>
+                                           
+                                              <div style="color:red" ng-show="submitted && userform.state.$error.required" class="form-error">
+                                                *State  is required.
+                                              </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" ng-model="users.city" name="city" placeholder="City" class="form-control" ng-required="true">
+                                                <div style="color:red" ng-show="submitted && userform.city.$error.required" class="form-error">
+                                                 *City  is required.
+                                            </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" ng-model="users.address" name="address" placeholder="Address" class="form-control" ng-required="true">
+                                                    <div style="color:red" ng-show="submitted && userform.address.$error.required" class="form-error">
+                                                     *Address  is required.
+                                                   </div>
+                                                </div>
+                                            </div>
+                            
+                                           
+                            
+                                <div class="col-sm-12">
+                                    <p style="color: green;text-align: left;margin-bottom:5px;" ng-if="profileMsg==1">{{profileSuccess}}</p>
+                                    <p style="color: red;text-align: left;margin-bottom:5px;" ng-if="errorMsg==1">{{errorMsgDetail}}</p>
+                                    <button class="btn btn-submit">Save</button>
+                                </div>
+                                <div class="col-sm-6 col-sm-pull-6">
+                                    <!-- <h4>Change Password</h4> -->
+                                </div>
+                            
+                            </div>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+        </header>
+        

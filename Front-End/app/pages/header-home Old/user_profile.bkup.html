@@ -1,0 +1,206 @@
+<div popup-handler id="edit_profile" class="modal fade" role="dialog">
+    <div class="modal-dialog custom_popup">
+     <!-- Modal content-->
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title">What we know about you</h4>
+     </div>
+     <div class="modal-body clearfix creat_profile comon_body">
+     <h4 style="color: green;text-align: center" ng-if="profileMsg==true">{{profileSuccess}}</h4>
+       <form name="userform" class="form-horizontal form-commen" ng-submit="updateProfile(users)" novalidate="">
+       
+        <div class="form-group">
+         <input type="text" ng-model="users.name" name="full_name" placeholder="Full Name" class="form-control" ng-required="true">
+         <div style="color:red" ng-show="submitted && userform.full_name.$error.required" class="form-error">
+          *Full name is required.
+        </div>
+      </div>
+   
+      <div class="form-group">
+        <datepicker date-max-limit="{{dobValidate.toString()}}" date-set="{{users.date_of_birth.toString()}}" date-format="yyyy-MM-dd" date-typer="true" >
+          <input type="text" ng-model="users.date_of_birth" placeholder="D.O.B." class="form-control" id="BirthDate" readonly/>
+        </datepicker>
+      </div>
+   
+      <div class="form-group">
+       <div class="radio">
+        <input type="radio" ng-model="users.gender" name="gender" ng-checked="users.gender=='MALE'" value="MALE">
+        <label>Male</label>
+      </div>
+      <div class="radio">
+        <input type="radio" ng-model="users.gender" name="gender" ng-checked="users.gender=='FEMALE'" value="FEMALE">
+        <label>Female</label>
+      </div>
+    </div>
+    
+    <div class="form-group">
+     <input type="email" ng-model="users.email" placeholder="Email ID" class="form-control" readonly>
+   </div>
+   <div class="form-group">
+     <input type="text" ng-model="users.mobile" name="mobile" placeholder="Mobile Number" class="form-control" ng-pattern="/^\+?\d{10}$/" ng-required="true">
+     <div style="color:red" ng-show="submitted && userform.mobile.$error.required" class="form-error">
+      *Mobile number is required.
+    </div>
+    <div style="color:red" ng-show="userform.mobile.$error.pattern">*Must be a valid 10 digit phone number.</div>
+   </div>
+   
+   <div class="row">
+     <div class="col-sm-6">
+      <div class="form-group">
+       <select ng-model="users.country" name="country" ng-change="changeCountry(users.country)"  class="form-control" placeholder="Select Countries" ng-required="true">
+        <option value="">Select Countries</option>
+        <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+      </select>
+      <div style="color:red" ng-show="submitted && userform.country.$error.required" class="form-error">
+        *Country is required.
+      </div>
+    </div>
+   </div>
+   <div class="col-sm-6">
+     <div class="form-group">
+      <select ng-model="users.state" name="state" class="form-control" ng-required="true">
+        <option value="">Select State</option>
+        <option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</option>
+      </select>
+   
+      <div style="color:red" ng-show="submitted && userform.state.$error.required" class="form-error">
+        *State  is required.
+      </div>
+    </div>
+   </div>
+   </div>
+   
+   <div class="form-group">
+     <input type="text" ng-model="users.city" name="city" placeholder="City" class="form-control" ng-required="true">
+     <div style="color:red" ng-show="submitted && userform.city.$error.required" class="form-error">
+      *City  is required.
+    </div>
+   </div>
+   
+   <div class="form-group">
+     <input type="text" ng-model="users.address" name="address" placeholder="Address" class="form-control" ng-required="true">
+     <div style="color:red" ng-show="submitted && userform.address.$error.required" class="form-error">
+      *Address  is required.
+    </div>
+   </div>
+   
+   <div class="form-group">
+     <input type="text" ng-model="users.pin_code" name="pincode" placeholder="Pincode" class="form-control" ng-pattern="/^(\d).+$/" ng-required="true">
+     <div style="color:red" ng-show="submitted && userform.pincode.$error.required" class="form-error">
+      *Pincode is required.
+    </div>
+   <div style="color:red" ng-show="userform.pincode.$error.pattern">*The pin code field must contain only numbers.</div>
+   </div>
+   
+   <!-- <div style="color:red" ng-show="submitted" class="form-error">
+    *{{errorMsg}}.
+   </div> -->
+   <button type="submit" class="btn btn-submit" ng-disabled="!userform.$dirty">Update Profile</button>
+   </div>
+   
+   </form>
+   </div>
+   </div>
+   </div>
+   </div>
+   
+
+   <div id="edit_profile" class="modal fade" role="dialog">
+      <div class="modal-dialog custom_popup creatconst_popup profile_popup">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Profile</h4>
+          </div>
+          <div class="profile_header">
+              <div class="profile_image">
+                  <div class="profile_box">
+                      <span id="myProfilePic">
+                           <img src="images/testimonials_img.png" alt="">
+                      </span>   
+                  
+                  <div class="profile_upload_btn">
+                      <form name="fileUpload" enctype="multipart/form-data" id="fileUpload">
+                      <input onchange="profile_image(this)" name="file" id="file" type="file">
+                      <span>Upload</span>
+                      </form>
+                  </div>
+              </div>
+              <div id="uploadErrorMessage"></div>
+              <div class="name_profile"> Olivia <span>olivia@gmail.com</span></div>
+              </div>
+          </div>
+          <div class="modal-body clearfix creat_contest comon_body">
+            <div class="row">
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Full Name</label>
+                          <input type="text" placeholder="Olivia" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Team Name</label>
+                          <input type="text" placeholder="sunrisers hyderabad" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Date of Birth</label>
+                          <input type="text" placeholder="03-03-1992" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Mobile Number</label>
+                          <input type="text" placeholder="9898989898" class="form-control">
+                      </div>
+                  </div>
+  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Address</label>
+                          <input type="text" placeholder="27, Skyline Building, Palasia" class="form-control">
+                      </div>
+                  </div>
+  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>City</label>
+                          <input type="text" placeholder="Indore" class="form-control">
+                      </div>
+                  </div>
+  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>State</label>
+                          <select class="form-control">
+                              <option>Madhya Pradesh</option>
+                          </select>
+                          
+                      </div>
+                  </div>
+  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Country</label>
+                          <select class="form-control">
+                              <option>India</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 col-sm-push-6 text-rignt">
+                      <h4 style="color: green;text-align: center" ng-if="profileMsg==true">{{profileSuccess}}</h4>  
+                    <button class="btn btn-submit">Update</button>
+                  </div>
+                  <div class="col-sm-6 col-sm-pull-6">
+                      <!-- <h4>Change Password</h4> -->
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>

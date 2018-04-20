@@ -1,0 +1,35 @@
+  <div class="events_list_slider_main">
+    <div class="events_list_slider">
+      <div class="slick_item {{match.match_id==currentSelectedMatch?'item_live':''}}" ng-repeat="match in matches">
+        <div class="slick_item_inner">
+            <div class="listitem_header"> {{match.match_type}} <span> {{match.match_num}}</span> </div>
+          <div class="listitem_content" ng-click="changeCurrentMatch(match.match_id,match.isClosed,match)">
+            <ul>
+              <li>
+                <span> {{match.localteam}}</span>
+                <a class="cloud_icon" ng-if="(!(match.isClosed) && match.isOpenForUser)" href="javascript:void">
+                  <i class="flaticon-timer"></i> 
+                  <span class="timeCounter" data-roundClockTime="{{match.gameDate}}">
+                  </span> 
+                </a>
+                <a class="cloud_icon" ng-if="(!match.isClosed && match.isOpenForUser==false)" href="javascript:void">
+                    <i class="flaticon-timer"></i> 
+                    <span>{{coreLogic.getDesiredFormOfDate2(match.match_date)}}</span> 
+                  </a>
+                <a class="cloud_icon" ng-if="(match.isClosed)" href="javascript:void">
+                  <i class="flaticon-timer"></i><span> Closed</span> 
+                </a>
+              </li>
+              <li>
+                <span> {{match.visitorteam}} </span>
+                <span class="listitem_time" ng-if="match.isContest=='YES' && !(match.isClosed) && match.isOpenForUser"><a href="javascript:void(0)" class="join_btn">Join</a></span>
+                <span class="listitem_time" ng-if="match.isContest=='YES' && (match.isClosed)"> <a href="javascript:void(0)" class="join_btn">View</a></span>
+              </div> 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

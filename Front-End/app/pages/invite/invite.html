@@ -1,0 +1,82 @@
+<header-home></header-home>
+<div class="main_container">
+        <section class="invite_banner">
+            <div class="container">
+                <div class="invitebanner_contant">
+                    <div class="baja_img">
+                        <img ng-src="{{env.image_base_url}}/baja.png" alt="">
+                    </div>
+                    <h1>Refer & Earn </h1>
+                    <!-- <p><i class="fa fa-check"></i> Playing with friend is always a fun!!! Bring your friend to playwinfantasy.com and get rewarded with huge bonus.</p>
+<p><i class="fa fa-check"></i> Get Rs. 100 instant cash bonus for every verified friend and rest bonus of 25% of your friends fees every time your friend plays cash contest.*                               </p> -->
+<p>If you love fantasy sports, it is very likely that your Friends are also equally passionate about this game. Playwinfantasy.com offers a very lucrative referral program for it’s player. You earn instant Reward of Rs. 100/- and bonus to play for every cash contest that your friend plays upto Rs. 5000/- per friend. </p>
+                    <ul>
+                        <li><img ng-src="{{env.image_base_url}}/invite1.png" alt=""> </li>
+                        <li><img ng-src="{{env.image_base_url}}/invite2.png" alt=""> </li>
+                        <li><img ng-src="{{env.image_base_url}}/invite3.png" alt=""> </li>
+                        <!-- <li><a href="#" class="btn btn-submit">Details</a> </li> -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div class="contactuo_sec">
+            <div class="invite_box clearfix">
+                    <div class="contactus_left">
+                        <div class="invite_header">Invite your friends<i class="flaticon-information-button"></i></div>
+                        <div class="invite_body">
+                            <h4>Share your Invite Code</h4>
+                            <h2><span>your invite code</span> {{userDetails.team_code}}</h2>
+			            <ul class="nav nav-tabs">
+                            <li class="{{currentTab=='sms'?'active':''}}"><a ng-click="changeCurrentTab('sms')" href="javascript:void(0)">Share via SMS</a></li>
+                            <li class="{{currentTab=='email'?'active':''}}"><a ng-click="changeCurrentTab('email')"  href="javascript:void(0)">Share via Email</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="sms" class="tab-pane fade {{currentTab=='sms'?'in active':''}}">        
+                            <form name="invite" ng-submit="inviteFriend(invite)" novalidate="true">
+                             <div class="form-group">
+                                <input class="form-control" ng-maxlength="10" ng-maxlength="10" ng-pattern="/^\+?\d{10}$/" name="mobile" ng-model="mobile" placeholder="Enter Your Mobile Number" type="text" ng-required="true">
+                                <div ng-if="submitted && invite.mobile.$error.required==true" style="color: red;" class="form-error error">*Mobile Number is required!</div>
+                                <div style="color:red" ng-show="invite.mobile.$error.pattern || invite.mobile.$error.minlength || invite.mobile.$error.maxlength" class="form-error">*Mobile number must be of 10 character long and without country code.</div>
+                            </div>
+                            <div class="form-group">
+                                <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                <p ng-if="error==true" style="color: red">*{{errorMsg}}</p>
+                                <button class="btn btn-submit">Invite</button>
+                             </div>
+                            </form>
+                            </div>
+                            <div id="mail" class="tab-pane fade {{currentTab=='email'?'in active':''}}">
+                                <form name="inviteemail" ng-submit="inviteFriendEmail(inviteemail)" novalidate="true">
+                                <div class="form-group">
+                                    <input class="form-control" ng-pattern="/^[a-z]+[a-z0-9.]+@[a-z]+\.[a-z.]{2,5}$/" name="email" ng-model="email" placeholder="Enter Your Email" type="text" ng-required="true">
+                                    <div ng-if="submittedemail && inviteemail.email.$error.required==true" style="color: red;" class="form-error error">*Email is required!</div>
+                                    <div style="color:red" ng-show="inviteemail.email.$error.pattern" class="form-error">*Please Enter Valid Email.</div>
+                                </div>
+                                <div class="form-group">
+                                    <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                    <p ng-if="error==true" style="color: red">*{{errorMsg}}</p>
+                                    <button class="btn btn-submit">Invite</button>
+                                </div>
+                                </form>
+                            </div>
+                            </div>
+                            <h3>Share with Friends via <br>
+                                    Social</h3>
+                            <ul>
+                                <li class="facebook_icon"><a href="http://www.facebook.com/sharer.php?u={{env.main_url}}&p[title]=Play Fantasy Cricket on India's Largest Fantasy Cricket website The Team Genie. Click {{env.main_url}} to register." target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter_icon"><a href="https://twitter.com/intent/tweet?text=Play Fantasy Cricket on India's Largest Fantasy Cricket website The Team Genie. Click {{env.main_url}} to register." target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li class="google_icon"><a href="https://plus.google.com/share?url={{env.main_url}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="whatsapp_icon"><a href="https://api.whatsapp.com/send?text=Play Fantasy Cricket on India's Largest Fantasy Cricket website The Team Genie. Click {{env.main_url}} to register." target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
+                        </div>
+			<div class="invite_right">
+                                <img src="{{env.image_base_url}}/invite.png" alt="" class="img-responsive">
+                        </div> 
+            </div>
+        
+            
+        </div>
+
+    </div>
+<footer-home></footer-home>

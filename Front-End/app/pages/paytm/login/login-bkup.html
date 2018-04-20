@@ -1,0 +1,58 @@
+<main>
+  <!--  <main class="animsition"> -->
+  <!--Header sec start-->
+  <!-- <header-home></header-home> -->
+  <!--Header sec end-->
+  <!--Main container sec start-->
+  <div class="main_container">
+    <section class="main_content_sec signup_sec">
+      <div class="container">
+        <div class="signup_left">
+        <h5 style="color: green;text-align: center">{{signupSuccess}}</h5>
+          <form class="form_commen" name="loginForm" ng-submit="login(loginForm)" novalidate="">
+            <h3>Sign In</h3>
+            <div class="form-group custom_input">
+             <input type="email" class="form-control" name="email" ng-model="formData.email" ng-change="removeMassage()" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" id="exampleInputEmail1" ng-required="true">
+             <label>Email</label>
+             <div style="color:red" ng-show="submitted && loginForm.email.$error.required" class="form-error">
+              *email is required.
+            </div>
+            <div style="color:red" ng-show="loginForm.email.$error.pattern" class="form-error">*Please enter a valid email.
+              </div>
+          </div>
+          <div class="form-group custom_input">
+           <input type="password" class="form-control" name="password" ng-model="formData.password" ng-change="removeMassage()" id="exampleInputPassword1" ng-required="true">
+           <label>Password</label>
+           <div style="color:red" ng-show="submitted && loginForm.password.$error.required" class="form-error">
+            *Password is required.
+          </div>
+          <div style="color:red" class="form-error" ng-if="login_error">*{{login_message}}</div>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox"> Remember Me
+          </label>
+          <a href="#/forget-password" class="forgot_pswrd">Forgot Password</a>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-submit">Sign In</button>
+        </div>
+        <p class="text-center">
+          Dont’s have an account ? <a href="#/signup">Sign Up</a>
+        </p>
+      </form>     
+    </div>
+    <div class="or_box">OR</div>
+    <div class="signup_right">
+      <h3>Connect instantly </br> with</h3>
+      <a href="javascript:void(0)" fb-login ng-click="socialLogin()">Log in with facebook</a>
+      <a href="javascript:void(0)" g-login ng-click="socialLogin()" class="google_sign">Log in with Google +</a>
+    </div>
+  </div>
+</section>
+</div>
+<!--Main container sec end-->
+<!--Footer sec start-->
+<footer-home></footer-home>
+<!--Footer sec end-->
+</main>

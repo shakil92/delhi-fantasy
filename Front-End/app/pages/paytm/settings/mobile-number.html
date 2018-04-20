@@ -1,0 +1,99 @@
+<header-home></header-home>
+<div class="main_container">
+        
+        
+                    <!--wallet-section-start-->
+                    <section class="pancard_sec comon_bg">
+                        <div class="container-fluid">
+                            <div class="content_wrap veryfication_wrap">
+        
+                                <div class="veryfy_line">
+                                    <h4>Verify Your Account</h4> <a href="#" class="btn btn-submit">Show me Contest</a>
+                                </div>
+        
+                                <div class="veryfy_condition">
+                                    <h4>After this, enjoy 1- click cash withdrawals forever! </h4>
+        
+                                    <ul>
+                                        <li> Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                                        <li>We don’t accept password-protected docs.</li>
+                                    </ul>
+                                    <ul class="veryfy_icn">
+                                            <li class="{{users.mobile_verify==0?'':'gray_icon';}}"><i class="fa fa-info-circle" aria-hidden="true"></i> Incomplete</li>
+                                            <li class="{{users.mobile_verify==1?'':'gray_icon';}}"><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</li>
+                                    </ul>
+                                </div>
+        
+                                <div class="mobile_veryfy">
+                                    <div class="mobile_veryfy_bar">
+                                        <ul class="clearfix">
+                                                <li class="{{currentSetting=='mobileverification'?'active':''}}"><a href="javascript:void(0)">1. Mobile Verification</a></li>
+                                                <li class="{{currentSetting=='pan-card'?'active':''}}"><a href="#/pan-card">2. PAN Card</a></li>
+                                                <li class="{{currentSetting=='settings'?'active':''}}" ><a href="#/settings">3. Bank Account Details</a></li>
+                                                <li class="{{currentSetting=='aadhar-card'?'active':''}}"><a href="#/aadhar-card">Aadhar Card</a></li>
+                                                
+                                                <li><a href="javascript:void(0)">How to get verified?</a></li>
+        
+                                        </ul>
+                                    </div>
+                                    <div class="mobile_veryfication_contait">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                    <div class="verification_left" ng-if="!isOTPSend">
+                                                        <form novalidate="true" ng-submit="verifyMobile(verifyMobileForm)" name="verifyMobileForm">
+                                                            <fieldset ng-disabled="isReadOnly">
+                                                            <h4>Verify your Mobile Number </h4>
+                                                            <div class="form-group custom_input">
+                                                                <label>Mobile Number</label>
+                                                                <input class="form-control" ng-maxlength="10" ng-maxlength="10" ng-pattern="/^\+?\d{10}$/" name="mobile" ng-model="settings.mobile" placeholder="Enter Your Mobile Number" type="text" ng-required="true">
+                                                                <div ng-if="submitted && verifyMobileForm.mobile.$error.required==true" style="color: red;" class="form-error error">*Mobile Number is required!</div>
+                                                                <div style="color:red" ng-show="verifyMobileForm.mobile.$error.pattern || verifyMobileForm.mobile.$error.minlength || verifyMobileForm.mobile.$error.maxlength" class="form-error">*Mobile number must be of 10 character long and without country code.</div>
+                                                            </div>
+                                                            <p>We’ll send you an OTP verification</p>
+                                                            <div class="form-group">
+                                                                <p ng-if="error==true" style="color:red">*{{errorMsg}}</p>
+                                                                <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                                                <button class="btn btn-submit">Send OTP</button>
+                                                            </div>
+                                                         </fieldset>
+                                                        </form>
+                                                        </div>
+                                                        <div class="verification_left otp_verification" ng-if="isOTPSend">
+                                                                <form ng-submit="verifyMobileOTP(formOTPDate)" name="formOTPDate" novalidate="true">    
+                                                                <h4>Verify OTP </h4>
+                                                                    <div class="form-group custom_input">
+                                                                        <label>Enter OTP</label>
+                                                                        <input type="text" ng-model="settings.mobileNumberOtp" name="mobileNumberOtp" ng-required="true">
+                                                                        <p ng-if="submitted && formOTPDate.mobileNumberOtp.$error.required">*OTP is required!</p>
+                                                                    </div>
+                                                                    <!-- <p>We’ll send you an OTP verification</p> -->
+                                                                    <div class="form-group">
+                                                                        <p ng-if="error==true" style="color:red">*{{errorMsg}}</p>
+                                                                        <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                                                        <button type="submit" class="btn btn-submit">Verify</button>
+                                                                    </div>
+                                                                   </form>
+                                                                </div>
+                                                        
+                                            </div>
+                                            <div class="col-sm-6">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+                                <!--ground-->
+        
+        
+                            </div>
+                        </div>
+                    </section>
+        
+                    <!--wallet-section-start-->
+        
+        
+        
+                </div>
+<footer-home></footer-home>

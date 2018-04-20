@@ -1,0 +1,103 @@
+<header class="header_sec" id="header">
+    <div class="header_top">
+      <div class="container-fluid">
+        <div class="header_top_left text-left">
+          <!--<i class="fa fa-star" aria-hidden="true"></i>
+          Lorem Ipsum is simply dummy text of the printing.>--></div>
+          <div class="header_top_right text-right">
+           <ul class="hdr_profile">
+            <li> <a ng-show="!isLoggedIn" href="#/login">Log In</a></li> 
+            <li> <a ng-show="!isLoggedIn" href="#/signup">Sign Up</a></li>
+            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#verify_email" ng-show="isEmailVerified==0 && signupType!='SOCAIL'" ng-click="sendVerificationCode(email)"> Verify Email</a>    
+            </li>
+  
+            <li ng-show="isLoggedIn" >
+              <a href="#/contest">
+               Home
+             </a>
+           </li>
+  
+           <li ng-show="isLoggedIn">
+            <a href="#/ac-balance">
+             Wallet
+           </a>
+         </li>
+         <!--   <li><a href="javascript:void(0)">Help</a></li> -->
+         <li ng-show="isLoggedIn" class="dropdown" dropdown-handler>
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+           {{userDetails.email}}
+           <i class="fa fa-angle-down"></i>
+         </a>
+         <ul class="dropdown-menu">
+          <li>
+           <a href="javascript:void(0)" data-toggle="modal" ng-click="openPopup('edit_profile')">
+              <i class="fa fa-fw fa-user"></i> Profile
+            </a>
+          </li>
+          <li ng-if="signupType!='SOCIAL'" >
+            <a href="javascript:void(0)" data-toggle="modal" ng-click="openPopup('updatePassword')">
+              <i class="fa fa-fw fa-lock"  ng-click="hideShowMsg()">
+              </i> Change Password</a>
+            </li>
+            <li >
+              <a href="#/settings"><i class="fa fa-fw fa-gear"></i> Settings</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ng-click="processNow(headerHandler.b)"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+          </ul>
+        </li>
+  
+        <li class="dropdown dd_notification" ng-show="isLoggedIn" dropdown-handler>
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="flaticon-notification"></i> <span class="badge">{{notification.length}}</span>
+          </a>
+          <ul class="dropdown-menu alert-dropdown" ng-if="status==1">
+            <li ng-repeat="notifi in notification">
+              <a href="javascript:void(0)">{{notifi.message}}</a>
+            </li>           
+          </ul>
+        </li>
+      </ul> 
+    </div>
+  </div>
+  </div>
+  <div class="bptom_header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="logo">
+            <a href="javascript:void(0)"><img src="Front-End/images/logo.png" style="height:50px" class="img-responsive" alt="logo"> </a>
+  
+          </div>
+        </div>
+  
+        <div class="col-sm-9" ng-show="isLoggedIn && showSeries">
+          <div class="bottom_header_right text-right">
+            <div class="top_search">
+             <select class="top_select" ng-model="seriesId" ng-change="changeSeries(seriesId)">
+              <option value="" selected="true">All series
+              </option>
+              <option  ng-repeat="s in series" value="{{s.series_id}}">{{s.name}}</option>
+            </select>
+          </div>
+          <div class="top_ruppe"> <span class="flaticon-wallet"></span>
+            RS. {{totalBalance}}
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#add_cash">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9" ng-show="isLoggedIn && !showSeries">
+        <a href="#/contest" class="btn btn-submit" style="background-color:#979797">Show me Contest</a>
+      </div>
+    </div>
+  
+  </div>
+  <verify-email></verify-email>
+  <user-profile></user-profile>
+  <add-cash></add-cash>
+  <change-password></change-password>
+  </header>
+  

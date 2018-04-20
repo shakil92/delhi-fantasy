@@ -1,0 +1,289 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+<style type="text/css">
+.smalltext {
+    color: #fff;
+}
+</style>
+<!--Main container sec start-->
+<div class="main_container">
+    <section class="banner_sec landing_bg" style="background:url('{{env.image_base_url}}team_banner.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="banner_inner">
+
+                        <div class="banner_caption">
+                            <div class="ipl_logo">
+                                <img src="{{env.image_base_url}}ipl_logo.png" alt="">
+                            </div>
+                            <h1>
+                                            IPL T20 Prediction Fever
+                                            <small>total contest is for 10 points, each question carries one point</small>
+                                    </h1>
+                            <button class="btn btn_play" type="button" ng-click="getStarted()">Get Start</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="earn_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="earn_box">
+                        <div class="earn_img">
+                            <img src="{{env.image_base_url}}earn.png" alt="">
+                            <span>1</span>
+                        </div>
+                        <h4>earn 6000</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="earn_box">
+                        <div class="earn_img">
+                            <img src="{{env.image_base_url}}earn.png" alt="">
+                            <span>2</span>
+                        </div>
+                        <h4>GET 4000</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="earn_box">
+                        <div class="earn_img">
+                            <img src="{{env.image_base_url}}earn.png" alt="">
+                            <span>3</span>
+                        </div>
+                        <h4>GET 4000</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="prediction_sec">
+        <div class="container">
+            <div class="match_information">
+                <ul>
+                    <li>
+                        <img src="{{localteam_image}}" alt="local-team">
+                    </li>
+                    <li>
+                        <span class="days" id="day"></span>
+                        <div class="smalltext">Days</div>
+                    </li>
+                    <li>
+                        <span class="hours" id="hour"></span>
+                        <div class="smalltext">Hours</div>
+                    </li>
+                    <li>
+                        <span class="minutes" id="minute"></span>
+                        <div class="smalltext">Minutes</div>
+                    </li>
+                    <li>
+                        <span class="seconds" id="second"></span>
+                        <div class="smalltext">Seconds</div>
+                    </li>
+                    <li>
+                        <img src="{{visitorteam_image}}" alt="visit-team">
+                    </li>
+                </ul>
+            </div>
+            <div class="prediction_header">
+                <ul>
+                    <li>PARTICULAR’S</li>
+                    <li>YOUR PREDICTION </li>
+                    <li>&nbsp;</li>
+                </ul>
+            </div>
+            <form name="predictionForm" class="" ng-submit="submitPrediction(predictionForm)">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Team win by how many runs
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="3" ng-change="manage_salary_cap()" placeholder="Enter No Of Runs" name="win_by_runs" ng-model="win_by_runs">
+                                <div style="color:red" ng-show="submitted && (predictionForm.win_by_runs.$error.parse || predictionForm.win_by_runs.$error.required) " class="form-error">
+                                    *Team win runs is required.
+                                </div> 
+                            </div>
+                            <div class="action-btn" ng-if="isSalaryCap">
+                                <button class="btn btn-block win_by_runs" type="button">{{win_by_runs_cap}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Team win by how many wickets
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="2" placeholder="Enter No Of Wickets" name="win_by_wicket" ng-model="win_by_wicket">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Man of the Match
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <select class="selectpicker form-control" name="man_of_the_match" ng-model="man_of_the_match">
+                                    <option value="">Select Player</option>
+                                    <option ng-repeat="x in matchPlayers" value="{{x.player_id}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Maximum six by which batsman
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <select class="selectpicker form-control" name="maximum_six_by_plyer" ng-model="maximum_six_by_plyer">
+                                    <option value="">Select Player</option>
+                                    <option ng-repeat="x in matchPlayers" value="{{x.player_id}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Maximum wickets by which bowler
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <select class="selectpicker form-control" name="maximum_wicket_by_plyer" ng-model="maximum_wicket_by_plyer">
+                                    <option value="">Select Player</option>
+                                    <option ng-repeat="x in matchPlayers" value="{{x.player_id}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Maximum Four by which batsman
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <select class="selectpicker form-control" name="maximum_four_by_player" ng-model="maximum_four_by_player">
+                                    <option value="">Select Player</option>
+                                    <option ng-repeat="x in matchPlayers" value="{{x.player_id}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Total clean bold wickets for the day
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="2" placeholder="Enter No Of Wickets" name="total_clean_bold_wicket" ng-model="total_clean_bold_wicket">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Total Run scored by opening team
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="3" placeholder="Enter No Of Runs" name="total_run_scored_by_opening_team" ng-model="total_run_scored_by_opening_team">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Total Number of catch out for the day
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="2" placeholder="Enter No Of Catch" name="total_number_of_catch_out_for_the_day" ng-model="total_number_of_catch_out_for_the_day">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="prediction_qution">
+                            Winner Team of the day
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="prediction_fiilup">
+                            <div class="prediction_field">
+                               <select class="selectpicker form-control" name="winner_team_of_the_day" ng-model="winner_team_of_the_day">
+                                    <option value="">Select Team</option>
+                                    <option ng-repeat="t in teamData" value="{{t.teamId}}">{{t.teamName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full_submit">
+                    <div style="color:#0cff00;" ng-if="predictionSuccess">{{predictionSuccessMsg}}</div>
+                    <div style="color:red;" ng-if="predictioError">*{{predictioErrorMsg}}</div>
+                    <div class="action-btn">
+                        <button class="btn btn-block">submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>
+<!--Main container sec end-->
+
+<footer-home></footer-home>

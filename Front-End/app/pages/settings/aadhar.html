@@ -1,0 +1,150 @@
+<header-home></header-home>
+<div class="main_container">
+                    <!--wallet-section-start-->
+                    <section class="pancard_sec comon_bg">
+                        <div class="container-fluid">
+                        <div class="content_wrap veryfication_wrap">
+        
+                            <div class="veryfy_line">
+                                <h4>Verify Your Account</h4> <a href="#" class="btn btn-submit">Show me Contest</a>
+                             </div>
+        
+                            <div class="veryfy_condition">
+                                <h4>After this, enjoy 1- click cash withdrawals forever! </h4>
+        
+                                <ul>
+                                    <li> Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                                    <li>We don’t accept password-protected docs.</li>
+                                </ul>
+                                <ul class="veryfy_icn">
+                                    <li class="{{users.aadhar_verify==0?'':'gray_icon';}}"><i class="fa fa-info-circle" aria-hidden="true"></i> Incomplete</li>
+                                    <li class="{{users.aadhar_verify==1?'':'gray_icon';}}"><i class="fa fa-check-circle" aria-hidden="true"></i> Submitted</li>
+                                    <li class="{{users.aadhar_verify==2?'':'gray_icon';}}"><i class="fa fa-check-circle" aria-hidden="true"></i> Verified
+                                    </li>
+                                </ul>
+                            </div>
+        
+                            <div class="mobile_veryfy">
+                                <div class="mobile_veryfy_bar">
+                                    <ul class="clearfix">
+                                            <li ng-show="isEmailVerified==0 && signupType!='SOCAIL'" ng-click="sendVerificationCode(email,1)" class="{{currentSetting=='emailVerification'?'active':''}}"><a href="#/verify-email">Email Verification</a></li>
+                                            <li class="{{currentSetting=='mobileverification'?'active':''}}"><a href="#/mobileverification">1. Mobile Verification</a></li>
+                                            <li class="{{currentSetting=='pan-card'?'active':''}}"><a href="#/pan-card">2. PAN Card</a></li>
+                                            <li class="{{currentSetting=='settings'?'active':''}}" ><a href="#/settings">3. Bank Account Details</a></li>
+                                            <li class="{{currentSetting=='aadhar-card'?'active':''}}"><a href="javascript:void(0)">Aadhar Card</a></li>
+                                            
+                                            <li><a href="javascript:void(0)">How to get verified?</a></li>
+    
+                                    </ul>
+                                </div>
+                                <div class="mobile_veryfication_contait pancard_sec">
+                                   <form ng-submit="updateAdhar(aadharUpdate)" name="aadharUpdate" novalidate>
+                                   <fieldset ng-disabled="isReadOnly">
+                                                
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="form-group custom_input">
+                                                <label class="input-has-value">Full Name</label>
+                                                <input placeholder="Alex" ng-model="settings.name" name="name" type="text" ng-required="true">
+                                                <p><i class="fa fa-info-circle" aria-hidden="true"></i> Your name must match the name
+                                                    on your Aadhar Card </p>
+                                                <p style="color:red" ng-if="submitted && aadharUpdate.name.$error.required">*Name is required field. </p>    
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group custom_input">
+                                                <label>Aadhar Card Number</label>
+                                                <input ng-model="settings.aadhar_number" name="aadhar_number" type="text"ng-min="12" ng-pattern="/^\+?\d{12}$/" ng-max="12" ng-required="true">
+                                                <p style="color:red" ng-if="submitted && settings.aadhar_number.$error.required">*Aadhar number is required field. </p>    
+                                                <p style="color:red" ng-show="aadharUpdate.aadhar_number.$error.pattern || aadharUpdate.aadhar_number.$error.minlength || aadharUpdate.aadhar_number.$error.maxlength" class="form-error">*Please enter valid aadhar card number.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group custom_input">
+                                                <label>D.O.B.</label>
+                                                <!-- <datepicker date-max-limit="{{dobValidate.toString()}}" date-set="{{users.date_of_birth.toString()}}" date-format="yyyy-MM-dd" date-typer="true" >
+                                                        <input type="text" ng-model="settings.date_of_birth" placeholder="D.O.B." name="date_of_birth" class="form-control" id="BirthDate" readonly/>
+                                                      </datepicker> -->
+                                                      <datepickercustom date-max-limit="{{dobValidate.toString()}}" datepicker-id="dob_aadhar" date-set="{{users.date_of_birth.toString()}}" date-format="dd-mm-yy">
+                                                            <input type="text" ng-model="settings.date_of_birth" placeholder="D.O.B." id="dob_aadhar" class="form-control" readonly/>
+                                                     </datepickercustom> 
+                            
+                                                <p><i class="fa fa-info-circle" aria-hidden="true"></i> For withdrawals, this should
+                                                    match the date of birth on Aadhar Card</p>
+                                                <p style="color:red" ng-if="submitted && settings.date_of_birth.$error.required">*Date of Birth is required field. </p>    
+        
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group custom_input">
+                                                <label>Select State</label>
+                                                <select ng-model="settings.state" name="state" class="form-control" ng-required="true">
+                                                        <option value="">Select State</option>
+                                                        <option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</option>
+                                                      </select>
+                                                   
+                                                <div style="color:red" ng-show="submitted && settings.state.$error.required" class="form-error">
+                                                        *State  is required field.</div>
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group custom_filetype">
+                                                    <div class="input-file-container">  
+                                                            <input ngf-select ngf-accept="'image/*'" ng-model="settings.picFile" name="file" id="file" type="file" ng-required="true">
+                                                        </div>
+                                                          <p class="file-return">Upload Aadhar Card image</p>
+                                                          <div style="color:red" ng-show="submitted && settings.file.$error.required" class="form-error">
+                                                                *Aadhar card image  is required field.</div>
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="card_bar">
+                                                <ul>
+                                                    <li><i class="fa fa-info-circle" ng-click="openPopup('why_aadhar')" aria-hidden="true"></i> Why should I submit my Aadhar Card?</li>
+                                                    <li>- Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                                                    <li>- We don’t accept password-protected docs.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p ng-if="error==true" style="color:red">*{{errorMsg}}</p>
+                                            <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                            <button class="btn btn-default">Submit for Verification</button>
+                                        </div>
+                                    </div>
+                                   </fieldset>
+                                </form>
+                                </div>
+                            </div>
+        
+        
+                            <!--ground-->
+        
+        
+                        </div>
+                        </div>
+                    </section>
+        
+                    <!--wallet-section-start-->
+                    <div id="why_aadhar" popup-handler class="modal fade" role="dialog">
+                            <div class="modal-dialog custom_popup small_popup">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" ng-click="closePopup('why_aadhar')">&times;</button>
+                                <h4 class="modal-title">Why should i submit my aadhar details?</h4>
+                                </div>
+                                <div class="modal-body clearfix comon_body">
+                                    <p>Copy and share the contest code with your friends on WhatsApp, Facebook, email or SMS</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+        
+        
+                </div>
+<footer-home></footer-home>

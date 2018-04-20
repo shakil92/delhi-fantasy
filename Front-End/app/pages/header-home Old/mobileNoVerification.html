@@ -1,0 +1,84 @@
+    <header-home></header-home>
+    <!--Main container sec start-->
+    <div class="main_container">
+        <section class="main_content_sec">
+            <div class="container-fluid">
+                <div class="content_wrap veryfication_wrap">
+
+                    <div class="veryfy_line">
+                        <h4>Verify Your Account</h4> <a href="" class="btn btn-submit">Show me Contest</a>
+                        <img src="/images/veryfy.png" alt="">
+                    </div>
+
+                    <div class="veryfy_condition">
+                        <h4>After this, enjoy 1- click cash withdrawals forever! </h4>
+                        <ul>
+                            <li> Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                            <li>We don’t accept password-protected docs.</li>
+                        </ul>
+                        <ul class="veryfy_icn">
+                            <li><i class="fa fa-info-circle" aria-hidden="true"></i> Incomplete</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i> Submitted</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i> Verified
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mobile_veryfy">
+                        <div class="mobile_veryfy_bar">
+                            <ul class="clearfix">
+                                <li class="active">
+                                    <a href="">1. Mobile Number Verification</a>
+                                </li>
+                                <li>
+                                  <a href="#/settings">
+                                      2. PAN Card</a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="mobile_veryfication_contait">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <div class="verification_left" ng-if="!isOTPSend">
+                                            <form ng-submit="verifyMobileNo(formData)" name="formData">
+                                                        
+                                            <h4>Verify your Mobile Number </h4>
+                                            <div class="form-group custom_input">
+                                                <label>Enter Your Mobile Number</label>
+                                                <input type="text" placeholder="9292929292" name="mobileNumber" ng-model="mobileNumber" ng-required="true">
+                                                <p ng-if="submitted && formData.mobileNumber.$error.required">*Mobile Number is required!</p>
+                                            </div>
+                                            <p>We’ll send you an OTP verification</p>
+                                            <div class="form-group">
+                                                <p ng-if="error==true" style="color:red">*{{errorMsg}}</p>
+                                                <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                                <button type="submit" class="btn btn-submit">Send OTP</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="verification_left otp_verification" ng-if="isOTPSend">
+                                            <form ng-submit="verifyMobileOTP(formOTPDate)" name="formOTPDate">    
+                                            <h4>Verify OTP </h4>
+                                                <div class="form-group custom_input">
+                                                    <label>Enter OTP</label>
+                                                    <input type="text" ng-model="settings.mobileNumberOtp" name="mobileNumberOtp" ng-required="true">
+                                                    <p ng-if="submitted && formOTPDate.mobileNumberOtp.$error.required">*Mobile Number is required!</p>
+                                                </div>
+                                                <!-- <p>We’ll send you an OTP verification</p> -->
+                                                <div class="form-group">
+                                                    <p ng-if="error==true" style="color:red">*{{errorMsg}}</p>
+                                                    <p ng-if="success==true" style="color:green">*{{successMsg}}</p>
+                                                    <button type="submit" class="btn btn-submit">Verify</button>
+                                                </div>
+                                               </form>
+                                            </div>
+                                     </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ground-->
+                </div>
+            </div>
+        </section>
+    </div>
+        <!--Main container sec end-->

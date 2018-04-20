@@ -1,0 +1,78 @@
+<header-home></header-home>
+<div class="main_container">
+        
+        
+                    <!--wallet-section-start-->
+                    <section class="pancard_sec comon_bg">
+                        <div class="container-fluid">
+                            <div class="content_wrap veryfication_wrap">
+        
+                                <div class="veryfy_line">
+                                    <h4>Verify Your Account</h4> <a href="#" class="btn btn-submit">Show me Contest</a>
+                                </div>
+        
+                                <div class="veryfy_condition">
+                                    <h4>After this, enjoy 1- click cash withdrawals forever! </h4>
+        
+                                    <ul>
+                                        <li> Max size 4MB. Formats - .jpg .jpeg .png .pdf only.</li>
+                                        <li>We don’t accept password-protected docs.</li>
+                                    </ul>
+                                    <ul class="veryfy_icn">
+                                            <li class="{{users.mobile_verify==0?'':'gray_icon';}}"><i class="fa fa-info-circle" aria-hidden="true"></i> Incomplete</li>
+                                            <li class="{{users.mobile_verify==1?'':'gray_icon';}}"><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</li>
+                                    </ul>
+                                </div>
+        
+                                <div class="mobile_veryfy">
+                                    <div class="mobile_veryfy_bar">
+                                        <ul class="clearfix">
+                                                <li ng-show="isEmailVerified==0 && signupType!='SOCAIL'" ng-click="sendVerificationCode(email,1)" class="{{currentSetting=='emailVerification'?'active':''}}"><a href="javascript:void(0)">Email Verification</a></li>
+                                                <li class="{{currentSetting=='mobileverification'?'active':''}}"><a href="#/mobileverification">1. Mobile Verification</a></li>
+                                                <li class="{{currentSetting=='pan-card'?'active':''}}"><a href="#/pan-card">2. PAN Card</a></li>
+                                                <li class="{{currentSetting=='settings'?'active':''}}" ><a href="#/settings">3. Bank Account Details</a></li>
+                                                <li class="{{currentSetting=='aadhar-card'?'active':''}}"><a href="#/aadhar-card">Aadhar Card</a></li>
+                                                
+                                                <li><a href="javascript:void(0)">How to get verified?</a></li>
+        
+                                        </ul>
+                                    </div>
+                                    <div class="mobile_veryfication_contait">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                    <div class="verification_left">
+                                                        <div style="color:green">{{msg}}</div>
+                                                        <div style="color:red">{{errorMsg}}</div>
+                                                        <div class="form-group">
+                                                          <label>Enter Verification Code</label>
+                                                          <input type="text" ng-model="verificationCode" name="code" placeholder="Your verification code" class="form-control" ng-required="true">
+                                                        </div>
+                                                        <div class="button_right">
+                                                          <button type="button" class="btn btn-submit" ng-click="verifyEmailId(verificationCode)">Verify</button>
+                                                          <button type="button" class="btn btn-submit" ng-click="sendVerificationCode(email,2)">Resend</button>
+                                                        </div>
+                                                    </div>
+                                                        
+                                                        
+                                            </div>
+                                            <div class="col-sm-6">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+                                <!--ground-->
+        
+        
+                            </div>
+                        </div>
+                    </section>
+        
+                    <!--wallet-section-start-->
+        
+        
+        
+                </div>
+<footer-home></footer-home>

@@ -1,0 +1,877 @@
+<header-home></header-home>
+<div class="main_container home_container">
+    <!--slider-section-start-->
+    <div class="topBanner_sec">
+        <div class="container-fluid">
+            <div class="series_search">
+                    <select ng-model="seriesId" ng-change="changeSeries(seriesId)">
+                            <option value="" selected="true">All series
+                            </option>
+                            <option  ng-repeat="s in series" value="{{s.series_id}}">{{s.name}}</option>
+                          </select>
+            </div>
+            <match-list></match-list>
+         </div>
+    </div>
+    <!--slider-section-end-->
+    <!--contest-section-start-->
+    <section class="contest_sec">
+        <div class="container-fluid">
+            <div class="row" ng-if="currentSelectedMatchDetails.isOpenForUser==true && isClosed==false">
+                <div class="col-sm-4"  ng-if="hasMegaContest==true && currentSelectedMatchDetails.isOpenForUser!=false && isClosed==false">
+                    <div class="contaest_box">
+                        <div class="contestHeader">
+                            <a href="javascript:void(0)" ng-click="openPopup('mega_contest')"><i class="flaticon-crown"></i></a> {{megaContest.number_of_winners}} Winners <span>Pay Rs.{{megaContest.team_entry_fee | number:2}} Only</span>
+                        </div>
+                        <div class="contestBody">
+                            <h4><a href="javascript:void(0)">Join mega contest</a></h4>
+                            <h1>Win {{megaContest.total_winning_amount | number:2}}</h1>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="{{megaContest.total_join_team}}" aria-valuemin="0"
+                                    aria-valuemax="{{megaContest.contest_size}}" style="width:{{megaContest.total_join_team * 100 / megaContest.contest_size}}%">
+                                    {{megaContest.total_join_team * 100 / megaContest.contest_size}}% Complete (warning)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress_footer clearfix">
+                        <div class="progress_footer clearfix">
+                            <h5>{{megaContest.total_join_team}}/{{megaContest.contest_size}}<a href="javascript:void(0)">C</a> <a href="javascript:void(0)" ng-if="megaContest.is_multientry==1">m</a></h5><join-button condetails="megaContest" hasteam="teamCount" join-chip-balance="chipBalance" join-total-balance="totalBalance"></join-button>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4" ng-if="currentSelectedMatchDetails.isOpenForUser==true"> 
+                    <div class="contaest_box friend_contant">
+                        <div class="contestHeader">Invite your friends </div>
+                        <div class="contestBody">
+                            <h4>Get rewarded referral bonus <br/>
+                                till your friend play upto Rs 5000/-</h4>
+                        </div>
+                        <div class="progress_footer clearfix">
+                            <a href="#/invite" class="btn btn-submit">Invite Friends</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4"  ng-if="currentSelectedMatchDetails.isOpenForUser==true">
+                    <div class="contaest_box">
+                        <div class="contestHeader">
+                            Challenge Friends
+                        </div>
+                        <div class="contestBody">
+                            <input type="text"  data-ng-model="codeContest.contestJoinCode" placeholder="Enter your Contest">
+                        </div>
+                        <div class="progress_footer clearfix">
+                                
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#creat_contest" ng-if="teamsDetails!=''">Create a Contest</a>
+                                <a href="javascript:void(0)" data-toggle="modal" ng-click="checkTeam()" ng-if="teamsDetails==''">Create a Contest</a>
+                                <a href="javascript:void(0)" class="btn btn-submit" ng-click="searchCode()">Join</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!--contest-section-end-->
+
+    <!--play-section-start-->
+    <section class="progress_sec">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 {{tabs.contest.active=='private' || isClosed==true?'home_point':''}}">
+                    <div class="playprogress">
+                        <div class="play_tab">
+                            <ul>
+                                <li ng-if="isClosed!=true" class="{{tabs.contest.active=='public'?'active':''}}"><a href="javascript:void(0)" ng-click="tabChange('contest','public')">Public</a></li>
+                                <li ng-if="currentSelectedMatchDetails.isOpenForUser!=false || isClosed==true" class="{{tabs.contest.active=='private' || isClosed==true?'active':''}}"><a href="javascript:void(0)" ng-click="tabChange('contest','private')">My Contest</a></li>
+                            </ul>
+                        </div>
+                        <!-- Public contest and team-->
+                        <div ng-if="tabs.contest.active=='public' && isClosed!=true" class="public">
+                        <div class="tab_sarch">
+                            <ul class="clearfix">
+                                <li>
+                                    <label>Win (Rs.)</label>
+                                    <select class="form-control"  ng-model="selectedWin" ng-change="contestFilter(selectedWin,selectedPay,selectedSize)">
+                                            <option value="all">All</option>
+                                            <option value="0">Practice</option>
+                                            <option value="1-10000">1-10,000</option>
+                                            <option value="10001-50000">10,001-50,000</option>
+                                            <option value="50001-100000">50,001-1,00,000</option>
+                                            <option value="100000-1000000">1,00,000-10,00,000</option>
+                    </select>
+                                </li>
+                                <li>
+                                    <label>Pay (Rs.)</label>
+                                    <select class="form-control" ng-model="selectedPay" ng-change="contestFilter(selectedWin,selectedPay,selectedSize)">
+                                            <option value="all">All</option>
+                                            <option value="1-100">1-100</option>
+                                            <option value="101-1000">101-1,000</option>
+                                            <option value="1001-5000">1,001-5,000</option>
+                                            <option value="5001-x">5,001 & more</option>
+                    </select>
+                                </li>
+                                <li>
+                                    <label>Size (Teams)</label>
+                                    <select class="form-control"  ng-model="selectedSize" ng-change="contestFilter(selectedWin,selectedPay,selectedSize)">
+                                            <option value="all">All</option>
+                                            <option value="2">2</option>
+                                            <option value="3-10">3-10</option>
+                                            <option value="11-20">11-20</option>
+                                            <option value="21-100">21-100</option>
+                                            <option value="101-1000">101-1,000</option>
+                                            <option value="1001-10000">1,001-10,000</option>
+                                            <option value="10001-50000">10,001-50,000</option>
+                    </select>
+                                </li>
+                                <li class="text-right">
+                                    <label></label>
+                                    <button class="btn btn-submit btn-search"  ng-click="defaultOption();contestFetch();">Reset</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="playprogress_contest">
+                                <div class="match_left_box" ng-repeat="contest in leftContestContainer">
+                                        <div class="match_left_header">Play Rs.{{contest.display_join_amount|number:2}} only <span>{{contest.total_join_team}}/{{contest.contest_size}} Teams</span></div>
+                                        <div class="match_left_body">
+                                            <h4> Win Rs {{contest.total_winning_amount | number:2}}</h4>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="{{contest.contest_size * 100 / contest.total_join_team}}" aria-valuemin="0" aria-valuemax="{{contest.contest_size * 100 / contest.contest_size}}" style="width:{{contest.total_join_team * 100 / contest.contest_size}}%">
+                                                    {{contest.total_join_team * 100 / contest.contest_size}}% Complete (warning)
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="progress_footer {{contestLeftWinnerPrice[$index]==true?'show_list':''}} clearfix">
+                                                <h4 ng-click="changeLeftContestWinnerPriceDisplay($index)">
+                                                        <i class="flaticon-crown"></i> {{contest.number_of_winners}} Winners 
+                                                    </h4> 
+                                                    <join-button condetails="contest" hasteam="teamCount" join-total-balance="totalBalance" join-chip-balance="chipBalance" teamsDetails="teamsDetails"></join-button >
+                                                    <div class="rank_list">
+                                                            <table>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Rank</th>
+                                                                    <th>price</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr ng-repeat="rankPrice in contest.winners_rank">
+                                                                    <td>Rank {{rankPrice.rank}}</td>
+                                                                    <td>Rs. {{rankPrice.prize| number:2}}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>    
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="playprogress"  ng-if="tabs.contest.active=='private' || isClosed==true" style="padding-top:0px">
+                           <div class="playprogress_contest" style="color: red;" ng-if="currentMyContestList.length==0 && isClosed!=true">
+                                    <p> {{myContestErr}}</p>
+                            </div>
+                            <div class="playprogress_contest" style="text-align: center;" ng-if="currentMyContestList.length==0 && isClosed==true">
+                                    <p>You have not Joined any contest yet</p>
+                            </div>   
+                       <div class="playprogress_contest" ng-if="currentMyContestList.length>0">
+                            <p>You can now download &amp; view all teams in joined contests</p>
+                        <div class="match_left_box" ng-repeat="contest in currentMyContestList">
+                            <div class="match_left_header" ng-if="contest.match_type==0">WIN SKILL <span>{{contest.total_join_team}}/{{contest.contest_size}} Teams</span></div>
+                            <div class="match_left_header" ng-if="contest.match_type==1">WIN Rs. {{contest.total_winning_amount|number:2}} <span>{{contest.total_join_team}}/{{contest.contest_size}} Teams</span></div>
+                            <div class="match_left_body point_list">
+                            <ul>
+                                <li>
+                                   <button class="btn btn-submit">
+                                        Download Teams
+                                   </button>
+                                </li>
+                                <li>  
+                                    <button class="btn btn-submit" ng-if="contest.is_multientry==1" ng-click="rejoinPopup(contest)">Rejoin</button>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="javascript:void(0)" ng-click="contestDetailShowHideFlag_$index = !contestDetailShowHideFlag_$index;showContestTeam(contest,teamsDetails,contestDetailShowHideFlag_$index);isMatchActiveFun()" data-id="{{$index}}" ng-bind-html="contestDetailShowHideFlag_$index && minusHtml || plusHtml"><i class="fa fa-chevron-down"></i></a>
+                                    <a href="javascript:void(0)" ng-if="contestDetailShowHideFlag_$index" ng-click="showContestTeam(contest,teamsDetails,true)"><i class="fa fa-sync-alt"></i></a> 
+                                </li>
+                            </ul>
+                            <div class="point_table" ng-if="contestDetailShowHideFlag_$index" ng-init="contestDetailShowHideFlag_$index = false;">
+                            <table class="table-fixed">
+                                    <tbody>
+                                         <tr ng-repeat="jTeam in join_in_team[contest.id]">
+                                            <td class="player_name"><i class="flaticon1-resize-length"></i> {{jTeam.rank}}</td>  
+                                            <td ng-if="!isClosed">{{jTeam.team_code}} <span>{{jTeam.team_name}} <button ng-click="editTeamToContestPopup(jTeam.team_id,jTeam.team_name,contest)" ng-if="userDetails.team_code == jTeam.team_code && isMatchActive && !isClosed" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></span></td>
+                                            <td ng-if="isClosed">{{jTeam.team_code}} <span ng-click="showlineupwithScore(jTeam.team_id)">{{jTeam.team_name}}</span></td>
+                                            <td ng-if="isClosed"><a target="_blank" href="#/team-score-card/{{currentSelectedSeries}}/{{currentSelectedMatch}}/{{jTeam.team_id}}/{{userDetails.user_id}}/{{contest.id}}">{{jTeam.points}} Pts</a></td>
+                                            <td ng-if="!isClosed">0 Pts</td>
+                                            <!--<td>
+                                              </td>-->
+                                          </tr>
+              
+                                        </tbody>
+                                </table>
+                                </div>
+                             
+
+                            </div>
+                         
+                        </div>
+                    </div>
+                    </div>
+                    <!--public Contest Ends Here-->
+                </div>
+
+                <div class="col-sm-6" ng-if="!isClosed">
+                    <!--ground-area-->
+                    <div class="playGround">
+                        <div class="ground_button">
+                            <select ng-change="teamChange()" ng-model="teamsDetails.currentSelectedTeam" ng-if="teamCount>0 && currentSelectedMatchDetails.isOpenForUser==true" ng-options="team.user_team_id as team.name for team in teamsDetails"></select>
+                            <button ng-click="createTeam()" ng-if="!isClosed && currentSelectedMatchDetails.isOpenForUser==true && teamCount>0" class="add_team">Add Team {{teamCount+1}}</button>
+                            <a class="btn btn-submit" target="_blank" href="#/score-card/{{currentSelectedSeries}}/{{currentSelectedMatch}}" ng-if="isClosed">Fantasy Score Card</a>
+                        </div>
+                        <div class="ground_button left_button">
+                            <button type="button" class="add_team" ng-if="teamsDetails.currentSelectedTeam!='' && teamCount>0 && !isClosed" ng-click="teamOperation('E',teamsDetails.currentSelectedTeam)">Edit Team</button>
+                            <button type="button" class="add_team" ng-if="teamsDetails.currentSelectedTeam!='' && teamCount>0 && !isClosed" ng-click="teamOperation('C',teamsDetails.currentSelectedTeam)">Clone Team</button>
+                        </div>
+                        <button class="btn btn-submit add_team" ng-click="createTeam()" ng-if="!isClosed && currentSelectedMatchDetails.isOpenForUser==true && teamCount==0">Create Team</button>
+                        <ul class="first_playerlist" ng-if="teamCount>0">
+                                <!-- BATSMAN 1st -->
+                                    <li ng-if="teamStructure['BATSMAN'].player.length==0">
+                                            <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                            </div>
+                                            <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>0">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[0].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position!='CAPTAIN' && teamStructure['BATSMAN'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"></ing></i>
+                                                <h4>{{teamStructure['BATSMAN'].player[0].name}}</h4>
+                                            </li>
+                                <!--AllRounder 1st -->
+                                <li ng-if="teamStructure['ALLROUNDER'].player.length==0">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>ALLROUNDER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['ALLROUNDER'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['ALLROUNDER'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position!='CAPTAIN' && teamStructure['ALLROUNDER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['ALLROUNDER'].imgURL}}"/></i>    
+                                            <h4>{{teamStructure['ALLROUNDER'].player[0].name}} </h4>
+                                        </li>
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length==0">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>PLAYER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon"></div>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position!='CAPTAIN' && teamStructure['EXTRA'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[0].play_role].imgURL}}"/></i>       
+                                            <h4>{{teamStructure['EXTRA'].player[0].name}}</h4>
+                                        </li>
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length<=1">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>ALLROUNDER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>1">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[1].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position!='CAPTAIN' && teamStructure['EXTRA'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[1].play_role].imgURL}}"/></i>      
+                                        <h4>{{teamStructure['EXTRA'].player[1].name}}</h4>
+                                        </li>
+                                <!-- BOWLER 1st -->
+                                <li ng-if="teamStructure['BOWLER'].player.length==0">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                            <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position!='CAPTAIN' && teamStructure['BOWLER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[0].name}}</h4>
+                                        </li>
+                                    <li>
+                            </ul>
+                            <ul class="second_playerlist" ng-if="teamCount>0">
+                                <!-- WICKETKEEPER 1st -->		
+                                <li ng-if="teamStructure['WICKETKEEPER'].player.length==0">
+                                    <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/keeper.png'}}" alt="">
+                                        </div>
+                                    <h4>WICKETKEEPER</h4>
+                                </li>
+                                <li ng-if="teamStructure['WICKETKEEPER'].player.length>0">
+                                        <div class="player_img">
+                                            <img ng-src="{{teamStructure['WICKETKEEPER'].player[0].player_pic}}" alt="">
+                                        </div>
+                                        <div class="player_icon">
+                                            
+                                             
+                                        </div>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position=='VICE_CAPTAIN'" class="special"> <img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position!='CAPTAIN' && teamStructure['WICKETKEEPER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['WICKETKEEPER'].imgURL}}"/></i>    
+                                <h4>{{teamStructure['WICKETKEEPER'].player[0].name}}</h4>
+                                    </li>
+                                <!-- BATSMAN 2nd -->
+                                <li ng-if="teamStructure['BATSMAN'].player.length<=1">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                            </div>
+                                            <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>1">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[1].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                     
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position!='CAPTAIN' && teamStructure['BATSMAN'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"/></i>    
+                                                <h4>{{teamStructure['BATSMAN'].player[1].name}}</h4>
+                                            </li>
+                                <!-- BOWLER 2nd -->		
+                                <li ng-if="teamStructure['BOWLER'].player.length<=1">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                        <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>1">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[1].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position!='CAPTAIN' && teamStructure['BOWLER'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[1].name}}</h4>
+                                        </li>
+                                    <li>
+
+
+                            </ul>
+                            <ul class="third_playerlist" ng-if="teamCount>0">
+                                    <!-- BATSMAN 3rd -->
+                                    <li ng-if="teamStructure['BATSMAN'].player.length<=2">
+                                            <div class="player_img">
+                                                    <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                                </div>
+                                                <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>2">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[2].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                     
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position!='CAPTAIN' && teamStructure['BATSMAN'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"/></i>    
+                                                <h4>{{teamStructure['BATSMAN'].player[2].name}}</h4>
+                                            </li>
+                                    
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length<=2">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>PLAYER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>2">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[2].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position!='CAPTAIN' && teamStructure['EXTRA'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[2].play_role].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['EXTRA'].player[2].name}}</h4>
+                                        </li>
+                                <!-- BOWLER 3rd -->
+                                <li ng-if="teamStructure['BOWLER'].player.length<=2">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                            <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>2">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[2].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position!='CAPTAIN' && teamStructure['BOWLER'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[2].name}}</h4>
+                                            
+                                    </li>
+                                    <li>
+
+                            </ul>
+                        <div class="site_name">
+                            <img ng-src="{{env.image_base_url}}logo.png" alt="">
+                        </div>
+                    </div>
+
+                    <!--ground-area-->
+                </div>
+                <!-- TO Display LiveScore Lineup-->
+                <div class="col-sm-6" ng-if="isClosed">
+                    <!--ground-area-->
+                    <div class="playGround">
+                        <div class="ground_button">
+                            <a class="btn btn-submit" target="_blank" href="#/score-card/{{currentSelectedSeries}}/{{currentSelectedMatch}}" ng-if="isClosed">Fantasy Score Card</a>
+                        </div>
+                        <div class="ground_button left_button">
+                        </div>
+                        <button style="z-index:999" class="btn btn-submit add_team" ng-if="currentMyContestList.length<1 && showTeamWithPoints==true">You didn't joined any contest.</button>
+                        <button style="z-index:999" class="btn btn-submit add_team" ng-if="currentMyContestList.length>=1 && showTeamWithPoints==true && teamStructure['BOWLER'].player.length<1">Click on team-name to see lineups.</button>
+                    <ul class="first_playerlist" ng-if="teamCount>0 && showTeamWithPoints==true">
+                                <!-- BATSMAN 1st -->
+                                    <li ng-if="teamStructure['BATSMAN'].player.length==0">
+                                            <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                            </div>
+                                            <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>0">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[0].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[0].position!='CAPTAIN' && teamStructure['BATSMAN'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"></ing></i>
+                                                <h4>{{teamStructure['BATSMAN'].player[0].name}}</h4><i>{{teamStructure['BATSMAN'].player[0].points}}</i>
+                                            </li>
+                                <!--AllRounder 1st -->
+                                <li ng-if="teamStructure['ALLROUNDER'].player.length==0">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>ALLROUNDER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['ALLROUNDER'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['ALLROUNDER'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['ALLROUNDER'].player[0].position!='CAPTAIN' && teamStructure['ALLROUNDER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['ALLROUNDER'].imgURL}}"/></i>    
+                                            <h4>{{teamStructure['ALLROUNDER'].player[0].name}} </h4><i>{{teamStructure['ALLROUNDER'].player[0].points}} </i>
+                                        </li>
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length==0">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>PLAYER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon"></div>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[0].position!='CAPTAIN' && teamStructure['EXTRA'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[0].play_role].imgURL}}"/></i>       
+                                            <h4>{{teamStructure['EXTRA'].player[0].name}}</h4><i>{{teamStructure['EXTRA'].player[0].points}}</i>
+                                        </li>
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length<=1">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>ALLROUNDER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>1">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[1].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[1].position!='CAPTAIN' && teamStructure['EXTRA'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[1].play_role].imgURL}}"/></i>      
+                                        <h4>{{teamStructure['EXTRA'].player[1].name}}</h4><i>{{teamStructure['EXTRA'].player[1].points}}</i>
+                                        </li>
+                                <!-- BOWLER 1st -->
+                                <li ng-if="teamStructure['BOWLER'].player.length==0">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                            <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>0">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[0].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[0].position!='CAPTAIN' && teamStructure['BOWLER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[0].name}}</h4><i>{{teamStructure['BOWLER'].player[0].points}}</i>
+                                        </li>
+                                    <li>
+                            </ul>
+                            <ul class="second_playerlist" ng-if="teamCount>0 && showTeamWithPoints==true">
+                                <!-- WICKETKEEPER 1st -->		
+                                <li ng-if="teamStructure['WICKETKEEPER'].player.length==0">
+                                    <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/keeper.png'}}" alt="">
+                                        </div>
+                                    <h4>WICKETKEEPER</h4>
+                                </li>
+                                <li ng-if="teamStructure['WICKETKEEPER'].player.length>0">
+                                        <div class="player_img">
+                                            <img ng-src="{{teamStructure['WICKETKEEPER'].player[0].player_pic}}" alt="">
+                                        </div>
+                                        <div class="player_icon">
+                                            
+                                             
+                                        </div>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position=='VICE_CAPTAIN'" class="special"> <img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                        <i ng-if="teamStructure['WICKETKEEPER'].player[0].position!='CAPTAIN' && teamStructure['WICKETKEEPER'].player[0].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['WICKETKEEPER'].imgURL}}"/></i>    
+                                <h4>{{teamStructure['WICKETKEEPER'].player[0].name}}</h4><i>{{teamStructure['WICKETKEEPER'].player[0].points}}</i>
+                                    </li>
+                                <!-- BATSMAN 2nd -->
+                                <li ng-if="teamStructure['BATSMAN'].player.length<=1">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                            </div>
+                                            <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>1">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[1].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                     
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[1].position!='CAPTAIN' && teamStructure['BATSMAN'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"/></i>    
+                                                <h4>{{teamStructure['BATSMAN'].player[1].name}}</h4><i>{{teamStructure['BATSMAN'].player[1].points}}</i>
+                                            </li>
+                                <!-- BOWLER 2nd -->		
+                                <li ng-if="teamStructure['BOWLER'].player.length<=1">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                        <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>1">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[1].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[1].position!='CAPTAIN' && teamStructure['BOWLER'].player[1].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[1].name}}</h4><i>{{teamStructure['BOWLER'].player[1].points}}</i>
+                                        </li>
+                                    <li>
+
+
+                            </ul>
+                            <ul class="third_playerlist" ng-if="teamCount>0 && showTeamWithPoints==true">
+                                    <!-- BATSMAN 3rd -->
+                                    <li ng-if="teamStructure['BATSMAN'].player.length<=2">
+                                            <div class="player_img">
+                                                    <img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+                                                </div>
+                                                <h4>BATSMAN</h4>
+                                        </li>
+                                        <li ng-if="teamStructure['BATSMAN'].player.length>2">
+                                                <div class="player_img">
+                                                    <img ng-src="{{teamStructure['BATSMAN'].player[2].player_pic}}" alt="">
+                                                </div>
+                                                <div class="player_icon">
+                                                    
+                                                     
+                                                </div>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                                <i ng-if="teamStructure['BATSMAN'].player[2].position!='CAPTAIN' && teamStructure['BATSMAN'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BATSMAN'].imgURL}}"/></i>    
+                                                <h4>{{teamStructure['BATSMAN'].player[2].name}}</h4><i>{{teamStructure['BATSMAN'].player[2].points}}</i>
+                                            </li>
+                                    
+                                <!--Extra Player 1st-->
+                                <li ng-if="teamStructure['EXTRA'].player.length<=2">
+                                        <div class="player_img">
+                                            <img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+                                        </div>
+                                        <h4>PLAYER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['EXTRA'].player.length>2">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['EXTRA'].player[2].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['EXTRA'].player[2].position!='CAPTAIN' && teamStructure['EXTRA'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure[teamStructure['EXTRA'].player[2].play_role].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['EXTRA'].player[2].name}}</h4><i>{{teamStructure['EXTRA'].player[2].points}}</i>
+                                        </li>
+                                <!-- BOWLER 3rd -->
+                                <li ng-if="teamStructure['BOWLER'].player.length<=2">
+                                        <div class="player_img">
+                                                <img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+                                            </div>
+                                            <h4>BOWLER</h4>
+                                    </li>
+                                    <li ng-if="teamStructure['BOWLER'].player.length>2">
+                                            <div class="player_img">
+                                                <img ng-src="{{teamStructure['BOWLER'].player[2].player_pic}}" alt="">
+                                            </div>
+                                            <div class="player_icon">
+                                                
+                                                 
+                                            </div>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position=='CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position=='VICE_CAPTAIN'" class="special"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+                                            <i ng-if="teamStructure['BOWLER'].player[2].position!='CAPTAIN' && teamStructure['BOWLER'].player[2].position!='VICE_CAPTAIN'"><img ng-src="{{teamStructure['BOWLER'].imgURL}}"/></i>    
+                                        <h4>{{teamStructure['BOWLER'].player[2].name}}</h4><i>{{teamStructure['BOWLER'].player[2].points}}</i>
+                                            
+                                    </li>
+                                    <li>
+
+                            </ul>
+                        <div class="site_name">
+                            <img ng-src="{{env.image_base_url}}logo.png" alt="">
+                        </div>
+                    </div>
+
+                    <!--ground-area-->
+                </div>
+                <!--contest-->
+                <div class="col-sm-12">
+                    <div class="playprogress full_contest" ng-if="bottomContestContainer.length>0 && tabs.contest.active=='public' && isClosed!=true">
+                        <div class="playprogress_contest">
+                                <div class="match_left_box" ng-repeat="contest in bottomContestContainer">
+                                        <div class="match_left_header">Play Rs.{{contest.display_join_amount|number:2}} only <span>{{contest.total_join_team}}/{{contest.contest_size}} Teams</span></div>
+                                        <div class="match_left_body">
+                                            <h4> Win Rs {{contest.total_winning_amount | number:2}}</h4>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="{{contest.contest_size * 100 / contest.total_join_team}}" aria-valuemin="0" aria-valuemax="{{contest.contest_size * 100 / contest.contest_size}}" style="width:{{contest.total_join_team * 100 / contest.contest_size}}%">
+                                                    {{contest.total_join_team * 100 / contest.contest_size}}% Complete (warning)
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="progress_footer {{contestBottomWinnerPrice[$index]==true?'show_list':''}} clearfix">
+                                                <h4 ng-click="changeBottomContestWinnerPriceDisplay($index)">
+                                                        <i class="flaticon-crown"></i> {{contest.number_of_winners}} Winners 
+                                                    </h4> 
+                                                    <join-button condetails="contest" hasteam="teamCount" join-total-balance="totalBalance" join-chip-balance="chipBalance" teamsDetails="teamsDetails"></join-button >
+                                                    <div class="rank_list">
+                                                            <table>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Rank</th>
+                                                                    <th>price</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr ng-repeat="rankPrice in contest.winners_rank">
+                                                                    <td>Rank {{rankPrice.rank}}</td>
+                                                                    <td>Rs. {{rankPrice.prize| number:2}}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>    
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+                <!--contest-->
+            </div>
+        </div>
+    </section>
+    <!--play-section-end-->
+</div>
+<div id="mega_contest" popup-handler class="modal fade" role="dialog">
+        <div class="modal-dialog custom_popup mega_contest">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Awesome Team! Join a Mega Contest</h4>
+        </div>
+        <div class="modal-body clearfix mega_contes_body comon_body">
+        <div class="row">
+        <div class="col-sm-6">
+        <div class="contest_model_left">
+        <div class="win_prize">
+            <h4><span>Win Rs.</span> {{megaContest.total_winning_amount | number:2}} <span>Pay Rs. {{megaContest.team_entry_fee | number:2}}</span> </h4>
+        </div>
+        <a href="#" class="btn btn-submit">Join Mega Contest</a>
+        <h3> 0/{{megaContest.contest_size}} Teams</h3>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+                    aria-valuenow="{{megaContest.contest_size * 100 / megaContest.total_join_team}}" aria-valuemin="0" aria-valuemax="{{megaContest.contest_size * 100 / megaContest.contest_size}}" style="width:{{megaContest.total_join_team * 100 / megaContest.contest_size}}%">
+            </div>
+        </div>
+        <div class="prize_list">
+        <ul>
+            <li><i class="flaticon-crown"></i> {{megaContest.number_of_winners}} Winners</li>
+            <li><i>c</i> Confirmed Contest</li>
+            <li ng-if="megaContest.is_multientry==1"><i>m</i> Multi Entry</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="col-sm-6">
+        <div class="contest_model_right">
+
+        <h5>The breakup of the winnings for {{megaContest.number_of_winners|number:0}} Winners is displayed below</h5>
+                <h4>Rank <span>Prize</span></h4>
+                <ul>
+                    <li ng-repeat="rankPrice in megaContest.winners_rank">{{rankPrice.rank}}<span>Rs. {{rankPrice.prize| number:2}}</span> </li>
+
+        </ul>
+        </div>
+        </div>
+        </div>
+        <p>
+        Note: The actual prize money may be different than the prize money mentioned above if there is a tie for any of the winning positions. 
+        Check FAQs for further details.<br />
+        As per government regulations, a tax of 30.9% will be deducted if an individual wins more than Rs. 10,000.
+        </p>
+
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+<footer-home></footer-home>
+<create-contest></create-contest> 
+<isteam-created></isteam-created>
+<join-contest show-selected-team="teamsDetails" current-selected-match="currentSelectedMatch" join-total-balance="totalBalance" join-chip-balance="chipBalance" createdteam="teamsDetails" ></join-contest>
+<!--Alert -->
+<div id="alert_msg" popup-handler class="modal fade" role="dialog">
+        <div class="modal-dialog custom_popup">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" ng-click="closePopup('alert_msg')" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">{{alert_title}}</h4>
+            </div>
+            <div class="modal-body clearfix creat_profile comon_body">
+                  <h4>{{alert_message}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Edit Contest Team-->
+<div id="edit_contest_team_popup" class="modal fade" role="dialog">
+        <div class="modal-dialog custom_popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Contest Team</h4>
+                </div>
+                <div class="modal-body clearfix creat_profile comon_body">
+                    <form ng-submit="EditTeamToContest(teamContestData)" name="EditTeamToContestForm">
+                        <div class="row add_money">
+                            <div class="col-md-6"><h4>Join contest with </h4></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select ng-model="teamContestData.selectedTeam" ng class="form-control" ng-if="teamsDetails.length>0">
+                                        <option  ng-repeat="tm in teamList" value="{{tm.user_team_id}},{{tm.name}}" ng-init="">{{tm.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>  
+                        <hr>
+                        <div class="button_right text-center">
+                            <button class="btn btn-submit" type="submit">JOIN CONTEST</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+  </div>

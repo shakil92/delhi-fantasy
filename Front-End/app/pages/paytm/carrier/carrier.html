@@ -1,0 +1,92 @@
+<header-home ng-if="isLoggedIn"></header-home>
+<header-login ng-if="!isLoggedIn"></header-login>
+<div class="main_container">
+        <!--banner-section_start-->
+        <section class="innerBanner_sec careerBanner">
+            <h3>Career</h3>
+        </section>
+          <!--banner-section_end-->
+
+          <!--contant-section-start-->
+        <section class="about_sec comain_contain">
+            <div class="container text-center">
+                <div class="comn_head">
+                    <h4>Career</h4>
+                </div>
+                <p>At Aavishkar Business Group, its people are the growth engines of the organisation, The company provides collaborative work environment for every individual that encourages initiative, sense of professional fulfilment and willingness to learn.  Innovation, drive to excel, professionalism, continuous improvement and Entrepreneurial attitude form the core of our corporate culture. Here is a opportunity for you to join our Team.</p>
+            </div>
+        </section>
+
+        <!--contant-section-start-->
+       
+
+        <!--whyplaywin-start-->
+        <section class="apply_sec creatconst_popup">
+            <div class="container">
+                <div class="comn_head">
+                    <h4>Apply</h4>
+                </div>
+                <div class="row">
+                    <form ng-submit="submitCarrierForm(carrierForm)" novalidate="true" name="carrierForm">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Full Name*</label>
+                                <input placeholder="Olivia" class="form-control" name="name" ng-model="carrier.name" type="text" ng-required="true">
+                                <p style="color:red" ng-if="submitted && carrierForm.name.$error.required">*Full name is required!</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Your Email*</label>
+                                <input placeholder="micheal@example.com" class="form-control" name="email" ng-model="carrier.email" type="email" ng-required="true">
+                                <p style="color:red" ng-if="submitted && carrierForm.email.$error.required">*Email is required!</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone*</label>
+                                <input placeholder="09292929292" class="form-control" type="text" name="phone" ng-model="carrier.phone" ng-required="true">
+                                <p style="color:red" ng-if="submitted && carrierForm.phone.$error.required">*Phone number is required!</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Subject*</label>
+                                <input placeholder="Apply for Designation" class="form-control" name="subject" ng-model="carrier.subject" type="text" ng-required="true">
+                                <p style="color:red" ng-if="submitted && carrierForm.name.$error.required">*Subject is required!</p>
+                            </div>
+                        </div>
+        
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea placeholder="Enter your message" class="form-control" name="message" ng-model="carrier.message" ng-required="true"></textarea>
+                                <p style="color:red" ng-if="submitted && carrierForm.message.$error.required">*Message is required!</p>
+                            </div>
+                        </div>
+        
+                        <div class="col-sm-6">
+                                <div class="form-group custom_filetype">
+                                        <div class="input-file-container">  
+                                                <input class="input-file" id="my-file" type="file" ngf-select ngf-accept="'image/*'" ng-required="true" name="resume" ng-model="carrier.resume">
+                                                <label tabindex="0" for="my-file" class="input-file-trigger">Choose Resume</label>
+                                              </div>
+                                              
+                                              <p style="color:red" ng-if="submitted && carrierForm.resume.$error.required">*No File Selected</p>
+                                </div>
+                        </div>
+        
+                        <div class="col-sm-6 text-right">
+                            <p style="color:green" ng-if="success==true">*{{successMsg}}</p>
+                            <p style="color:green" ng-if="error==true">*{{errorMsg}}</p>
+                            <button class="btn btn-submit">Submit</button>
+                        </div>
+                        </form>
+                    </div>
+          
+            </div>
+        </section>
+        <!--whyplaywin-ebd-->
+
+    </div>
+<footer-home></footer-home>

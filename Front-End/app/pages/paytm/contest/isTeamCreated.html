@@ -1,0 +1,23 @@
+<div id="check_team" popup-handler class="modal fade" role="dialog">
+  <div class="modal-dialog custom_popup">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">First things first</h4>
+      </div>
+      <div class="modal-body clearfix creat_contest comon_body">
+        <div class="form-group">
+          <!-- <h4>You have to create a team first, before creating a contest!</h4> -->
+          <h4>Step 1: Create your Playwin Fantasy Team.</h4>
+          <h4>Step 2: Join a contest.</h4>
+        </div>
+        <div class="button_right">
+          
+        <button ng-click="createTeam()"  ng-if="!isClosed " class="btn btn-submit">
+          Create Team
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<header-home></header-home>
+<div class="main_container">
+        <section class="socrcard_sec">
+            <div class="container">
+                <h4>Fantasy ScoreCard</h4>
+                <div class="scoreCard_header">
+                    {{match_details.localteam}} VS {{match_details.visitorteam}} <div class="pull-right" style="display:none">Next Match Start In 16 hours <a href="#">Join Now</a></div>
+                </div>
+                <div class="scorecard_body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Starting</th>
+                                <th>Batting</th>
+                                <th>Bowling</th>
+                                <th>Catch</th>
+                                <th>Run Out</th>
+                                <th>Extra</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="padding: 0; border:0;">
+                                        <table>
+                                            <tr>
+                                                <th>Runs</th>
+                                                <th>4's</th>
+                                                <th>6's</th>
+                                                <th>S/R</th>
+                                                <th>50/100</th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                    <th style="padding: 0; border:0;">
+                                            <table>
+                                                    <tr>
+                                                        <th>Wkts</th>
+                                                        <th>M</th>
+                                                        <th>E/R</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </table>
+                                    </th>
+                                    <th></th>
+                                    <th> </th>
+                                    <th style="padding: 0; border:0;">
+                                            <table>
+                                                    <tr>
+                                                        <th>Bonus</th>
+                                                        
+                                                        <th>-Ve</th>
+                                                    </tr>
+                                                </table>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                    <tr ng-repeat="player in player_details">
+                                            <td>{{player.player_name}}</td>
+                                            <td>{{player.starting_point}}</td>
+                                            <td style="padding: 0; border:0;">
+                                                <table>
+                                                    <tr>
+                                                        <td>{{player.batting.batting_run|number:0}}</td>
+                                                        <td>{{player.batting.batting_s4|number:0}}</td>
+                                                        <td>{{player.batting.batting_s6|number:0}}</td>
+                                                        <td>{{player.batting.batting_sr|number:2}}</td>
+                                                        <td>{{player.batting.batting_50_100}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="padding: 0; border:0;">
+                                                    <table>
+                                                            <tr>
+                                                                    <td>{{player.bowling.bowling_wicket|number:0}}</td>
+                                                                    <td>{{player.bowling.bowling_maiden|number:0}}</td>
+                                                                    <td>{{player.bowling.bowling_er|number:2}}</td>
+                                                                    <td>0.00</td>
+                                                            </tr>
+                                                        </table>
+                                            </td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td style="padding: 0; border:0;">
+                                                    <table>
+                                                            <tr>
+                                                                <td>{{player.extra_bonus|number:0}}</td>
+                                                                
+                                                                <td>{{player.extra_ve|number:0}}</td>
+                                                            </tr>
+                                                        </table>
+                                            </td>
+                                            <td>{{player.total_point|number:2}}</td>
+                                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+<footer-home></footer-home>

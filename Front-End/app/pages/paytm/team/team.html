@@ -1,0 +1,769 @@
+<header-home></header-home>
+<div class="main_container home_container">
+		
+					<!--play-section-start-->
+					<section class="creatTeam_sec">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-lg-7">
+									<div class="creatteam_header clearfix">
+										<div class="match_timebox">
+											<h4>Create your team for </h4>
+											<div class="slider_item">
+												<div class="series_header">
+													<span ng-bind-html="countDownTimer"></span>
+												</div>
+												<div class="series_body">
+													<img ng-src="{{currentSelectedMatchDetails.localTeamImg}}">
+													<ul>
+														<li>{{localteam}}</li>
+														<li>VS</li>
+														<li>{{visitorteam}}</li>
+													</ul>
+													<img ng-src="{{currentSelectedMatchDetails.visitorTeamImg}}">
+													<h4 class="series_title">IPL</h4>
+												</div>
+											</div>
+										</div>
+										<div class="timeBox_right">
+											<p>Selection Criteria</p>
+											<table>
+												<thead>
+													<tr>
+														<th></th>
+														<th>WK</th>
+														<th>Bat</th>
+														<th>AR</th>
+														<th>Bowl</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Min</td>
+														<td>01</td>
+														<td>03</td>
+														<td>01</td>
+														<td>03</td>
+													</tr>
+													<tr>
+														<td>Max</td>
+														<td>01</td>
+														<td>05</td>
+														<td>03</td>
+														<td>05</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<!--ground-area-->
+									<h5 class="player_message">Select 11 players to create your fantasy cricket team </h5>
+									<div class="playGround team_ground">
+		
+										<div class="ground_button left_button">
+											<h4>{{userTeamName}}</h4>
+										</div>
+										<ul class="first_playerlist">
+											<!-- BATSMAN 1st -->
+												<li ng-if="teamStructure['BATSMAN'].player.length==0">
+														<div class="player_img">
+															<img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+														</div>
+														<h4>BATSMAN</h4>
+													</li>
+													<li ng-if="teamStructure['BATSMAN'].player.length>0">
+															<div class="player_img">
+																<img ng-src="{{teamStructure['BATSMAN'].player[0].player_pic}}" alt="">
+															</div>
+															<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BATSMAN'].player[0].player_id)"><i class="flaticon-information-button"></i></a>
+																<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BATSMAN'].player[0].player_id,'true',teamStructure['BATSMAN'].player[0])"><i class="flaticon-remove-button"></i></a>
+															</div>
+															<i ng-if="pl.captain==teamStructure['BATSMAN'].player[0].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+															<i ng-if="pl.viceCaptain==teamStructure['BATSMAN'].player[0].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+															<h4>{{teamStructure['BATSMAN'].player[0].name}} <span>Points : {{teamStructure['BATSMAN'].player[0].points}}</span></h4>
+														</li>
+											<!--AllRounder 1st -->
+											<li ng-if="teamStructure['ALLROUNDER'].player.length==0">
+													<div class="player_img">
+														<img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+													</div>
+													<h4>ALLROUNDER</h4>
+												</li>
+												<li ng-if="teamStructure['ALLROUNDER'].player.length>0">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['ALLROUNDER'].player[0].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['ALLROUNDER'].player[0].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['ALLROUNDER'].player[0].player_id,'true',teamStructure['ALLROUNDER'].player[0])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['ALLROUNDER'].player[0].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['ALLROUNDER'].player[0].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['ALLROUNDER'].player[0].name}} <span>Points : {{teamStructure['ALLROUNDER'].player[0].points}}</span></h4>
+													</li>
+											<!--Extra Player 1st-->
+											<li ng-if="teamStructure['EXTRA'].player.length==0">
+													<div class="player_img">
+														<img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+													</div>
+													<h4>ALLROUNDER</h4>
+												</li>
+												<li ng-if="teamStructure['EXTRA'].player.length>0">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['EXTRA'].player[0].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['EXTRA'].player[0].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['EXTRA'].player[0].player_id,'true',teamStructure['EXTRA'].player[0])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['EXTRA'].player[0].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['EXTRA'].player[0].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['EXTRA'].player[0].name}} <span>Points : {{teamStructure['EXTRA'].player[0].points}}</span></h4>
+													</li>
+											<!-- BOWLER 1st -->
+											<li ng-if="teamStructure['BOWLER'].player.length==0">
+													<div class="player_img">
+															<img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+														</div>
+														<h4>BOWLER</h4>
+												</li>
+												<li ng-if="teamStructure['BOWLER'].player.length>0">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['BOWLER'].player[0].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BOWLER'].player[0].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BOWLER'].player[0].player_id,'true',teamStructure['BOWLER'].player[0])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['BOWLER'].player[0].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['BOWLER'].player[0].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['BOWLER'].player[0].name}} <span>Points : {{teamStructure['BOWLER'].player[0].points}}</span></h4>
+													</li>
+												<li>
+										</ul>
+										<ul class="second_playerlist">
+											<!-- WICKETKEEPER 1st -->		
+											<li ng-if="teamStructure['WICKETKEEPER'].player.length==0">
+												<div class="player_img">
+														<img ng-src="{{env.image_base_url+'/keeper.png'}}" alt="">
+													</div>
+												<h4>WICKETKEEPER</h4>
+											</li>
+											<li ng-if="teamStructure['WICKETKEEPER'].player.length>0">
+													<div class="player_img">
+														<img ng-src="{{teamStructure['WICKETKEEPER'].player[0].player_pic}}" alt="">
+													</div>
+													<div class="player_icon">
+															<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['WICKETKEEPER'].player[0].player_id)"><i class="flaticon-information-button"></i></a>
+														<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['WICKETKEEPER'].player[0].player_id,'true',teamStructure['WICKETKEEPER'].player[0])"><i class="flaticon-remove-button"></i></a>
+													</div>
+													<i ng-if="pl.captain==teamStructure['WICKETKEEPER'].player[0].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+													<i ng-if="pl.viceCaptain==teamStructure['WICKETKEEPER'].player[0].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+													<h4>{{teamStructure['WICKETKEEPER'].player[0].name}} <span>Points : {{teamStructure['WICKETKEEPER'].player[0].points}}</span></h4>
+												</li>
+											<!-- BATSMAN 2nd -->
+											<li ng-if="teamStructure['BATSMAN'].player.length<=1">
+													<div class="player_img">
+															<img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+														</div>
+														<h4>BATSMAN</h4>
+													</li>
+													<li ng-if="teamStructure['BATSMAN'].player.length>1">
+															<div class="player_img">
+																<img ng-src="{{teamStructure['BATSMAN'].player[1].player_pic}}" alt="">
+															</div>
+															<div class="player_icon">
+																	<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BATSMAN'].player[1].player_id)"><i class="flaticon-information-button"></i></a>
+																<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BATSMAN'].player[1].player_id,'true',teamStructure['BATSMAN'].player[1])"><i class="flaticon-remove-button"></i></a>
+															</div>
+															<i ng-if="pl.captain==teamStructure['BATSMAN'].player[1].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+															<i ng-if="pl.viceCaptain==teamStructure['BATSMAN'].player[1].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+															<h4>{{teamStructure['BATSMAN'].player[1].name}} <span>Points : {{teamStructure['BATSMAN'].player[1].points}}</span></h4>
+														</li>
+											<!-- BOWLER 2nd -->		
+											<li ng-if="teamStructure['BOWLER'].player.length<=1">
+													<div class="player_img">
+															<img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+														</div>
+													<h4>BOWLER</h4>
+												</li>
+												<li ng-if="teamStructure['BOWLER'].player.length>1">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['BOWLER'].player[1].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BOWLER'].player[1].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BOWLER'].player[1].player_id,'true',teamStructure['BOWLER'].player[1])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['BOWLER'].player[1].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['BOWLER'].player[1].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['BOWLER'].player[1].name}} <span>Points : {{teamStructure['BOWLER'].player[1].points}}</span></h4>
+													</li>
+												<li>
+		
+		
+										</ul>
+										<ul class="third_playerlist">
+												<!-- BATSMAN 3rd -->
+												<li ng-if="teamStructure['BATSMAN'].player.length<=2">
+														<div class="player_img">
+																<img ng-src="{{env.image_base_url+'/batsmen.png'}}" alt="">
+															</div>
+															<h4>BATSMAN</h4>
+													</li>
+													<li ng-if="teamStructure['BATSMAN'].player.length>2">
+															<div class="player_img">
+																<img ng-src="{{teamStructure['BATSMAN'].player[2].player_pic}}" alt="">
+															</div>
+															<div class="player_icon">
+																	<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BATSMAN'].player[2].player_id)"><i class="flaticon-information-button"></i></a>
+																<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BATSMAN'].player[2].player_id,'true',teamStructure['BATSMAN'].player[2])"><i class="flaticon-remove-button"></i></a>
+															</div>
+															<i ng-if="pl.captain==teamStructure['BATSMAN'].player[2].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+															<i ng-if="pl.viceCaptain==teamStructure['BATSMAN'].player[2].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+															<h4>{{teamStructure['BATSMAN'].player[2].name}} <span>Points : {{teamStructure['BATSMAN'].player[2].points}}</span></h4>
+														</li>
+													<!--Extra Player 2ndt-->
+														<li ng-if="teamStructure['EXTRA'].player.length<=1">
+															<div class="player_img">
+																<img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+															</div>
+															<h4>ALLROUNDER</h4>
+														</li>
+														<li ng-if="teamStructure['EXTRA'].player.length>1">
+																<div class="player_img">
+																	<img ng-src="{{teamStructure['EXTRA'].player[1].player_pic}}" alt="">
+																</div>
+																<div class="player_icon">
+																		<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['EXTRA'].player[1].player_id)"><i class="flaticon-information-button"></i></a>
+																	<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['EXTRA'].player[1].player_id,'true',teamStructure['EXTRA'].player[1])"><i class="flaticon-remove-button"></i></a>
+																</div>
+																<i ng-if="pl.captain==teamStructure['EXTRA'].player[1].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+																<i ng-if="pl.viceCaptain==teamStructure['EXTRA'].player[1].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+																<h4>{{teamStructure['EXTRA'].player[1].name}} <span>Points : {{teamStructure['EXTRA'].player[1].points}}</span></h4>
+															</li>
+											
+											<!--Extra Player 3rd-->
+											<li ng-if="teamStructure['EXTRA'].player.length<=2">
+													<div class="player_img">
+														<img ng-src="{{env.image_base_url+'/all_rounder.png'}}" alt="">
+													</div>
+													<h4>ALLROUNDER</h4>
+												</li>
+												<li ng-if="teamStructure['EXTRA'].player.length>2">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['EXTRA'].player[2].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+															<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['EXTRA'].player[2].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['EXTRA'].player[2].player_id,'true',teamStructure['EXTRA'].player[2])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['EXTRA'].player[2].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['EXTRA'].player[2].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['EXTRA'].player[2].name}} <span>Points : {{teamStructure['EXTRA'].player[2].points}}</span></h4>
+													</li>
+											<!-- BOWLER 3rd -->
+											<li ng-if="teamStructure['BOWLER'].player.length<=2">
+													<div class="player_img">
+															<img ng-src="{{env.image_base_url+'/bowler.png'}}" alt="">
+														</div>
+														<h4>BOWLER</h4>
+												</li>
+												<li ng-if="teamStructure['BOWLER'].player.length>2">
+														<div class="player_img">
+															<img ng-src="{{teamStructure['BOWLER'].player[2].player_pic}}" alt="">
+														</div>
+														<div class="player_icon">
+																<a href="javascript:void(0)" ng-click="SinglePlayerDetail(teamStructure['BOWLER'].player[2].player_id)"><i class="flaticon-information-button"></i></a>
+															<a href="javascript:void(0)" ng-click="addRemovePlayer(teamStructure['BOWLER'].player[2].player_id,'true',teamStructure['BOWLER'].player[2])"><i class="flaticon-remove-button"></i></a>
+														</div>
+														<i ng-if="pl.captain==teamStructure['BOWLER'].player[2].player_id"><img ng-src="{{env.image_base_url}}captain.png" alt=""></i>
+														<i ng-if="pl.viceCaptain==teamStructure['BOWLER'].player[2].player_id"><img ng-src="{{env.image_base_url}}vc_captain.png" alt=""></i>
+														<h4>{{teamStructure['BOWLER'].player[2].name}} <span>Points : {{teamStructure['BOWLER'].player[2].points}}</span></h4>
+													</li>
+												<li>
+		
+										</ul>
+										<div class="site_name">
+											<img ng-src="{{env.image_base_url}}logo.png" alt="">
+										</div>
+									</div>
+		
+									<!--ground-area-->
+								</div>
+		
+								<div class="col-lg-5">
+									<div class="counter_sec team_error" ng-if="teamError">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="error-message-team"><span></span><span class="glow-effect"></span>{{teamErrorMessage}}</div>
+													<div class="error-message-close" ng-click="closeErrorPopup()">X</div>
+												</div>
+											</div>
+										</div>
+									<div class="player_tabs creat_sec custom_team">
+										<!-- Nav tabs -->
+										<div class="top_creat_search">
+											<h4>{{currentCredit}}<span>Credit left</span> </h4>
+		
+											<div class="creat_number">{{selectedPlayers}}/11</div>
+										</div>
+		
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="{{activeTab=='WC'?'active':''}}">
+												<a ng-click="changeActiveTab('WC')" href="javascript:void(0)">
+														WK 
+														<span class="badge" ng-if="teamStructure.WICKETKEEPER.occupied==teamStructure.WICKETKEEPER.max || selectedPlayers=='11'">
+															<i class="fa fa-check"></i>
+														</span>
+														<span class="badge" ng-if="!(teamStructure.WICKETKEEPER.occupied==teamStructure.WICKETKEEPER.max || selectedPlayers=='11')">{{teamStructure.WICKETKEEPER.occupied}}
+														</span>
+													</a>
+                                    		</li>
+											<li class="{{activeTab=='BM'?'active':''}}">
+													<a href="javascript:void(0)" ng-click="changeActiveTab('BM')">Batsmen
+															<span class="badge" ng-if="teamStructure.BATSMAN.occupied==teamStructure.BATSMAN.max || selectedPlayers=='11'">
+																<i class="fa fa-check"></i>
+															</span>
+															<span class="badge" ng-if="!(teamStructure.BATSMAN.occupied==teamStructure.BATSMAN.max || selectedPlayers=='11')">{{teamStructure.BATSMAN.occupied}}</span>
+														</a>
+											</li>
+											<li class="{{activeTab=='AR'?'active':''}}">
+													<a href="javascript:void(0)" ng-click="changeActiveTab('AR')">All-Rounders 
+															<span class="badge" ng-if="teamStructure.ALLROUNDER.occupied==teamStructure.ALLROUNDER.max || selectedPlayers=='11'">
+																<i class="fa fa-check"> </i>
+															</span>
+															<span class="badge" ng-if="!(teamStructure.ALLROUNDER.occupied==teamStructure.ALLROUNDER.max || selectedPlayers=='11')">{{teamStructure.ALLROUNDER.occupied}}
+															</span>
+														</a>
+											</li>
+											<li class="{{activeTab=='BL'?'active':''}}">
+													<a href="javascript:void(0)" ng-click="changeActiveTab('BL')">Bowlers
+															<span class="badge" ng-if="teamStructure.BOWLER.occupied==teamStructure.BOWLER.max || selectedPlayers=='11'">
+																<i class="fa fa-check"></i>
+															</span>
+															<span class="badge" ng-if="!(teamStructure.BOWLER.occupied==teamStructure.BOWLER.max || selectedPlayers=='11')">{{teamStructure.BOWLER.occupied}}
+															</span>
+														</a>
+											</li>
+											<li style="display:none" class="{{activeTab=='AL'?'active':''}}">
+												<a aria-controls="all_creat" role="tab" data-toggle="tab" aria-expanded="true" href="#all_creat">All 
+													<span class="badge">{{selectedPlayers}}</span>
+												</a>
+											</li>
+										</ul>
+		
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane {{activeTab=='WC'?'active':''}}" id="D_tab">
+												<div class="player_tab_table">
+													<div class="table_scroll" custom-scroll>
+														<table class="table-fixed">
+															<thead>
+																<tr>
+																	<th>Pic</th>
+																	<th>Player</th>
+																	<th>Team</th>
+																	<th>Credits</th>
+																	<th>Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																	<tr class="{{player.isAdded==true?'active':''}}" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='WICKETKEEPER'">
+																		<td>
+																			<div class="player_name1" data-toggle="modal" data-target="#playerdetail"><img ng-src="{{player.player_pic}}" alt=""></div>
+																		</td>
+																		<td>{{player.name}}</td>
+																		<td>{{player.team}}</td>
+																		<td>{{player.points}}</td>
+																		<td ng-if="player.isAdded==false"><a href="javascript:void(0)">+</a>
+																		</td>
+																		<td ng-if="player.isAdded==true"><a href="javascript:void(0)" class="unselect">x</a>
+																	</td>
+																</tbody>
+														</table>
+													</div>
+												   
+												</div>
+											</div>
+											<div role="tabpanel" class="tab-pane {{activeTab=='BM'?'active':''}}">
+												<div class="player_tab_table">
+													<div class="table_scroll" custom-scroll>
+														<table class="table-fixed">
+															<thead>
+																<tr>
+																	<th>Pic</th>
+																	<th>Player</th>
+																	<th>Team</th>
+																	<th>Credits</th>
+																	<th>Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																	<tr class="{{player.isAdded==true?'active':''}}" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='BATSMAN'">
+																			<td>
+																					<div class="player_name1" data-toggle="modal" data-target="#playerdetail"><img ng-src="{{player.player_pic}}" alt=""></div>
+																			</td>
+																			<td>{{player.name}}</td>
+																			<td>{{player.team}}</td>
+																			<td>{{player.points}}</td>
+																			<!-- {{player.isAdded?'x':'+'}} -->
+																			<td ng-if="player.isAdded==false"><a href="javascript:void(0)">+</a>
+																			</td>
+																			<td ng-if="player.isAdded==true"><a href="javascript:void(0)"  class="unselect">x</a>
+																			</td>
+																		</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div role="tabpanel" class="tab-pane {{activeTab=='AR'?'active':''}}" id="allroun_creat">
+												<div class="player_tab_table">
+													<div class="table_scroll" custom-scroll>
+														<table class="table-fixed">
+															<thead>
+																<tr>
+																	<th>Pic</th>
+																	<th>Player</th>
+																	<th>Team</th>
+																	<th>Credits</th>
+																	<th>Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr class="{{player.isAdded==true?'active':''}}" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='ALLROUNDER'">
+																		<td>
+																				<div class="player_name1" data-toggle="modal" data-target="#playerdetail"><img ng-src="{{player.player_pic}}" alt=""></div>
+																		   </td>
+																		<td>{{player.name}}</td>
+																		<td>{{player.team}}</td>
+																		<td>{{player.points}}</td>
+																		<!-- {{player.isAdded?'x':'+'}} -->
+																		<td ng-if="player.isAdded==false"><a href="javascript:void(0)">+</a>
+																		</td>
+																		<td ng-if="player.isAdded==true"><a href="javascript:void(0)"  class="unselect">x</a>
+																		</td>
+																	</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div role="tabpanel" class="tab-pane {{activeTab=='BL'?'active':''}}" id="bowler_creat">
+												<div class="player_tab_table">
+													<div class="table_scroll" custom-scroll>
+														<table class="table-fixed">
+															<thead>
+																<tr>
+																	<th>Pic</th>
+																	<th>Player</th>
+																	<th>Team</th>
+																	<th>Credits</th>
+																	<th>Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr class="{{player.isAdded==true?'active':''}}" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='BOWLER'">
+																		<td>
+																				<div class="player_name1" data-toggle="modal" data-target="#playerdetail"><img ng-src="{{player.player_pic}}" alt=""></div>
+																		</td>
+																		<td>{{player.name}}</td>
+																		<td>{{player.team}}</td>
+																		<td>{{player.points}}</td>
+																		<!-- {{player.isAdded?'x':'+'}} -->
+																		<td ng-if="player.isAdded==false"><a href="javascript:void(0)">+</a>
+																		</td>
+																		<td ng-if="player.isAdded==true"><a href="javascript:void(0)"   class="unselect">x</a>
+																		</td>
+																	</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div role="tabpanel" style="display: none;" role="tabpanel" class="tab-pane {{activeTab=='AL'?'active':''}}" id="batsman_creat" id="batsman_creat">
+												<div class="player_tab_table">
+													<div class="table_scroll" custom-scroll>
+														<table class="table-fixed">
+															<thead>
+																<tr>
+																	<th>Pic</th>
+																	<th>Player</th>
+																	<th>Team</th>
+																	<th>Credits</th>
+																	<th>Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																	<tr class="{{player.isAdded==true?'active':''}}" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" ng-repeat="player in availablePlayer | filter:searchText">
+																			<td>
+																				<div class="player_name1" data-toggle="modal" data-target="#playerdetail"><img ng-src="{{player.player_pic}}" alt=""></div>
+																			</td>
+																			<td>{{player.name}}</td>
+																			<td>{{player.team}}</td>
+																			<td>{{player.points}}</td>
+																			<!-- {{player.isAdded?'x':'+'}} -->
+																			<td ng-if="player.isAdded==false"><a href="javascript:void(0)">+</a>
+																			</td>
+																			<td ng-if="player.isAdded==true"><a href="javascript:void(0)"  class="unselect">x</a>
+																			</td>
+																		</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<button class="btn btn-submit creat-btn" ng-click="openPopup('selectCaptain')" ng-disabled="selectedPlayers!=11">Select Captain, Vice Captain </button>
+												<button class="btn btn-submit" ng-click="saveTeam()" ng-disabled="selectedPlayers!=11 || pl.captain==undefined || pl.viceCaptain==undefined">Save Team</button>
+												<button class="btn btn-submit" ng-if="operation==undefined" ng-click="openPopup('reset_team')" ng-disabled="selectedPlayers==0">Reset Team</button>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--play-section-end-->
+		
+				</div>
+		
+				<!--modal-playerdetail-->
+				<!-- Trigger the modal with a button -->
+		
+		<!-- Modal -->
+<select-captaintype></select-captaintype>
+<footer-home></footer-home>
+<div id="normal_contest" popup-handler class="modal fade" role="dialog">
+	<div class="modal-dialog custom_popup">
+		<!-- Modal content-->    
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close_join_popup('normal_contest')">&times;</button>        
+				<h4 class="modal-title">Awesome Team! Join a Contest</h4>
+			</div>
+			<div class="modal-body clearfix mega_contes_body comon_body">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>Join Practise or Cash contest to earn money!</p>
+						<button type="button" class="btn btn-submit" ng-click="close_join_popup('normal_contest')">Join</button>		  
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="mega_contest" popup-handler class="modal fade" role="dialog">
+        <div class="modal-dialog custom_popup mega_contest">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" ng-click="close_join_popup('mega_contest')" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Awesome Team! Join a Mega Contest</h4>
+        </div>
+        <div class="modal-body clearfix mega_contes_body comon_body">
+        <div class="row">
+        <div class="col-sm-6">
+        <div class="contest_model_left">
+        <div class="win_prize">
+            <h4><span>Win Rs.</span> {{megaContest.total_winning_amount | number:2}} <span>Pay Rs. {{megaContest.team_entry_fee | number:2}}</span> </h4>
+        </div>
+        <a href="#" class="btn btn-submit">Join Mega Contest</a>
+        <h3> 0/{{megaContest.contest_size}} Teams</h3>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+                    aria-valuenow="{{megaContest.contest_size * 100 / megaContest.total_join_team}}" aria-valuemin="0" aria-valuemax="{{megaContest.contest_size * 100 / megaContest.contest_size}}" style="width:{{megaContest.total_join_team * 100 / megaContest.contest_size}}%">
+            </div>
+        </div>
+        <div class="prize_list">
+        <ul>
+            <li><i class="flaticon-crown"></i> {{megaContest.number_of_winners}} Winners</li>
+            <li><i>c</i> Confirmed Contest</li>
+            <li ng-if="megaContest.is_multientry==1"><i>m</i> Multi Entry</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="col-sm-6">
+        <div class="contest_model_right">
+
+        <h5>The breakup of the winnings for {{megaContest.number_of_winners|number:0}} Winners is displayed below</h5>
+                <h4>Rank <span>Prize</span></h4>
+                <ul>
+                    <li ng-repeat="rankPrice in megaContest.winners_rank">{{rankPrice.rank}}<span>Rs. {{rankPrice.prize| number:2}}</span> </li>
+
+        </ul>
+        </div>
+        </div>
+        </div>
+        <p>
+        Note: The actual prize money may be different than the prize money mentioned above if there is a tie for any of the winning positions. 
+        Check FAQs for further details.<br />
+        As per government regulations, a tax of 30.9% will be deducted if an individual wins more than Rs. 10,000.
+        </p>
+
+        </div>
+        </div>
+        </div>
+        </div>
+<!--Player Detail Popup-->
+<div id="playerdetail" popup-handler class="modal fade" role="dialog">
+		<div class="modal-dialog player_detail_dilog">
+	  
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" ng-click="closePopup('playerdetail')" data-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body">
+				  <div class="container-fluid">
+						  
+											  <div class="content_wrap">
+												  <div class="player_detail_sec">
+													  <div class="player_detail">
+														  <div class="player_dtl_img">
+															  <img src="{{playerDetail.player_pic}}" class="img-responsive" alt="">
+														  </div>
+														  <h4>{{playerDetail.name}}<span>{{playerDetail.country}}</span> </h4>
+														  <ul>
+															  <li>Born : {{playerDetail.born}}</li>
+															  <!-- <li>Current age 29 years 67 days</li> -->
+															  <li>Playing role : {{playerDetail.playing_role}}</li>
+															  <li>Batting style: {{playerDetail.batting_style}}</li>
+															  <li>Bowling style: {{playerDetail.bowling_style}}</li>
+															  <!-- <li>Played for: India, India A, India Blue, Indian Board President's XI, India </li>
+															  <li>Red, North Zone, Rest of India, Bangalore, India Under-19, Delhi</li>
+															  <li>Skipper-Test,ODI,T20 | Batsman </li> -->
+														  </ul>
+													  </div>
+												  </div>
+											  </div>
+						  
+											  <div class="content_wrap player_record">
+												  <div class="player_detail_sec">
+													  <!-- <h4>Information</h4>
+													  <p>Daring, tough and fiercely talented, Virat Kohli has emerged as one of the pack-leading faces
+														  of Indian cricket's current generation. With a firm-bottom hand grip and the ability to smash
+														  balls landing on a particular area to any part of the ground at will, Kohli has carved a
+														  niche of his own in Indian cricket. The king of chases as many of his fans have christened
+														  him, Kohli is a deeply hammered nail across all formats more...</p> -->
+													  <h4>Statistics</h4>
+													 
+														   
+														  <h5>Batting averages </h5>
+													  <div class="common_table">
+														  <table>
+															  <thead>
+																  <tr>
+																	  <th>Type</th>
+																	  <th>Matches</th>
+																	  <th>Innings</th>
+																	  <th>Runs</th>
+																	  <th>NO</th>
+																	  <th>Avg.</th>
+																	  <th>S/R</th>
+																	  <th>100's</th>
+																	  <th>50's</th>
+																	  <th>HS</th>
+																	  <th>4s</th>
+																	  <th>6s</th>
+																  </tr>
+															  </thead>
+															  <tbody>
+																  <tr ng-repeat="bfd in playerDetail.batting_fielding_data">
+																	  <td>{{bfd.name}}</td>
+																	  <td>{{bfd.matches}}</td>
+																	  <td>{{bfd.innings}}</td>
+																	  <td>{{bfd.runs}}</td>
+																	  <td>{{bfd.not_outs}}</td>
+																	  <td>{{bfd.batting_average}}</td>
+																	  <td>{{bfd.sr}}</td>
+																	  <td>{{bfd.hundreds_scored}}</td>
+																	  <td>{{bfd.fifties_scored}}</td>
+																	  <td>-</td>
+																	  <td>{{bfd.boundary_fours}}</td>
+																	  <td>{{bfd.boundary_sixiers}}</td>
+																  </tr>
+															  </tbody>
+														  </table>
+													  </div>
+	  
+														<br>
+														<br>
+													  <h5> Bowling averages  </h5>
+													  <div class="common_table">
+														  <table>
+															  <thead>
+																  <tr>
+																	  <th>Type</th>
+																	  <th>Matches</th>
+																	  <th>Innings</th>
+																	  <th>Balls</th>
+																	  <th>Runs</th>
+																	  <th>Wicket</th>
+																	  <th>BBl</th>
+																	  <th>BBM</th>
+																	  <th>Avg</th>
+																	  <th>Econ</th>
+																	  <th>SR</th>
+																	  <th>4W</th>
+																	  <th>5W</th>
+																  </tr>
+															  </thead>
+															  <tbody>
+																	<tr ng-repeat="bfd in playerDetail.bowling_data">
+																			<td>{{bfd.name}}</td>
+																			<td>{{bfd.matches}}</td>
+																			<td>{{bfd.innings}}</td>
+																			<td>{{bfd.balls}}</td>
+																			<td>{{bfd.runs}}</td>
+																			<td>{{bfd.wickets}}</td>
+																			<td>{{bfd.best_inning_bowling}}</td>
+																			<td>{{bfd.best_match_bowling}}</td>
+																			<td>{{bfd.average}}</td>
+																			<td>{{bfd.economy_rate}}</td>
+																			<td>{{bfd.sr}}</td>
+																			<td>{{bfd.four_wickets_in_inn}}</td>
+																			<td>{{bfd.five_wickets_in_inn}}</td>
+																		</tr>
+	  														  </tbody>
+														  </table>
+													  </div>
+													  </div>
+													 
+											  </div>
+										  </div>
+			</div>
+		   
+		  </div>
+	  
+		</div>
+	  </div>
+	<div process-holder style="position:fixed; display:none; top:0; left:0; width:100%; height:100%; background-color:rgba(rgba(217, 171, 94, 0.5));z-index:99999">
+			<div class="animsition-loading"></div>
+	</div>	  
+<!--Player Detail Popup-->
+<!-- reset-team-->
+  <div id="reset_team" popup-handler class="modal fade" role="dialog">
+	<div class="modal-dialog custom_popup small_popup">
+  
+	  <!-- Modal content-->
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" ng-click="closePopup('reset_team')">&times;</button>
+		  <h4 class="modal-title">Reset Team</h4>
+		</div>
+		
+		<div class="modal-body clearfix comon_body">
+		  <p>     Do you want to reset your team?</p>
+		  <button class="btn btn-submit" ng-click="resetTeam()">Yes</button>
+		  <button class="btn btn-submit btn-danger" ng-click="closePopup('reset_team')">No</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- reset-team-->

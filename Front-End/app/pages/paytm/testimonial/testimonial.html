@@ -1,0 +1,87 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+<!--Header sec end-->
+<!--Main container sec start-->
+<div class="main_container">
+    <!--banner-section_start-->
+    <section class="innerBanner_sec testimonialBranner">
+       
+            <h1>What our fans say about us</h1>
+            <a href="javascript:void(0)" ng-if="isLoggedIn" ng-click="openTestimonial()">Submit Testimonial</a>
+            <a href="#/login" ng-if="!isLoggedIn" >Submit Testimonial</a>
+    </section>
+      <!--banner-section_end-->
+
+      <!--contant-section-start-->
+    <section class="testimonial_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" ng-if="testimonialList.length<1">No Testimonial received yet.</div>
+                <div class="col-sm-4" ng-repeat="t in testimonialList">
+                    <div class="testimonial_box">
+                        <div class="testimonial_img">
+                            <img ng-src="{{t.profile_pic}}" class="img-responsive" alt="">
+                        </div>
+                        <h4> {{t.first_name}}</h4>
+                        
+                        <p>{{t.description}}</p>
+
+                        <div class="raiting"><jk-rating-stars rating="t.rating" readonly="true" ></jk-rating-stars></div>
+                       
+                    </div>
+                  
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--contant-section-start-->
+
+   
+
+</div>
+<div id="write_testimonial" popup-handler class="modal fade" role="dialog">
+        <div class="modal-dialog Wthdraw_popup custom_popup small_popup">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h4 class="modal-title">We'd love to have your opinion</h4>
+            </div>
+            <div class="modal-body clearfix comon_body">
+                <form ng-submit="submitTestimonial(testimonial)" name="testimonial" novalidate="true">
+                <div class="raiting"><jk-rating-stars rating="testimonialForm.rating" ></jk-rating-stars></div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input ng-model="testimonialForm.name" name="full_name" type="text" placeholder="Micheal Joe" class="form-control" ng-required="true" readonly>
+                    <p style="color:red;text-align:left"  ng-if="submitted && testimonial.full_name.$error.required">*Full name is required!</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email ID</label>
+                        <input ng-model="testimonialForm.email" name="email" type="email" placeholder="micheal@example.com" class="form-control" readonly>
+                        <p style="color:red;text-align:left"  ng-if="submitted && testimonial.email.$error.required">*Email is required!</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Review</label>
+                            <textarea ng-model="testimonialForm.description" name="review" placeholder="Write your review" class="form-control" ng-required="true"></textarea>
+                            <p style="color:red;text-align:left"  ng-if="submitted && testimonial.review.$error.required">*Review message is required!</p>    
+                        </div>
+                        <p ng-if="success" style="color:green; text-align:left;font-size:12px">{{successMessage}}</p>
+                        <p ng-if="error" style="color:green;text-align:left;font-size:12px">{{errorMessage}}</p>
+                        <button class="btn btn-submit">Submit & get featured on this page</button>
+             
+            </form>
+             
+            
+            </div>
+          </div>
+        </div>
+      </div>
+                        <!--Main container sec end-->
+                        <!--Footer sec start-->
+<footer-home></footer-home>
+
+
+                    

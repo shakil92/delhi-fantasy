@@ -1,0 +1,250 @@
+<header-home></header-home>
+<main ng-show="isLoggedIn">
+   <!--Main container sec start-->
+   <div class="main_container" ng-init="walletManagement()">
+      <section class="main_content_sec">
+         <div class="container-fluid">
+            <div class="content_wrap">
+               <div class="player_detail_sec account_sec" >
+                  <h5 style="color:red;text-align: center;">{{txnMsg}} {{txnErrMsg}}</h4>
+                     <div class="account_bar">
+                        <ul>
+                           <li>
+                              <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              <h4>Rs {{walletData.deposited_amount}}</h4>
+                              <span>Unutilized</span>
+                           </li>
+                           <li>
+                              <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              <h4>Rs {{walletData.winning_amount}}</h4>
+                              <span>Your Winnings</span>
+                              <a href="">Withdraw</a>
+                           </li>
+                           <li>
+                              <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              <h4>Rs {{walletData.cash_bonus_amount}}</h4>
+                              <span>Cash Bonus</span>
+                           </li>
+                           <li>
+                              <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              <h4>Rs {{walletData.total_balance}}</h4>
+                              <span>Total Balance</span>
+                              <a href="javascript:void(0)" data-toggle="modal" data-target="#add_cash">
+                                 <i class="fa fa-plus-circle" aria-hidden="true">Add Cash</i>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="player_detail_sec account_tab">
+                        <ul class="nav nav-tabs">
+                           <!-- <li>
+                           <a data-toggle="tab" href="#dashboard">DASHBOARD </a>
+                        </li> -->
+                        <li  class="active">
+                           <!-- <a data-toggle="tab" href="#history">HISTORY</a> -->
+                           <a data-toggle="tab" href="">HISTORY</a>
+                        </li>
+                     </ul>
+                     <div class="tab-content">
+
+                      <div id="history" class="tab-pane fade in active">
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <h4>Amount to Expire - Cash Bonus                                               
+                                 <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              </h4>
+                              <div class="common_table table_scroll mCustomScrollbar">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th>Transaction Date</th>
+                                          <th>Total Bonus Added</th>
+                                          <th>Expiry Amount</th>
+                                          <th>Expiry Date</th>
+                                          <th>Details</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>04/10/2017</td>
+                                          <td>100</td>
+                                          <td>200</td>
+                                          <td>10/10/2017</td>
+                                          <td>Completed</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <h4>Amount to Expire - Unutilized <i class="fa fa-question-circle" aria-hidden="true"></i>
+                              </h4>
+                              <div class="common_table table_scroll mCustomScrollbar">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th>Transaction Date</th>
+                                          <th>Total Bonus Added</th>
+                                          <th>Expiry Amount</th>
+                                          <th>Expiry Date</th>
+                                          <th>Details</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>04/10/2017</td>
+                                          <td>100</td>
+                                          <td>200</td>
+                                          <td>10/10/2017</td>
+                                          <td>Completed</td>
+                                       </tr>
+
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <p>*This data syncs every 24 hours</p>
+                           </div>
+                           <div class="col-sm-6">
+                              <h4>Most Recent Transactions
+                               <a href="" class="btn btn-submit"  ng-if="walletData.transaction_history.length!=0">Download History</a></h4>
+                               <div class="common_table table_right_height table_scroll mCustomScrollbar">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th>Date</th>
+                                          <th>Transaction Type</th>
+                                          <th>Amount</th>
+                                          <th>Details</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody >
+                                     <tr ng-if="walletData.transaction_history.length==0">
+                                        <td style="color:red">There is no wallet history found!</td>
+                                     </tr>
+                                     <tr ng-repeat="th in walletData.transaction_history" ng-if="walletData.transaction_history.length!=0">
+                                       <td>{{th.tranasction_date}}</td>
+                                       <td>{{th.transactions_message}}</td>
+                                       <td>{{th.amount}}</td>
+                                       <td ng-if="th.match_date==''">
+                                          <a href="javascript:void(0)" data-toggle="modal" data-target="#recentDeposit" ng-click="depositDetails(th.id)" >
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                         </a>
+                                      </td>
+                                      <td ng-if="th.match_date!=''">
+                                         <a href="javascript:void(0)" data-toggle="modal" data-target="#recentJoined" ng-click="depositDetails(th.id)" >
+                                          <i class="fa fa-eye" aria-hidden="true"></i>
+                                       </a>
+                                       <i class="fa fa-download" aria-hidden="true"></i>
+                                       <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div id="dashboard" class="tab-pane fade">
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h4>Amount to Expire - Cash Bonus
+                         <i class="fa fa-question-circle" aria-hidden="true"></i>
+                      </h4>
+                      <div class="common_table table_scroll mCustomScrollbar">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Transaction Date</th>
+                                 <th>Total Bonus Added</th>
+                                 <th>Expiry Amount</th>
+                                 <th>Expiry Date</th>
+                                 <th>Details</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>04/10/2017</td>
+                                 <td>100</td>
+                                 <td>200</td>
+                                 <td>10/10/2017</td>
+                                 <td>Completed</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <h4>Amount to Expire - Unutilized 
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                     </h4>
+                     <div class="common_table table_scroll mCustomScrollbar">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Transaction Date</th>
+                                 <th>Total Bonus Added</th>
+                                 <th>Expiry Amount</th>
+                                 <th>Expiry Date</th>
+                                 <th>Details</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>04/10/2017</td>
+                                 <td>100</td>
+                                 <td>200</td>
+                                 <td>10/10/2017</td>
+                                 <td>Completed</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <p>*This data syncs every 24 hours</p>
+                  </div>
+                  <div class="col-sm-6">
+                     <h4>Most Recent Transactions <a href="#" class="btn btn-submit">Download History
+                     </a></h4>
+                     <div class="common_table table_right_height table_scroll mCustomScrollbar">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Date</th>
+                                 <th>Transaction Type</th>
+                                 <th>Amount</th>
+                                 <th>Details</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>04/10/2017</td>
+                                 <td>Bonus</td>
+                                 <td>10/10/2017</td>
+                                 <td>Completed</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+</section>
+</div>
+<!--Main container sec end-->
+<add-cash></add-cash>
+<recent-cashdeposit></recent-cashdeposit>
+<recent-joinedcontest></recent-joinedcontest>
+<footer-home></footer-home>
+<script type="text/javascript">
+   $(".mCustomScrollbar").mCustomScrollbar({ 
+      mouseWheel: {
+        scrollAmount: 500, preventDefault: true 
+     },
+     callbacks: {
+      advanced: { 
+         updateOnContentResize: true
+      }
+   } });
+</script>
+</main>

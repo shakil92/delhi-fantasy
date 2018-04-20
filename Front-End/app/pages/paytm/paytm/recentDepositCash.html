@@ -1,0 +1,38 @@
+<div id="recentDeposit" class="modal fade" role="dialog">
+  <div class="modal-dialog custom_popup">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Transaction Details</h4>
+      </div>
+      <div class="modal-body clearfix creat_contest comon_body">
+        <div class="form-group">
+         <div class="common_table table_right_height table_scroll mCustomScrollbar">
+           <table>
+            <thead>
+              <tr>{{formatedDate}}
+                <th>User Name</th>
+                <th>Team Name</th>
+                <th>Amount</th>
+                <th>Processing Fee</th>
+                <th>Transaction Date</th>
+                <th>Transaction Id </th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr>
+              <td style="color: black">{{uname}}</td>
+              <td style="color: black">{{teamCode}}</td>
+              <td style="color: black">{{cashDetails.amount}}</td>
+              <td style="color: black"></td>
+              <td style="color: black">{{cashDetails.tranasction_date}}</td>
+              <td style="color: black">{{cashDetails.tranasaction_id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

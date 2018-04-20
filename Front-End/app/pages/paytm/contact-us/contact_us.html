@@ -1,0 +1,74 @@
+<header-home ng-if="isLoggedIn"></header-home>
+<header-login ng-if="!isLoggedIn"></header-login>
+        <!--Main container sec start-->
+        <div class="main_container">
+            <div class="signup_sec contactuo_sec">
+                <div class="contactus_box">
+                    <div class="contactus_left">
+                        <h4>Let's Communicate</h4>
+                        <form class="form_commen" name="contact" ng-submit="submitContact(contact)" novalidate="">
+                            <div class="form-group">
+                                <input type="text" ng-model="contactForm.full_name" name="name" class="form-control" placeholder="Name" ng-required="true">
+                                <p style="color:red" ng-if="submitted && contact.name.$error.required">*Full name is required!</p>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" ng-model="contactForm.email" name="email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Email Address" ng-required="true">
+                                <p style="color:red" ng-if="submitted && contact.email.$error.required">*Email is required!</p>
+                                <p style="color:red" ng-show="contact.email.$error.pattern" class="form-error">*Please enter valid email.</p>
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" ng-model="contactForm.phone" name="mobile" ng-maxlength="10" ng-maxlength="10" ng-pattern="/^\+?\d{10}$/" class="form-control" placeholder="9991899918" ng-required="true">
+                                    <p style="color:red" ng-if="submitted && contact.mobile.$error.required">*Mobile number is required!</p>
+                                    <div style="color:red" ng-if="contact.mobile.$error.pattern" class="form-error">*Mobile number must be of 10 character long and without country code.</div>
+                                </div> 
+                            <div class="form-group">
+                                <input type="text" ng-model="contactForm.subject" name="subject" class="form-control" placeholder="Subject" ng-required="true">
+                                <p style="color:red" ng-if="submitted && contact.subject.$error.required">*Subject is required!</p>
+                            </div>
+                            <div class="form-group">
+                            <textarea class="form-control" ng-model="contactForm.message" name="message" placeholder="Your message" ng-required="true"></textarea>
+                            <p style="color:red" ng-if="submitted && contact.name.$error.required">*Message is required!</p>    
+                            </div>
+                            <div class="form-group">
+                                <div style="color:red" class="form-error" ng-if="error">*{{errormessage}}</div>
+                                <div style="color:green" class="form-error" ng-if="success">*{{successmessage}}</div>
+                                <button class="btn btn-submit">Send Message</button>
+
+                            </div>
+                        </form>
+                        <h3>Get Connect</h3>
+                        <ul>
+                            <li class="facebook_icon"><a href="{{social.facebook}}"><i class="fa fa-facebook"></i></a></li>
+                            <li class="twitter_icon"><a href="{{social.twitter}}"><i class="fa fa-twitter"></i></a></li>
+                            <li class="google_icon"><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="linkdine_icon"><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
+                            <li class="youtube_icon"><a href="javascript:void(0)"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="contactus_right">
+                        <div class="contact_datail">
+                            <h4>Have a Question?</h4>
+                            <p>Check out our <a href="#/faq"> FAQ page</a> where you will find answers to common  questions about using playwinfantasy</p> 
+                        </div>
+                        
+                        <div class="contact_datail">
+                            <h4>We’re Hiring</h4>
+                            <p>Let’s work together, we are looking for talented people. Visit <a href="#/career"> our Career page</a>   to grab open positions.</p> 
+                        </div>
+                        <div class="contact_datail">
+                            <h4>Affiliate Program</h4>
+                            <p>Visit our <a href="#/affiliate"> Affiliate marketing program page </a> to increase your revenue by earning commission.</p> 
+                        </div>
+                        <div class="contact_datail">
+                                <h4>Write us at </h4>
+                                <p><a href="#">support@playwinfantasy.com</a></p> 
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+                            <!--Main container sec end-->
+                            <footer-home></footer-home>
+              

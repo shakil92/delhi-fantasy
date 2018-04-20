@@ -1,0 +1,14 @@
+<div id="joinNormalContest" popup-handler class="modal fade" role="dialog">
+  <div class="modal-dialog custom_popup">
+    <div class="modal-content">
+      <div class="modal-body clearfix creat_contest comon_body">
+        <div class="form-group">
+          <h4>{{teamErrMsg}} {{teamSuccess}}</h4>
+        </div>
+        <div class="button_right" ng-if="teamErrMsg==''">
+          <button type="button" class="btn btn-submit" ng-click="joinNormalContest()">Join Contest</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

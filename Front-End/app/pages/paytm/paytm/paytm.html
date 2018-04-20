@@ -1,0 +1,54 @@
+    <header-home></header-home>
+    <!--Main container sec start-->
+    <div class="main_container">
+      <section class="main_content_sec">
+        <div class="container-fluid">
+          <div class="content_wrap veryfication_wrap">
+
+            <div class="mobile_veryfy">
+              <div class="mobile_veryfy_bar">
+                <ul class="clearfix">
+                  <li class="active">
+                    <a href="">Paytm</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mobile_veryfication_contait">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <form ng-submit="payTmReq(amount)" name="formData">
+                      <div class="verification_left">
+                        <div class="form-group custom_input">
+                          <label>Enter Amount</label>
+                          <input type="text" placeholder="Enter Amount" ng-model="amount" required>
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-submit">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+
+                    <form action="https://pguat.paytm.com/oltp-web/processTransaction" ng-submit="submitPayTmData()" name="payTmData" method="post" id="submitPayTm">
+                      <input type="hidden" name="MID" ng-model="MID" value="{{MID}}">
+                      <input type="hidden" name="ORDER_ID" ng-model="ORDER_ID" value="{{ORDER_ID}}">
+                      <input type="hidden" name="CUST_ID" ng-model="CUST_ID" value="{{CUST_ID}}">
+                      <input type="hidden" name="INDUSTRY_TYPE_ID" ng-model="INDUSTRY_TYPE_ID" value="{{INDUSTRY_TYPE_ID}}">
+                      <input type="hidden" name="CHANNEL_ID"  ng-model="CHANNEL_ID" value="{{CHANNEL_ID}}">
+                      <input type="hidden" name="TXN_AMOUNT"  ng-model="TXN_AMOUNT" value="{{TXN_AMOUNT}}">
+                      <input type="hidden" name="WEBSITE" ng-model="WEBSITE" value="{{WEBSITE}}">
+                      <input type="hidden" name="CHECKSUMHASH"  ng-model="CHECKSUMHASH" value="{{CHECKSUMHASH}}">
+                      <input type="hidden" name="CALLBACK_URL"  ng-model="CALLBACK_URL" value="{{CALLBACK_URL}}">
+                    </form>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--ground-->
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer-home></footer-home>
+  
+        <!--Main container sec end-->

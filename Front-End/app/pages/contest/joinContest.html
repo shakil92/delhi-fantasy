@@ -1,0 +1,109 @@
+<div id="joinContest" class="modal fade" role="dialog" ng-init="joinContestData.amount=current_contest.team_entry_fee">
+    <div class="modal-dialog custom_popup">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add funds to your account</h4>
+        </div>
+  
+        <div class="modal-body clearfix creat_profile comon_body">
+          <div class="row">
+              <div class="well " style="    width: 166px; float: left; margin-left: 17px;">Current Balance Rs.{{totalBalance}}</div>
+              <div class="well" style="    width: 166px; float: left; margin-left: 17px;">Joining Amount Rs.{{current_contest.team_entry_fee}}</div>
+          </div>
+          <h4>Add cash to your account to join this contest </h4>
+          <form ng-submit="joinContestPayTmReq(joinContestData.amount)" name="addCashForm">
+            <div class="form-group">
+              <input type="text" placeholder="Enter Amount" class="form-control" ng-model="joinContestData.amount" >
+              <div style="color:red" ng-show="joinContestData.amount=='' && isValiDate==false" class="form-error">
+                *Amount is required.
+              </div>
+            </div>
+            <div class="add_money">
+              <h4>ADD MORE CASH</h4>
+              <ul>
+                <a href="" >
+                  <li ng-click="joinContestData.amount=joinContestData.amount+115" >+ Rs. 115</li>
+                </a>
+                <a href="">
+                  <li ng-click="joinContestData.amount=joinContestData.amount+250">+ Rs. 250</li>
+                </a>
+                <a href="">
+                  <li ng-click="joinContestData.amount=joinContestData.amount+600">+ Rs. 600</li>
+                </a>
+              </ul>
+            </div>
+            <div class="button_right text-center">
+              <button class="btn btn-submit">ADD CASH</button>
+            </div>
+          </form>
+          <form action="https://pguat.paytm.com/oltp-web/processTransaction" ng-submit="submitPayTmData()" name="payTmData" method="post" id="submitPayTmForm">
+            <input type="hidden" name="MID" ng-model="MID" value="{{MID}}">
+            <input type="hidden" name="ORDER_ID" ng-model="ORDER_ID" value="{{ORDER_ID}}">
+            <input type="hidden" name="CUST_ID" ng-model="CUST_ID" value="{{CUST_ID}}">
+            <input type="hidden" name="INDUSTRY_TYPE_ID" ng-model="INDUSTRY_TYPE_ID" value="{{INDUSTRY_TYPE_ID}}">
+            <input type="hidden" name="CHANNEL_ID"  ng-model="CHANNEL_ID" value="{{CHANNEL_ID}}">
+            <input type="hidden" name="TXN_AMOUNT"  ng-model="TXN_AMOUNT" value="{{TXN_AMOUNT}}">
+            <input type="hidden" name="WEBSITE" ng-model="WEBSITE" value="{{WEBSITE}}">
+            <input type="hidden" name="CHECKSUMHASH"  ng-model="CHECKSUMHASH" value="{{CHECKSUMHASH}}">
+            <input type="hidden" name="CALLBACK_URL"  ng-model="CALLBACK_URL" value="{{CALLBACK_URL}}">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Select Team -->
+  <div id="selectTeam" class="modal fade" role="dialog">
+    <div class="modal-dialog custom_popup">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Final Confirmation and you're in! fdgtjjl</h4>
+        </div>
+        <div class="modal-body clearfix comon_body">
+          <form ng-submit="addTeamToContest()" name="addCashForm">
+              <div class="balance_confirm">
+                <ul>
+                  <li>Account Balance <span>Rs. {{totalBalance}} </span></li>
+                  <li>Entry Fee <span>Rs. {{current_contest.team_entry_fee}} </span></li>
+                  <li>Join contest with
+                  <span> <selec ng-model="selectTeam">
+                      <option ng-repeat=" team in teamsDetails" value="{{team.team_id}}">{{team.name}}</option></selec>
+                  </span> </li>
+                  </ul>
+                         
+                      
+              </div>  
+             
+              <hr>
+              <div class="button_right text-center">
+                  <button class="btn btn-submit">JOIN CONTEST</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <!-- Success Message -->
+  <div id="suss_msg" class="modal fade" role="dialog">
+    <div class="modal-dialog custom_popup">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message!</h4>
+        </div>
+        <div class="modal-body clearfix creat_profile comon_body">
+              <h4>Successfully joined, try out some more contest.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  

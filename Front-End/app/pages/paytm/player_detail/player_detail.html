@@ -1,0 +1,137 @@
+   <main class="animsition">
+        <!--Header sec start-->
+        <header-home></header-home>
+        <!--Header sec end-->
+        <!--Main container sec start-->
+        <div class="main_container">
+            <section class="main_content_sec">
+                <div class="container-fluid">
+                    <div class="content_wrap">
+                        <div class="player_detail_sec">
+                            <div class="player_detail">
+                                <div class="player_dtl_img">
+                                    <img ng-src="{{playerDetails.player_pic}}" class="img-responsive" alt=""/>
+                                </div>
+                                <h4>{{playerDetails.name}}<span>Born : {{playerDetails.born}}<br></span> </h4>
+                                <ul>
+                                 <li>Batting style: {{playerDetails.batting_style}}</li>
+                                  <li>Bowling style: {{playerDetails.bowling_style}}</li>
+                                  <li>Country: {{playerDetails.country}}</li>
+                                   <li>Teams: {{playerDetails.teams}}</li>
+                                  <!-- <li>Played for: India, India A, India Blue, Indian Board President's XI, India </li>
+                                  <li>Red, North Zone, Rest of India, Bangalore, India Under-19, Delhi</li>
+                                  <li>Skipper-Test,ODI,T20 | Batsman </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_wrap player_record">
+                        <div class="player_detail_sec">
+                            <h4>Information</h4>
+                            <p>Daring, tough and fiercely talented, Virat Kohli has emerged as one of the pack-leading faces
+                                of Indian cricket's current generation. With a firm-bottom hand grip and the ability to smash
+                                balls landing on a particular area to any part of the ground at will, Kohli has carved a
+                                niche of his own in Indian cricket. The king of chases as many of his fans have christened
+                                him, Kohli is a deeply hammered nail across all formats<a href="javascript:void(0)">more...</a></p>
+                            <h4>Statistics</h4>
+                            <ul class="nav nav-tabs">
+                                   <!--  <li class="active"><a data-toggle="tab" href="#batting">Batting</a></li>
+                                    <li><a data-toggle="tab" href="#bowling">Bowling</a></li> -->
+                                      <li class="active"><a data-toggle="tab" href="javascript:void(0)" ng-click="page='batting'">Batting</a></li>
+                                    <li><a data-toggle="tab" href="javascript:void(0)" ng-click="page='Bowling'">Bowling</a></li>
+                                  </ul>
+                            <div class="tab-content">
+                            <div ng-init="page='Bowling'"></div>
+                            <!-- <div id="batting" class="tab-pane fade in active" ng-show="page === 'batting'"> -->
+                            <div id="batting" ng-show="page === 'batting'">
+                            <div class="common_table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Matches</th>
+                                            <th>Innings</th>
+                                            <th>Runs</th>
+                                            <th>NO</th>
+                                            <th>Avg.</th>
+                                            <th>S/R</th>
+                                            <th>100's</th>
+                                            <th>50's</th>
+                                            <th>HS</th>
+                                            <th>4s</th>
+                                            <th>6s</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{playerDetails.batting_fielding_data.name}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.matches}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.innings}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.runs}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.not_outs}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.batting_average}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.sr}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.hundreds_scored}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.fifties_scored}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.highest_inning_score}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.boundary_fours}}</td>
+                                            <td>{{playerDetails.batting_fielding_data.boundary_sixiers}}</td>
+                                        </tr>                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            <!-- <div id="bowling" class="tab-pane fade" ng-show="page === 'Bowling'"> -->
+                        <div id="bowling" ng-show="page === 'Bowling'">
+                           <div class="common_table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Matches</th>
+                                            <th>Innings</th>
+                                            <th>Balls</th>
+                                            <th>Runs</th>
+                                            <th>Wickets</th>
+                                            <th>BBI</th>
+                                            <th>BBM</th>
+                                            <th>Avg.</th>
+                                            <th>E/R</th>
+                                            <th>S/R</th>
+                                            <th>4W</th>
+                                            <th>5W</th>
+                                            <th>10W</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{playerDetails.bowling_data.name}}</td>
+                                            <td>{{playerDetails.bowling_data.matches}}</td>
+                                            <td>{{playerDetails.bowling_data.innings}}</td>
+                                            <td>{{playerDetails.bowling_data.balls}}</td>
+                                            <td>{{playerDetails.bowling_data.runs}}</td>
+                                            <td>{{playerDetails.bowling_data.wickets}}</td>
+                                            <td>{{playerDetails.bowling_data.best_inning_bowling}}</td>
+                                            <td>{{playerDetails.bowling_data.best_match_bowling}}</td>
+                                            <td>{{playerDetails.bowling_data.average}}</td>
+                                            <td>{{playerDetails.bowling_data.economy_rate}}</td>
+                                            <td>{{playerDetails.bowling_data.sr}}</td>
+                                            <td>{{playerDetails.bowling_data.four_wickets_in_inn}}</td>
+                                            <td>{{playerDetails.bowling_data.five_wickets_in_inn}}</td>
+                                            <td>{{playerDetails.bowling_data.ten_wickets_in_match}}</td>
+                                        </tr>                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Main container sec end-->
+        <!--Footer sec start-->
+         <footer-home></footer-home>
+        <!--Footer sec end-->
+    </main> 

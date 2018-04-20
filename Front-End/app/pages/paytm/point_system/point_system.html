@@ -1,0 +1,112 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+
+<div class="main_container" ng-init="getPointSystemData()">
+        
+      <section class="poinsystem_sec">
+                
+            <div class="container">
+
+                   
+
+                        <!--ground-->
+                        <div class="how_to_sec">
+                            <div class="inner_common_head">
+                                <h3>How to Play the Play win Fantasy Cricket Game?</h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="creat_right">
+                                        <h4>Play win Fantasy Points System </h4>
+                                        <p> Here’s how your team earns points:</p>
+                                        <div class="common_table">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type Of points</th>
+                                                            <th>T20</th>
+                                                            <th>ODI</th>
+                                                            <th>Test</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="(type_of_points, score_list) in pointSystemData.main">
+                                                            <td>{{type_of_points}}</td>
+                                                            <td ng-repeat="score in score_list"> {{score}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                           <h4>Bonus Point</h4>
+                                            <div class="common_table">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type Of points</th>
+                                                            <th>T20</th>
+                                                            <th>ODI</th>
+                                                            <th>Test</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="(type_of_points, score_list) in pointSystemData.bonus">
+                                                            <td>{{type_of_points}}</td>
+                                                            <td ng-repeat="score in score_list"> {{score}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <h4>Economy Rate</h4>
+                                            <div class="common_table">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type Of points</th>
+                                                            <th>T20</th>
+                                                            <th>ODI</th>
+                                                            <th>Test</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="(type_of_points, score_list) in pointSystemData.economy_rate">
+                                                            <td>{{type_of_points}}</td>
+                                                            <td ng-repeat="score in score_list"> {{score}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                            <h4>Strike Rate</h4>
+                                            <div class="common_table">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type Of points</th>
+                                                            <th>T20</th>
+                                                            <th>ODI</th>
+                                                            <th>Test</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="(type_of_points, score_list) in pointSystemData.strike_rate">
+                                                            <td>{{type_of_points}}</td>
+                                                            <td ng-repeat="score in score_list"> {{score}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--ground-->
+
+
+                  
+                </div>
+            </section>
+</div>
+<footer-home></footer-home>

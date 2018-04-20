@@ -1,0 +1,25 @@
+    <main>
+        <!--Header sec start-->
+        <header-home ng-if="isLoggedIn"></header-home>
+        <header-login ng-if="!isLoggedIn"></header-login>
+
+        <!--Header sec end-->
+        <!--Main container sec start-->
+        <div class="main_container">
+                <section class="socrcard_sec legality_sec">
+                    <div class="container">
+                        <h4>The Legality of Playwin Fantasy in India</h4>
+                        <div ng-bind-html="page_content"></div>
+                    </div>
+                </section>
+            </div>
+    
+        <!--Main container sec end-->
+        <!--Footer sec start-->
+        <footer-home></footer-home>
+        
+
+        <!--Footer sec end-->
+    </main>
+
+    

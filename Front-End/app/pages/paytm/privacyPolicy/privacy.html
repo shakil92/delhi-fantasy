@@ -1,0 +1,131 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+
+<div class="main_container">
+
+
+            <!--wallet-section-start-->
+            <section class="wallet_sec privacy_sec">
+                <div class="container">
+                    <div class="walletTab">
+                        <ul class="nav nav-tabs">
+                            <li class="{{currentActiveTab==1?'active':''}}"><a ng-click="changeCurrentTab(1)" href="javascript:void(0)">Privacy Policy</a></li>
+                            <li class="{{currentActiveTab==2?'active':''}}"><a ng-click="changeCurrentTab(2)" href="javascript:void(0)">Term & Conditions</a></li>
+                            <li class="{{currentActiveTab==3?'active':''}}"><a ng-click="changeCurrentTab(3)" href="javascript:void(0)">Promotion Policy</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="privacy" class="tab-pane fade {{currentActiveTab==1?'in active':''}}">
+                                    <h3>Privacy policy</h3>
+                                    <div ng-bind-html="page_content"></div>
+                                
+                                
+                            </div>
+                            <div id="conditions" class="tab-pane fade {{currentActiveTab==2?'in active':''}}">
+                                <h3>TERMS & CONDITIONS</h3>
+                                <div ng-bind-html="page_content"></div>
+                            </div>
+                            <div id="promotion" class="tab-pane fade {{currentActiveTab==3?'in active':''}}">
+
+                                    <h3> Standard Terms and Conditions of Promotions </h3>
+                                                
+                                    <h4> 1.PROMOTION POLICY</h4>
+                                    <p> Promotion policy forms part of our Website's Terms of Service, by accepting the Terms of Service on the registration page, you consent of accept the standard terms of Promotion policy also.</p>
+                                        <p>These standard terms and conditions of promotions (“Standard Terms”) supplement the terms of promotions undertaken on the DELHI FANTASY website and which reference these Standard Terms (each a “Promotion”):		These Terms and Conditions apply to the games of skill and marketing activities, offered to a person who accesses the Game through any means of communication (“User”) the ability to participate in the games of skill by remitting a participation fee to play the game and also the ability to win prizes.</p>
+                                                <p> Participation in any Promotion will be subject to a user complying with the Promotion Terms implemented by DELHI FANTASY in respect of such Promotion (“Promotion Terms”) and these Standard Terms. By participating in any Promotion, the participant further consents to and agrees to adhere with the terms and conditions of the DELHI FANTASY game and DELHI FANTASY’s privacy policy.</p>
+                                                        <h4>2. PARTICIPANTS</h4>
+                                    <p>The Promotions are only open to users in India. Participation in the Promotions by proxy is not permitted. These Games and Promotions are open only to residents of India aged 18 years or over at the date of entry.  Employees of DELHI FANTASY their associated, and their families, agents, Game sponsors, Facebook, Twitter, Google and any person connected with the Game are excluded from participating in the game ( or winning a prize. By taking part in the Game or Promotion, participants warrant that all information submitted by them is true, accurate and complete.  Proof of  age  be required.  The eligibility of any entrant is at the sole discretion of the Promoter. Participation in the Promotions is voluntary.	</p>	
+                                    <h4>3. USAGE OF PROMOTION</h4>
+                                            <p> Participation in one Promotion does not guarantee that such user will be eligible to participate in another Promotion. The Users are only authorized to use the Game or avail the Promotion, if they agree to abide by all applicable laws and these Terms & Conditions. By accessing our Game or availing the Promotion, the User agrees to be bound by these Terms & Conditions.</p>
+                                                    <p>A user may participate in a Promotion and avail of each Promotion only through one account. An existing user of DELHI FANTASY shall not register a new account or operate more than one user account with DELHI FANTASY or participate in a Promotion by registering a new account.		</p>
+                                                            <p>Users intending to participate in a Promotion may be required to verify their mobile number and other account details in accordance with the Promotion Terms for such Promotion. We may modify these Terms & Conditions, from time to time and such modifications shall be effective upon posting on our Game or Promotion platform. The User will be deemed to have agreed to any such modifications by any further use of the Game or Promotion, after any such modification is posted. It is therefore important that the User reviews the Terms & Conditions regularly to ensure that he/she is updated as to any changes. If the User does not agree with the modifications, he/she shall discontinue use of our Game or Promotion immediately.</p>
+                                                                    <p>Persons intending to participate in a Promotion, who have listed their phone numbers on the National Do Not Call Registry (“NDNC Registry”), shall de-register themselves from the NDNC Registry till the completion of such Promotion. Please note that persons intending to participate in a Promotion who have not de-registered themselves from the NDNC Registry shall also have no right to make any claim or raise any complaints against DELHI FANTASY if they do or do not receive any call or SMS with respect to their participation and all other matters pertaining to a Promotion.		</p>
+                                                                            <p>The verification process may require you to submit personal information about yourself. You agree to receive communication from DELHI FANTASY. Any information collected in respect of your identity and contact details as part of a Promotion or otherwise in the course of your use of the DELHI FANTASY Website shall be subject to DELHI FANTASY’s Privacy Policy.		</p>
+                                                                                    <p>DELHI FANTASY may, at its sole and absolute discretion, disqualify any user from a Promotion if such user engages in or it is found that such user has engaged in any illegal, unlawful or improper conduct (with regard to any of the Promotions or otherwise).		</p>
+                                    
+                                                                                            <p>DELHI FANTASY reserves the right to withhold or forfeit the benefits of a Promotion (including a free-entry or Bonus Amount due to a participant or any prizes/winnings earned by the participant by using such benefits) in the event that it determines or reasonably believes that the participating user has violated these Standard Terms, the applicable Promotion Terms or the terms and conditions of the DELHI FANTASY fantasy game(s).	</p>	
+                                        
+                                                                                                    <p>The decision of DELHI FANTASY will be final and binding with respect to the Promotions, and the prizes therein and no correspondence, objection, complaints, etc. will be entertained in this regard.		</p>
+                                                                                                            <p>Each Promotion cannot be clubbed with any of other contest/offer/promotion that are running simultaneously and organised or conducted by DELHI FANTASY.		</p>
+                                                                                                                    <p>DELHI FANTASY reserves the right to change/modify/or withdraw any of the Promotions and/or change these Standard Terms and/or the Promotion Terms without any prior notice of the same at its sole discretion.		</p>
+                                                                                                                            <p> DELHI FANTASY does not make any commitment, express or implied, to respond to any feedback, suggestion and, or, queries of the participants of the Promotions.		</p>
+                                    
+                                    
+                                                                                                                                    <p>Notwithstanding anything contained herein, the aggregate liability of DELHI FANTASY to a participating user in relation to any Promotion for any reason whatsoever shall not exceed Rs. 50.		</p>
+                                                                                                                                            <p> The Promotions shall be governed by the laws of the Republic of India, and any disputes or disagreements in respect of this Promotion shall be subject to the exclusive jurisdiction of the courts of Mumbai.	</p>	
+                                                                                                                                                    <p>No person shall seek participation in the Promotion as a matter of right.	</p>
+                                    
+                                    <h4> A)Welcome Bonus</h4> 
+                                    <p>  Playwinfantasy welcomes you to the world of fantasy games with the welcome bonus. You shall be entitled for welcome bonus once you register with playwinfantasy.  The Welcome Bonus Amount of Rs. 50 shall be deposited into the user’s account in the form of cash chips which can be used to join cash contests on DELHI FANTASY. </p>
+                                        <p>How to avail the Bonus?</p>
+                                                <p>A)Do Register your account</p>
+                                                        <p>B)Verify your contact no. </p>
+                                                                <p>C)Verify your mail id </p>
+                                                                        <p>D)Fill up the profile form </p>
+                                    
+                                    
+                                    <h4> B)"Invite Friends" Referral program</h4>
+                                    <p> The DELHI FANTASY Invite Friends Program lets you invite friends to join DELHI FANTASY (“Program”). In the event that you and your referred friend meet the criteria and complete all the steps specified in these terms, you can earn a Referral Bonus  in cash chips from DELHI FANTASY of upto  Rs. 1250 (“Bonus Amount”). which Bonus Amount will be use to join cash contests. To participate in the Program, please note our terms and conditions (“Terms”) in this respect, as they govern your participation in the Program:		</p>
+                                        <p> <strong>Eligibility</strong>  – All users who: </p>
+                                        <ul>
+                                            <li>(i)have an account registered with DELHI FANTASY’s fantasy gaming platform (“Platform”) which account has been verified by DELHI FANTASY; and</li>
+                                                    <li>(ii)Participation in the Program by proxy is not permitted.</li>
+                                                
+                                                            <li>(iii)Participation in the Program is voluntary. A user shall not register or operate more than one user account with DELHI FANTASY and shall not participate in the Program with more than one user account with DELHI FANTASY.	</li>
+                                                            </ul>
+                                                                    <p> <strong>By participating in the Program, you agree to and accept these Terms.</strong>	</p>	
+                                    <p> For the purpose of participation in the Program , you will be provided with a unique link or code, which can be shared by you (“INVITER”) with friends (each an “Invitee”) for the purpose of inviting such friends to create and register an account with DELHI FANTASY. On receiving the link or code from the INVITER, the Invitee may either: </p>
+                                    <ul>
+                                        <li>(i)Click on the link, consequent to which such Invitee will be directed to a registration page and will be provided the option to register an account with DELHI FANTASY.</li>
+                                                
+                                    </ul>
+                                    <p> The INVITER will be eligible to earn the Bonus Amount subject to (amongst other terms specified in these Terms): </p>
+                                    <ul>
+                                    <li>(i)the Invitee not being an existing user of DELHI FANTASY; and</li>
+                                            <li>(ii)the Inviter and Invitee being eligible to participate in the pay-to play Playwinfantasy’s fantasy games.</li>
+                                                    <li>(iii)the Invitee successfully registering for an account with DELHI FANTASY through the unique link or by using the unique code shared by the INVITER; and </li>
+                                                            <li> (iv)the INVITER and Invitee verifying the INVITER’s and the Invitee’s respective mobile number and email address as provided at the time of registration. For the purposes of these Terms, an 'existing user of DELHI FANTASY' shall mean a user who presently operates an account with the Platform or operated an account with the Platform at any point of time.		</li>
+                                                                    <li>(v)An Invitee who is an existing user of DELHI FANTASY is not permitted to register a new account with the Platform for the purpose of availing of the Referral Bonus Amount. DELHI FANTASY will determine in its sole discretion whether an Invitee is an existing user of DELHI FANTASY or not and take appropriate action.		</li>
+                                    
+                                                                            <li> (vi)The verification process may require an INVITER/Invitee to submit personal information about the user (INVITER/Invitee) and documents identifying the INVITER/Invitee. The INVITER agrees to receive communication from DELHI FANTASY and to allow DELHI FANTASY to communicate with Invitees referred by you about the INVITER's participation in the Program. Any information collected in respect of the INVITER/Invitee as part of the Program or otherwise in the course of such person's use of the Website shall be subject to DELHI FANTASY's Privacy Policy.</li>
+                                    
+                                                                                    <li>(vii)The Bonus Amount eligible to be earned by the Invitee (“Referral Bonus”) will credited to the Inviters virtual Playwinfantasy Chips account on successfully registration and verification done for invitees account .</li>
+                                    
+                                                                                            <li>(viii)In the event that the Invitee fails to verify the Invitee's account details 
+                                    in the Verification process or omits to provide documents requested for such verification, the Invitee shall not receive the applicable Invitee Bonus.	</li>	
+                                    
+                                    <li>(ix)The Bonus Amounts credited to the INVITER account can be used by the INVITER to join cash contests and contests offered by DELHI FANTASY through the Platform.  </li>
+                                            <li>(x)Inviter can use this bonus amount in the form of playwinfantasy chips in the ratio of 5% of the price of contest each joined contest.</li>
+                                                    <li>(xi)This Referral Bonus doesn’t have any expiry date </li>
+                                                            <li>(xii)deactivate the accounts of the INVITER/Invitee, in the event that it 
+                                    determines or reasonably believes that such INVITER/Invitee has violated these Terms or the terms and conditions of the DELHI FANTASY fantasy games.</li>
+                                    </li>	
+                                    </ul>	
+                                    <p> 5) DELHI FANTASY may, at its sole and absolute discretion, disqualify any INVITER/Invitee if such INVITER/Invitee engages in or it is found that such INVITER/Invitee has engaged in any illegal, unlawful or improper conduct (with regard to the Program or otherwise).		</p>
+                                    <ul>
+                                        <li>
+                                            (i)The decision of DELHI FANTASY will be final and binding with regard to the Program, and the deposit of the Bonus Amount and no correspondence, objection, complaints, etc. will be entertained in this regard.	
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    
+                                    <p> The Referral Bonus Amount shall be at the sole discretion of DELHI FANTASY and shall be subject to the INVITER’s/Invitee’s compliance with these Terms. DELHI FANTASY may substitute or change the Bonus Amount offered under the Program at any time without notice. An INVITER/Invitee may not substitute the amount of Bonus Amount or substitute offering for other items or exchange for cash.	</p>	
+                                    
+                                    
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!--wallet-section-start-->
+
+
+
+        </div>
+<!--Main container sec end-->
+<footer-home></footer-home>
+
+</main>

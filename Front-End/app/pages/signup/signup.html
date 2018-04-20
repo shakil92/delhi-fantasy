@@ -1,0 +1,83 @@
+<header-login></header-login>
+<div class="main_container">
+    <div class="signup_sec">
+        <div class="signupBox">
+            <div class="signupHeader">
+                Registration
+            </div>
+            <div class="signupBody">
+                 <div class="form-group social_btn">
+                    <a href="javascript:void(0)" g-login ng-click="processNow(signUpHandler.b)"><i class="fa fa-google-plus" aria-hidden="true"></i>
+                        Sign up with Google</a>
+                    <a href="javascript:void(0)" fb-login ng-click="processNow(signUpHandler.b)"><i class="fa fa-facebook" aria-hidden="true"></i>
+                        Sign up with Facebook</a>
+                </div>
+
+                <div class="all_line"><div class="orBox">OR</div></div>
+                 <form class="form_commen" name="signup" ng-submit="processNow(signUpHandler.a,signup)" novalidate="">
+                        <div class="form-group">
+                            <input placeholder="Full Name" class="form-control" ng-model="formData.name" id="" name="username" ng-minlength="6" ng-required="true">
+                            <div style="color:red" ng-show="submitted && signup.username.$error.required" class="form-error">
+                                *Full name is required.
+                              </div>
+                              <div style="color:red" ng-show="signup.username.$error.minlength" class="form-error">
+                                *Full name minimum length is 6.
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="Email Address" class="form-control" type="email" name="email" ng-model="formData.email" ng-change="removeMassage()" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-required="true">
+                            <div style="color:red" ng-show="submitted && signup.email.$error.required" class="form-error">
+                                *Email is required.
+                              </div>
+                              <div style="color:red" ng-show="signup.email.$error.pattern" class="form-error">
+                                *Please enter valid email.
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="Password" class="form-control" type="password" ng-model="formData.password" name="password" ng-change="removeMassage()"  ng-pattern="/^(?=.*[0-9])(?=.*[A-Z])([a-zA-Z0-9@_%]+)$/" ng-minlength="6" ng-required="true">
+                            <div style="color:red" ng-show="submitted && signup.password.$error.required" class="form-error">
+                                *Password is required.
+                              </div>
+                              <div style="color:red" ng-show="signup.password.$error.pattern || signup.password.$error.minlength" class="form-error">*Password must have one capital, one number and 6 character long.
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="Confirm Password" class="form-control" type="password" ng-model="formData.confm_pswd" name="cpassword" ng-change="removeMassage()" ng-required="true">
+                             <div style="color:red" ng-show="submitted && signup.cpassword.$error.required" class="form-error" >
+                               *Confirm password is required.
+                             </div>
+                             <div style="color:red" ng-show="formData.password != formData.confm_pswd" ng-if="formData.confm_pswd !=undefined">Your passwords must match.</div>
+                         </div>
+                        <div class="form-group">
+                            <input placeholder="Mobile Number" class="form-control" type="text" ng-model="formData.mobile" name="mobile" ng-change="removeMassage()"  ng-minlength="7" ng-required="true">
+                            <div style="color:red" ng-show="submitted && signup.mobile.$error.required" class="form-error">
+                                *Mobile number is required.
+                              </div>
+                              <div style="color:red" ng-show="signup.mobile.$error.pattern || signup.mobile.$error.minlength" class="form-error">*Mobile number must be of 7 character long.</div>
+                        </div>
+                        <div class="form-group checkbox_custom">
+                            <label><input type="checkbox" ng-required="true" name="agree" ng-model="formData.isagree"> I agree to The Team Genie <a target="_blank" href="#/privacypolicies?q=1">T&amp;C </a> </label>
+                               <div style="color:red" ng-show="submitted && signup.agree.$error.required" class="form-error">*You must need to agree with condition.
+                            </div>
+                        </div>
+                        <div style="color:red" class="form-error" ng-if="sign_error">*{{errormessage}}</div>
+                        
+                        <label style="font-weight: normal;">User must be atleast 18 years of age to create an account. Please see terms and conditions and privacy policy for additional details</label>
+
+                        <label style="font-weight: normal;">User must not be from the states of Odisha, Assam and Telangana, or any other state where online fantasy sports games are prohibited under law</label>
+                        <div class="form-group">
+                            <button class="btn btn-login">Submit</button>
+                        </div>
+                        </form>
+                        
+
+                       <div class="form-group already-sign text-center">
+                        <p>Already have an account? <a href="#/login"> Sign In</a></p>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer-home></footer-home>

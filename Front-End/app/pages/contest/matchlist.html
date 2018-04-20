@@ -1,0 +1,36 @@
+    <div class="series_slider" >
+        <div class="slider_item {{match.match_id==currentSelectedMatch?'item_live':''}}" ng-click="changeCurrentMatch(match.match_id,match.isClosed,match)" ng-repeat="match in matches">
+            <div class="series_header" ng-if="!match.isLive">
+                    <span class="cloud_icon" ng-if="(!(match.isClosed) && match.isOpenForUser)" href="javascript:void">
+                            <i class="flaticon-timer"></i> 
+                            <span class="timeCounter" data-roundClockTime="{{match.gameDate}}"></span>                          
+                    </span>
+                          <span class="cloud_icon" ng-if="(!match.isClosed && match.isOpenForUser==false)" href="javascript:void">
+                              <i class="flaticon-timer"></i> 
+                              <span>{{coreLogic.getDesiredFormOfDate2(match.match_date)}}</span> 
+                          </span>
+                          <span class="cloud_icon" ng-if="(match.isClosed)" href="javascript:void">
+                            <i class="flaticon-timer"></i><span> Closed</span> 
+                          </span>
+                    <button class="join_btn" ng-if="match.isContest=='YES' && !(match.isClosed) && match.isOpenForUser">Join</button>
+                    <button class="join_btn" ng-if="match.isContest=='YES' && (match.isClosed)"> View</button>
+               
+            </div>
+            <div class="series_header" ng-if="match.isLive">
+                <span class="cloud_icon" href="javascript:void(0)">
+                    <span style="background-color:#B22222; color: #fff; padding: 2px 5px; border-radius:5px; font-size:13px; border: 1px solid #B22222;">Live</span>                 
+                </span>
+                <button class="join_btn" ng-if="match.isContest=='YES'"> View</button>
+            </div>
+            <div class="series_body">
+            <img ng-src="{{match.localteam_image}}">
+                <ul>
+                    <li>{{match.localteam}}</li>
+                    <li>VS</li>
+                    <li>{{match.visitorteam}}</li>
+                </ul>
+                <img ng-src="{{match.visitorteam_image}}">
+                <h4 class="series_title">{{match.match_type}}-{{match.match_num}}</h4>
+            </div>
+        </div>
+    </div>

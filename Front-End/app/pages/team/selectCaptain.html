@@ -1,0 +1,63 @@
+<div id="selectCaptain" popup-handler class="modal fade" role="dialog">
+  <div class="modal-dialog custom_popup">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closePopup('selectCaptain')">×</button>
+            <h4 class="modal-title">Select Captain &amp; Vice Captain for your team</h4>
+          </div>
+      <div class="modal-body clearfix select_captain">
+        <div class="form-group">
+          <i ng-if="captainIcon" class="{{captainIcon}}"></i>
+          <i ng-if="!captainIcon" style="font-style:normal">C</i>
+          <p>Selected Captain:
+           <b ng-if="pl.captain">{{teamCreation[pl.captain].name}}
+           </b>
+         </p>
+         <select ng-model="pl.captain" name="captain" class="form-control" placeholder="Select Captain" ng-required="true" ng-change="changeCaptain(pl.captain,selectedTeam);">
+           <option value="">Select Captain</option>
+           <option ng-repeat="player in selectedTeam" ng-if="player.position=='player' && (player.player_id!=pl.viceCaptain && player.player_id!=pl.fabulous)" value="{{player.player_id}}" >{{player.name}}
+           </option>
+         </select>
+         <div style="color:red" ng-show="submitted && userform.captain.$error.required" class="form-error">
+           *Captain is required.
+         </div>
+       </div>
+
+       <div class="form-group">
+          <i ng-if="viceCaptainIcon!=false" class="{{viceCaptainIcon}}"></i>
+          <i ng-if="viceCaptainIcon==false" style="font-style:normal">VC</i>
+         <p>Selected Vice Captain: <b ng-if="pl.viceCaptain">{{teamCreation[pl.viceCaptain].name}}</b></p>
+         <select ng-model="pl.viceCaptain" name="viceCaptain"  class="form-control" placeholder="Select Vice Captain" ng-required="true" ng-change="changeViceCaptain(pl.viceCaptain,selectedTeam);" ng-disabled="!pl.captain">
+          <option value="">Select Vice Captain</option>
+          <option ng-repeat="player in selectedTeam" ng-if="player.position=='player' && (player.player_id!=pl.captain && player.player_id!=pl.fabulous)" value="{{player.player_id}}" >{{player.name}}</option>
+        </select>
+        <div style="color:red" ng-show="submitted && userform.viceCaptain.$error.required" class="form-error">
+          *Vice Captain is required.
+        </div>
+      </div>
+<!-- 
+      <div class="form-group">
+       <p ng-if="pl.fabulous">Selected Fabolous: <b>{{teamCreation[pl.fabulous].name}}</b></p>
+       <select ng-model="pl.fabulous" name="fabulous"  class="form-control" placeholder="Select Fabulous" ng-required="true" ng-change="selectCaptaintype(pl.fabulous);" ng-disabled="!pl.viceCaptain && !pl.captain" >
+         <option value="">Select Fabulous</option>
+         <option ng-repeat="player in selectedTeam" ng-if="player.position=='player' && (player.id!=pl.captain && player.id!=pl.viceCaptain)" value="{{player.id}}" >{{player.name}}</option>
+       </select>
+       <div style="color:red" ng-show="submitted && userform.fabulous.$error.required" class="form-error">
+         *Fabulous is required.
+       </div>
+     </div> -->
+
+     <div class="button_right">
+      <p style="color:red" ng-if="specialPlayerSelectionError =='1'">{{specialPlayerSelectionErrorMsg}}</p>
+      <p style="color:red" ng-if="teamErrMsg.length>0">*{{teamErrMsg}}</p>
+      <p style="color:green" ng-if="teamSuccess.length>0">*{{teamSuccess}}</p>
+     
+      <button type="button" class="btn btn-submit" ng-click="saveTeam()">
+        {{(operation!=undefined && operation.hasOwnProperty('type') && operation.type=='E')?'UPDATE TEAM' :'CREATE TEAM'}}
+      </button>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>

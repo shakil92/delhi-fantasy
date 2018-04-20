@@ -1,0 +1,48 @@
+<header-login ng-if="!isLoggedIn"></header-login>
+<header-home ng-if="isLoggedIn"></header-home>
+
+
+<!--Main container sec start-->
+<div class="main_container">
+    <section class="prediction_sec myprediction_sec list_sec">
+        <div class="container">
+           
+            <div class="prediction_header" ng-init="getMyPredictions()">
+                <ul>
+                    <li>S. No.</li>
+                    <li>First Team</li>
+                    <li></li>
+                    <li>Second Team</li>
+                    <li>Status</li>
+                    <li>Points</li>
+                    <li>Action</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" ng-repeat="x in myPredictions">
+                    <div class="prediction_qution myprediction_list">
+                       <ul>
+                           <li>{{$index + 1}}</li>
+                           <li>{{x.localteam}}</li>
+                           <li>v/s</li>
+                           <li>{{x.visitorteam}}</li>
+                           <li>{{x.status | capitalize}}</li>
+                           <li>{{x.points}}</li>
+                           <li><div class="action-btn">
+                            <a class="btn btn-block" href="#/my-prediction-detail/{{x.match_id}}" title="Click Here To View Prediction Details">View</a>
+                         </div></li>
+                       </ul>
+                    </div>
+                </div>
+                <div ng-if="myPredictions.length == 0">
+                  You didn`t predict any matches
+                </div>
+            </div>
+        </div>
+    </section>          
+</div>
+<!--Main container sec end-->
+
+
+
+<footer-home></footer-home>

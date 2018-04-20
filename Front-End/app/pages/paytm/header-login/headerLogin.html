@@ -1,0 +1,39 @@
+<header class="header_sec" id="header">
+    <div class="bptom_header">
+        <div class="container-fluid">
+            <div class="row">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="#"><img ng-src="{{env.image_base_url}}logo.png" class="img-responsive" alt="logo"> </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-10" ng-if="!isAffiliate">
+                            <div class="inner_rightmrnu text-right landing_menu">
+                                    <ul ng-if="showButton==1">
+                                        <li><a href="#/howtoplay">How to Play</a></li>
+                                        <li><a href="#/invite">Refer & Earn</a></li>
+                                        <li><a href="#/testimonials">Testimonials</a></li>
+                                        <li><a href="#/signup">Registration</a></li>
+                                        <li><a href="#/login">Login</a></li>
+                                    </ul>
+                                </div>
+                    </div>
+                    <div class="col-sm-10" ng-if="isAffiliate">
+                        <div class="affliate inner_rightmrnu text-right" one-page-scroll>
+                            <ul>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliateintroduction')">Introduction</a></li>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliatefeature')">Features</a></li>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliate-brands')">Brand</a></li>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliatescheme')">Scheme</a></li>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliate-commision')">Commision</a></li>
+                                <li><a href="javascript:void(0)"  ng-click="scrollTo('affiliateform')">Application</a></li>
+                                <li><a href="#/signup">Register</a></li>
+                                <li><a href="#/login">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+</header>

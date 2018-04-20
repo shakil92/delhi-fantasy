@@ -1,0 +1,482 @@
+<header-home></header-home>
+<div class="main_container">
+	<section class="main_content_sec">
+		<div class="container-fluid">
+			<div class="content_wrap">
+				<!--counter-->
+				<div class="counter_sec">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="counter_team">
+								<ul>
+									<li>
+								<!-- 	{{currentSelectedMatchDetails.match_num}} {{currentSelectedMatchDetails.match_type}} -->
+									<span>Create your team for</span> </li>
+									<li> {{localteam}} </li>
+									<li>vs</li>
+									<li>{{visitorteam}} </li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-6 text-right">
+							<div class="counter_bar">
+								<ul ng-bind-html="countDownTimer">
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="counter_sec team_error" ng-if="teamError">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="error-message-team"><span></span><span class="glow-effect"></span>{{teamErrorMessage}}</div>
+							<div class="error-message-close" ng-click="closeErrorPopup()">X</div>
+						</div>
+					</div>
+				</div>				
+				<!--ground-->
+				<div class="match_section">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="player_tabs creat_sec custom_team">
+								<!-- Nav tabs -->
+								<div class="serch_bar">
+									<div class="input-group">
+										<input class="form-control" ng-model="searchText" placeholder="Search for..." type="text">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button">
+												<img src="Front-End/images/search_icon.png">
+											</button>
+										</span>
+									</div>
+									<!-- /input-group -->
+								</div>
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="{{activeTab=='WC'?'active':''}}">
+										<a ng-click="changeActiveTab('WC')" href="javascript:void(0)">
+											WK 
+											<span class="badge" ng-if="teamStructure.WICKETKEEPER.occupied==teamStructure.WICKETKEEPER.max || selectedPlayers=='11'">
+												<i class="fa fa-check"></i>
+											</span>
+											<span class="badge" ng-if="!(teamStructure.WICKETKEEPER.occupied==teamStructure.WICKETKEEPER.max || selectedPlayers=='11')">{{teamStructure.WICKETKEEPER.occupied}}
+											</span>
+										</a>
+									</li>
+									<li class="{{activeTab=='BM'?'active':''}}">
+										<a href="javascript:void(0)" ng-click="changeActiveTab('BM')">Batsmen
+											<span class="badge" ng-if="teamStructure.BATSMAN.occupied==teamStructure.BATSMAN.max || selectedPlayers=='11'">
+												<i class="fa fa-check"></i>
+											</span>
+											<span class="badge" ng-if="!(teamStructure.BATSMAN.occupied==teamStructure.BATSMAN.max || selectedPlayers=='11')">{{teamStructure.BATSMAN.occupied}}</span>
+										</a>
+									</li>
+									<li class="{{activeTab=='AR'?'active':''}}">
+										<a href="javascript:void(0)" ng-click="changeActiveTab('AR')">All-Rounders 
+											<span class="badge" ng-if="teamStructure.ALLROUNDER.occupied==teamStructure.ALLROUNDER.max || selectedPlayers=='11'">
+												<i class="fa fa-check"> </i>
+											</span>
+											<span class="badge" ng-if="!(teamStructure.ALLROUNDER.occupied==teamStructure.ALLROUNDER.max || selectedPlayers=='11')">{{teamStructure.ALLROUNDER.occupied}}
+											</span>
+										</a>
+									</li>
+									<li class="{{activeTab=='BL'?'active':''}}">
+										<a href="javascript:void(0)" ng-click="changeActiveTab('BL')">Bowlers
+											<span class="badge" ng-if="teamStructure.BOWLER.occupied==teamStructure.BOWLER.max || selectedPlayers=='11'">
+												<i class="fa fa-check"></i>
+											</span>
+											<span class="badge" ng-if="!(teamStructure.BOWLER.occupied==teamStructure.BOWLER.max || selectedPlayers=='11')">{{teamStructure.BOWLER.occupied}}
+											</span>
+										</a>
+									</li>
+									<li class="{{activeTab=='AL'?'active':''}}">
+										<a href="javascript:void(0)" ng-click="changeActiveTab('AL')">All
+											<span class="badge">{{selectedPlayers}}</span>
+										</a>
+									</li>
+								</ul>
+								<!-- Tab panes -->
+								<div class="tab-content" ng-if="status==1">
+									<div role="tabpanel" class="tab-pane {{activeTab=='WC'?'active':''}}" id="D_tab">
+										<div class="player_tab_table">
+											<div class="table_scroll" custom-scroll>
+												<table class="table-fixed">
+													<thead>
+														<tr>
+															<th>Info</th>
+															<th>Player</th>
+															<th>Team</th>
+															<th>Points</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="active" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='WICKETKEEPER'">
+															<td class="player_name"><a href="javascript:void(0)" ng-click="openPopup('playerDetailPopup');SinglePlayerDetail(player.player_id,player)"><i class="{{coreLogic.playerIcon[player.play_role]}}"></i> </a></td>
+															<td>{{player.player_name}}</td>
+															<td>{{player.team}}</td>
+															<td>$10,900</td>
+															<!-- {{player.isAdded?'x':'+'}} -->
+															<td ng-if="player.isAdded==false"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">+</a>
+															</td>
+															<td ng-if="player.isAdded==true"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">x</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<button class="btn btn-submit creat-btn" data-toggle="modal" data-target="#selectCaptain"  ng-disabled="selectedPlayers!=11 || !teamStructure.ready">
+													Select Captain, Vice Captain & Fabulous 
+												</button>
+												<!--  <button class="btn btn-submit" ng-click="saveTeam()">Save Team</button> -->
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane {{activeTab=='BM'?'active':''}}" id="batsman_creat">
+										<div class="player_tab_table">
+											<div class="table_scroll" custom-scroll>
+												<table class="table-fixed">
+													<thead>
+														<tr>
+															<th>Info</th>
+															<th>Player</th>
+															<th>Team</th>
+															<th>Points</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="active" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='BATSMAN'">
+															<td class="player_name"><a href="javascript:void(0)" ng-click="openPopup('playerDetailPopup');SinglePlayerDetail(player.player_id,player)"><i class="{{coreLogic.playerIcon[player.play_role]}}"></i> </a></td>
+															<td>{{player.player_name}}</td>
+															<td>{{player.team}}</td>
+															<td>$10,900</td>
+															<!-- {{player.isAdded?'x':'+'}} -->
+															<td ng-if="player.isAdded==false"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">+</a>
+															</td>
+															<td ng-if="player.isAdded==true"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">x</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<button class="btn btn-submit creat-btn" data-toggle="modal" data-target="#selectCaptain"  ng-disabled="selectedPlayers!=11 || !teamStructure.ready">
+													Select Captain, Vice Captain & Fabulous 
+												</button>
+												<!--  <button class="btn btn-submit" ng-click="saveTeam()">Save Team</button> -->
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane {{activeTab=='AR'?'active':''}}" id="batsman_creat">
+										<div class="player_tab_table">
+											<div class="table_scroll" custom-scroll>
+												<table class="table-fixed">
+													<thead>
+														<tr>
+															<th>Info</th>
+															<th>Player</th>
+															<th>Team</th>
+															<th>Points</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="active" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='ALLROUNDER'">
+															<td class="player_name"><a href="javascript:void(0)" ng-click="openPopup('playerDetailPopup');SinglePlayerDetail(player.player_id,player)"><i class="{{coreLogic.playerIcon[player.play_role]}}"></i> </a></td>
+															<td>{{player.player_name}}</td>
+															<td>{{player.team}}</td>
+															<td>$10,900</td>
+															<!-- {{player.isAdded?'x':'+'}} -->
+															<td ng-if="player.isAdded==false"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">+</a>
+															</td>
+															<td ng-if="player.isAdded==true"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">x</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<!--  ng-disabled="!teamStructure.ready"  -->
+												<button class="btn btn-submit creat-btn" data-toggle="modal" data-target="#selectCaptain"  ng-disabled="selectedPlayers!=11 || !teamStructure.ready">
+													Select Captain, Vice Captain & Fabulous
+												</button>
+												<!--  <button class="btn btn-submit" ng-click="saveTeam()">Save Team</button> -->
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane {{activeTab=='BL'?'active':''}}" id="batsman_creat">
+										<div class="player_tab_table">
+											<div class="table_scroll" custom-scroll>
+												<table class="table-fixed">
+													<thead>
+														<tr>
+															<th>Info</th>
+															<th>Player</th>
+															<th>Team</th>
+															<th>Points</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="active" ng-repeat="player in availablePlayer | filter:searchText" ng-if="player.play_role=='BOWLER'">
+															<td class="player_name"><a href="javascript:void(0)" ng-click="openPopup('playerDetailPopup');SinglePlayerDetail(player.player_id,player)"><i class="{{coreLogic.playerIcon[player.play_role]}}"></i> </a></td>
+															<td>{{player.player_name}}</td>
+															<td>{{player.team}}</td>
+															<td>$10,900</td>
+															<!-- {{player.isAdded?'x':'+'}} -->
+															<td ng-if="player.isAdded==false"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">+</a>
+															</td>
+															<td ng-if="player.isAdded==true"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">x</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<button class="btn btn-submit creat-btn" data-toggle="modal" data-target="#selectCaptain"  ng-disabled="selectedPlayers!=11 || !teamStructure.ready">
+													Select Captain, Vice Captain & Fabulous 
+												</button>
+												<!--  <button class="btn btn-submit" ng-click="saveTeam()">Save Team</button> -->
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane {{activeTab=='AL'?'active':''}}" id="batsman_creat">
+										<div class="player_tab_table">
+											<div class="table_scroll" custom-scroll>
+												<table class="table-fixed">
+													<thead>
+														<tr>
+															<th>Info</th>
+															<th>Player</th>
+															<th>Team</th>
+															<th>Points</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="active" ng-repeat="player in availablePlayer | filter:searchText">
+															<td class="player_name"><a href="javascript:void(0)" ng-click="openPopup('playerDetailPopup');SinglePlayerDetail(player.player_id,player)"><i class="{{coreLogic.playerIcon[player.play_role]}}"></i> </a></td>
+															<td>{{player.player_name}}</td>
+															<td>{{player.team}}</td>
+															<td>$10,900</td>
+															<!-- {{player.isAdded?'x':'+'}} -->
+															<td ng-if="player.isAdded==false"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">+</a>
+															</td>
+															<td ng-if="player.isAdded==true"><a href="" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)">x</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="auto_advanse_postion clearfix">
+												<button class="btn btn-submit creat-btn" data-toggle="modal" data-target="#selectCaptain"  ng-disabled="selectedPlayers!=11  || !teamStructure.ready">
+													Select Captain, Vice Captain & Fabulous 
+												</button>
+												<!--  <button class="btn btn-submit" ng-click="saveTeam()">Save Team</button> -->
+											</div>
+										</div>
+									</div>
+								</div>
+								<div ng-if="status==0">
+									<h5 style="text-align: center;color:red">{{playerErrMasg}}</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div class="match_ground">
+								<div class="match_ground_header text-right"> 
+								</div>
+								<div class="match_ground_body">
+									<table class="team_structure">
+										<tr>
+											<th> </th>
+											<th> WK &nbsp</th>
+											<th> Bat &nbsp</th>
+											<th> AR &nbsp</th>
+											<th> Bowl </th>
+										</tr>
+										<tr>
+											<td>Min</td>
+											<td>1</td>
+											<td>3</td>
+											<td>1</td>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>Max</td>
+											<td>1</td>
+											<td>5</td>
+											<td>3</td>
+											<td>5</td>
+										</tr>
+									</table>
+									<ul class="cross_player">
+										<li ng-repeat="player in availablePlayer" ng-if='player.isAdded==true'>
+											<div>
+												<div class="player_img">
+													<img src="Front-End/images/add_player.png" class="img-responsive">
+												</div>
+												<a href="" class="player_cross" ng-click="addRemovePlayer(player.player_id,player.isAdded,player)" >x</a>
+												<h4>{{player.player_name}} </h4>
+												<span>{{player.play_role}}</span>
+												<!--   <span>Points : 00</span> -->
+											</div>
+										</li>
+										<li ng-repeat="pl in playerListDefault">
+											<div class="player_img">
+												<img src="Front-End/images/add_player.png" class="img-responsive">
+											</div>
+											<!-- <h4>Player Name:</h4>
+											<span>Team:</span>
+											<h4>Type:</h4> -->
+										</li>
+									</ul>
+									<h4 ng-if="playerStatus==0">
+										Please select players for creating your team!
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--ground-->
+			</div>
+		</div>
+	</section>
+</div>
+<select-captaintype></select-captaintype>
+<footer-home></footer-home>
+<div id="normal_contest" popup-handler class="modal fade" role="dialog">
+	<div class="modal-dialog custom_popup">
+		<!-- Modal content-->    
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close_join_popup('normal_contest')">&times;</button>        
+				<h4 class="modal-title">Awesome Team! Join a Contest</h4>
+			</div>
+			<div class="modal-body clearfix mega_contes_body comon_body">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>Join Practise or Cash contest to earn money!</p>
+						<button type="button" class="btn btn-submit" ng-click="close_join_popup('normal_contest')">Join</button>		  
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="mega_contest" popup-handler class="modal fade" role="dialog">
+	<div class="modal-dialog custom_popup mega_contest">
+		<!-- Modal content-->    
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close_join_popup('mega_contest')">&times;</button>        
+				<h4 class="modal-title">Awesome Team! Join a Mega Contest</h4>
+			</div>
+			<div class="modal-body clearfix mega_contes_body comon_body">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contest_model_left">
+							<div class="win_prize">
+								<h4>Win Rs. {{megaContest.total_winning_amount | number:2}}</h4>
+							</div>
+							<h4 class="pay_heading">Pay Rs.{{megaContest.team_entry_fee | number:2}}</h4>
+							<!-- <h1>Join Mega Contest</h1> -->
+							<!-- <a href="/#/contest"> -->
+							<button class="btn btn-default" type="button" ng-click="joinMegaContest();">
+								<h1>Join Mega Contest</h1></button>
+								<!-- </a> -->
+
+								<h3> 0/{{megaContest.contest_size}} Teams</h3>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="{{megaContest.contest_size * 100 / megaContest.total_join_team}}" aria-valuemin="0" aria-valuemax="{{megaContest.contest_size * 100 / megaContest.contest_size}}" style="width:{{megaContest.total_join_team * 100 / megaContest.contest_size}}%">
+                                 </div>
+								</div>
+								<div class="prize_list">
+									<ul>
+										<li><i class="flaticon-crown"></i> {{megaContest.number_of_winners}} Winners</li>
+										<li><i>c</i> Confirmed Contest</li>
+										<li ng-if="megaContest.is_multientry==1"><i>m</i> Multi Entry</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="contest_model_right">
+								<h5>The breakup of the winnings for {{megaContest.number_of_winners}} Winners is displayed</h5>
+								<h4>Rank <span>Prize</span></h4>
+								<ul ng-repeat="rankPrice in megaContest.winners_rank">
+									<li>{{rankPrice.rank}}<span>Rs. {{rankPrice.prize| number:2}}</span> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<p> Note: The actual prize money may be different than the prize money mentioned above if there is a tie for any of the winning positions.           Check FAQs for further details.<br />          As per government regulations, a tax of 30.9% will be deducted if an individual wins more than Rs. 10,000.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<div id="playerDetailPopup" popup-handler class="modal fade" role="dialog">
+  <div class="modal-dialog custom_popup">
+	<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="closePopup('playerDetailPopup')">&times;</button>        
+				<h4 class="modal-title">Series Performance Points</h4>
+			</div>
+			<div class="modal-body clearfix mega_contes_body comon_body">
+				<div class="row">
+					<div class="col-sm-12">
+					 <div class="player_detail_popup">
+					 <button ng-if="CurrentSelectPlayerDetails.isAdded==false" type="button" class="btn btn-submit" ng-click="addRemovePlayer(playerDetail.player_id,CurrentSelectPlayerDetails.isAdded,CurrentSelectPlayerDetails)">ADD TO MY TEAM</button> 
+			         <button ng-if="CurrentSelectPlayerDetails.isAdded==true" type="button" class="btn btn-submit" ng-click="addRemovePlayer(playerDetail.player_id,CurrentSelectPlayerDetails.isAdded,CurrentSelectPlayerDetails)"> REMOVE FROM MY TEAM</button> 
+					 <div class="playerPopup_img">
+					 	<img src="{{playerDetail.player_pic}}" class="img-responsive" alt="">
+					 </div>
+						<p>{{playerDetail.name}} <a href="#/player-detail/{{playerDetail.player_id}}" target="_blank">View complete profile</a></p>						
+						<p>{{playerDetail.batting_style}} {{playerDetail.bowling_style}}</p>
+						<p>{{playerDetail.country}}</p>
+					 </div>
+						<div class="details_acording">						
+					      <div ng-click="toggleShowDiv()">
+			               <a href="javascript:void(0)">28th Jan - 15 PointsSelected by 86% of teams</a><i class="fa fa-angle-down"></i>
+			              </div>
+	                       <div ng-if="toggleDiv">
+	                       <div class="common_table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Playing 11</th>
+                                            <th>Batting</th>
+                                            <th>Bowling</th>
+                                            <th>Ct</th>
+                                            <th>RO</th>
+                                            <th>Extras</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                           <td>test</td>
+                                            <td>10</td>
+                                            <td>20</td>
+                                            <td>3000</td>
+                                            <td>10</td>
+                                            <td>20</td>
+                                            <td>100</td>
+                                        </tr>                                       
+                                    </tbody>
+                                </table>
+                            </div>
+	                        </div>                
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	        </div>
+	        </div>
+	    </div>
+	</div>
+  </div>
+</div>

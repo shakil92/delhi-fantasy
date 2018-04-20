@@ -1,0 +1,137 @@
+<div id="edit_profile" class="modal fade" role="dialog">
+    <div class="modal-dialog custom_popup creatconst_popup profile_popup">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Profile</h4>
+        </div>
+        <div class="profile_header">
+            <div class="profile_image">
+                <div class="profile_box">
+                    <span id="myProfilePic">
+                         <img ng-src="{{users.user_image}}" alt="">
+                    </span>   
+                
+                <div class="profile_upload_btn">
+                    <form name="fileUpload" enctype="multipart/form-data" id="fileUpload">
+                    <input ngf-select ngf-accept="'image/*'" ng-model="picFile" name="file" id="file" type="file">
+                    <span>Upload</span>
+                    </form>
+                </div>
+            </div>
+            <div id="uploadErrorMessage"></div>
+            <div class="name_profile"> {{users.name}} <span>{{users.email}}</span></div>
+            </div>
+        </div>
+        <div class="modal-body clearfix creat_contest comon_body">
+            <form name="userform" class="form-commen" ng-submit="updateProfile(users)" novalidate="">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Olivia" ng-model="users.name" name="full_name" placeholder="Full Name" class="form-control" ng-required="true" class="form-control">
+                        <div style="color:red" ng-show="submitted && userform.full_name.$error.required" class="form-error">
+                            *Full name is required.
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" placeholder="sunrisers hyderabad" ng-model="users.team_code" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <datepicker date-max-limit="{{dobValidate.toString()}}" date-set="{{users.date_of_birth.toString()}}" date-format="yyyy-MM-dd" date-typer="true" >
+                            <input type="text" ng-model="users.date_of_birth" placeholder="D.O.B." class="form-control" id="BirthDate" readonly/>
+                          </datepicker>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select ng-model="users.gender" name="gender"  class="form-control" placeholder="Select Countries" ng-required="true">
+                                    <option value="">Select Gender</option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                  </select>
+        
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input type="text" ng-model="users.mobile" name="mobile" placeholder="Mobile Number" class="form-control" ng-pattern="/^\+?\d{10}$/" ng-required="true" readonly>
+                        <div style="color:red" ng-show="submitted && userform.mobile.$error.required" class="form-error">
+                            *Mobile number is required.
+                          </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Country</label>
+                        <select ng-model="users.country" name="country" ng-change="changeCountry(users.country,true)"  class="form-control" placeholder="Select Countries" ng-required="true">
+                            <option value="">Select Countries</option>
+                            <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+                          </select>
+                          <div style="color:red" ng-show="submitted && userform.country.$error.required" class="form-error">
+                            *Country is required.
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select ng-model="users.state" name="state" class="form-control" ng-required="true">
+                                <option value="">Select State</option>
+                                <option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</option>
+                              </select>
+                           
+                              <div style="color:red" ng-show="submitted && userform.state.$error.required" class="form-error">
+                                *State  is required.
+                              </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" ng-model="users.city" name="city" placeholder="City" class="form-control" ng-required="true">
+                                <div style="color:red" ng-show="submitted && userform.city.$error.required" class="form-error">
+                                 *City  is required.
+                            </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" ng-model="users.address" name="address" placeholder="Address" class="form-control" ng-required="true">
+                                    <div style="color:red" ng-show="submitted && userform.address.$error.required" class="form-error">
+                                     *Address  is required.
+                                   </div>
+                                </div>
+                            </div>
+            
+                           
+            
+                <div class="col-sm-12">
+                    <p style="color: green;text-align: left;margin-bottom:5px;" ng-if="profileMsg==1">{{profileSuccess}}</p>
+                    <p style="color: red;text-align: left;margin-bottom:5px;" ng-if="errorMsg==1">{{errorMsgDetail}}</p>
+                    <button class="btn btn-submit">Update</button>
+                </div>
+                <div class="col-sm-6 col-sm-pull-6">
+                    <!-- <h4>Change Password</h4> -->
+                </div>
+            
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
